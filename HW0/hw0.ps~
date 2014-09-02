@@ -1,0 +1,1272 @@
+%!PS-Adobe-3.0
+%%Title: crtheise_sim_assignment.py, sim_definitions.py, single_server.py
+%%For: Christopher Theisen
+%%Creator: a2ps version 4.14
+%%CreationDate: Tue Sep  2 11:50:58 2014
+%%BoundingBox: 24 24 588 768
+%%DocumentData: Clean7Bit
+%%Orientation: Landscape
+%%Pages: 3
+%%PageOrder: Ascend
+%%DocumentMedia: Letter 612 792 0 () ()
+%%DocumentNeededResources: font Courier
+%%+ font Courier-Bold
+%%+ font Courier-BoldOblique
+%%+ font Courier-Oblique
+%%+ font Helvetica
+%%+ font Helvetica-Bold
+%%+ font Symbol
+%%+ font Times-Bold
+%%+ font Times-Roman
+%%DocumentProcessColors: Black 
+%%DocumentSuppliedResources: procset a2ps-a2ps-hdr
+%%+ procset a2ps-black+white-Prolog
+%%+ encoding ISO-8859-1Encoding
+%%EndComments
+/a2psdict 200 dict def
+a2psdict begin
+%%BeginProlog
+%%Copyright: (c) 1988, 89, 90, 91, 92, 93 Miguel Santana
+%%Copyright: (c) 1995, 96, 97, 98 Akim Demaille, Miguel Santana
+% Check PostScript language level.
+/languagelevel where {
+  pop /gs_languagelevel languagelevel def
+} {
+  /gs_languagelevel 1 def
+} ifelse
+
+% EPSF import as in the Red Book
+/BeginInclude {
+  /b4_Inc_state save def    		% Save state for cleanup
+  /dict_count countdictstack def	% Count objects on dict stack
+  /op_count count 1 sub def		% Count objects on operand stack 
+  userdict begin
+    0 setgray 0 setlinecap
+    1 setlinewidth 0 setlinejoin
+    10 setmiterlimit [ ] 0 setdash newpath
+    gs_languagelevel 1 ne {
+      false setstrokeadjust false setoverprint 
+    } if
+} bind def
+
+/EndInclude {
+  count op_count sub { pos } repeat	% Clean up stacks
+  countdictstack dict_count sub { end } repeat
+  b4_Inc_state restore
+} bind def
+
+/BeginEPSF {
+  BeginInclude
+  /showpage { } def
+} bind def
+
+/EndEPSF {
+  EndInclude
+} bind def
+
+% Page prefeed
+/page_prefeed {         % bool -> -
+  statusdict /prefeed known {
+    statusdict exch /prefeed exch put
+  } {
+    pop
+  } ifelse
+} bind def
+
+/deffont {
+  findfont exch scalefont def
+} bind def
+
+/reencode_font {
+  findfont reencode 2 copy definefont pop def
+} bind def
+
+% Function c-show (str => -)
+% centers text only according to x axis.
+/c-show { 
+  dup stringwidth pop
+  2 div neg 0 rmoveto
+  show
+} bind def
+
+% Function l-show (str => -)
+% prints texts so that it ends at currentpoint
+/l-show {
+  dup stringwidth pop neg 
+  0 
+  rmoveto show
+} bind def
+
+% center-fit show (str w => -)
+% show centered, and scale currentfont so that the width is less than w
+/cfshow {
+  exch dup stringwidth pop
+  % If the title is too big, try to make it smaller
+  3 2 roll 2 copy
+  gt
+  { % if, i.e. too big
+    exch div
+    currentfont exch scalefont setfont
+  } { % ifelse
+    pop pop 
+  }
+  ifelse
+  c-show			% center title
+} bind def
+
+% Return the y size of the current font
+% - => fontsize
+/currentfontsize {
+  currentfont /FontMatrix get 3 get 1000 mul
+} bind def
+
+% reencode the font
+% <encoding-vector> <fontdict> -> <newfontdict>
+/reencode { %def
+  dup length 5 add dict begin
+    { %forall
+      % <vector> <key> <val>
+      1 index /FID ne 
+      { def }{ pop pop } ifelse
+    } forall
+    /Encoding exch def % -
+
+    % Use the font's bounding box to determine the ascent, descent,
+    % and overall height; don't forget that these values have to be
+    % transformed using the font's matrix.
+    % We use `load' because sometimes BBox is executable, sometimes not.
+    % Since we need 4 numbers an not an array avoid BBox from being executed
+    /FontBBox load aload pop
+    FontMatrix transform /Ascent exch def pop
+    FontMatrix transform /Descent exch def pop
+    /FontHeight Ascent Descent sub def
+
+    % Get the underline position and thickness if they're defined.
+    % Use 1 if they are not defined.
+    currentdict /FontInfo 2 copy known
+    { get
+      /UnderlinePosition 2 copy % <FontInfo> /UP <FontInfo> /UP
+      2 copy known
+      { get }{ pop pop 1 } ifelse
+      0 exch FontMatrix transform exch pop
+      def % <FontInfo>
+
+      /UnderlineThickness 2 copy % <FontInfo> /UT <FontInfo> /UT
+      2 copy known
+      { get }{ pop pop 1 } ifelse
+      0 exch FontMatrix transform exch pop
+      def % <FontInfo>
+      pop % -
+    }{ pop pop
+    } ifelse
+
+    currentdict
+  end 
+} bind def
+
+% Function print line number (<string> # -)
+/# {
+  gsave
+    sx cw mul neg 2 div 0 rmoveto
+    f# setfont
+    c-show
+  grestore
+} bind def
+
+% -------- Some routines to enlight plain b/w printings ---------
+
+% Underline
+% width --
+/dounderline {
+  currentpoint
+  gsave
+    moveto
+    0 currentfont /Descent get currentfontsize mul rmoveto
+    0 rlineto
+    stroke
+  grestore
+} bind def
+
+% Underline a string
+% string --
+/dounderlinestring {
+  stringwidth pop
+  dounderline
+} bind def
+
+/UL {
+  /ul exch store
+} bind def
+
+% Draw a box of WIDTH wrt current font
+% width --
+/dobox {
+  currentpoint
+  gsave
+    newpath
+    moveto
+    0 currentfont /Descent get currentfontsize mul rmoveto
+    dup 0 rlineto
+    0 currentfont /FontHeight get currentfontsize mul rlineto
+    neg 0 rlineto
+    closepath
+    stroke
+  grestore
+} bind def
+
+/BX {
+  /bx exch store
+} bind def
+
+% Box a string
+% string --
+/doboxstring {
+  stringwidth pop
+  dobox
+} bind def
+
+%
+% ------------- Color routines ---------------
+%
+/FG /setrgbcolor load def
+
+% Draw the background
+% width --
+/dobackground {
+  currentpoint
+  gsave
+    newpath
+    moveto
+    0 currentfont /Descent get currentfontsize mul rmoveto
+    dup 0 rlineto
+    0 currentfont /FontHeight get currentfontsize mul rlineto
+    neg 0 rlineto
+    closepath
+    bgcolor aload pop setrgbcolor
+    fill
+  grestore
+} bind def
+
+% Draw bg for a string
+% string --
+/dobackgroundstring {
+  stringwidth pop
+  dobackground
+} bind def
+
+
+/BG {
+  dup /bg exch store
+  { mark 4 1 roll ] /bgcolor exch store } if
+} bind def
+
+
+/Show {
+  bg { dup dobackgroundstring } if
+  ul { dup dounderlinestring } if
+  bx { dup doboxstring } if
+  show
+} bind def
+
+% Function T(ab), jumps to the n-th tabulation in the current line
+/T {
+  cw mul x0 add
+  bg { dup currentpoint pop sub dobackground } if
+  ul { dup currentpoint pop sub dounderline } if
+  bx { dup currentpoint pop sub dobox } if
+  y0 moveto
+} bind def
+
+% Function n: move to the next line
+/n {
+  /y0 y0 bfs sub store
+  x0 y0 moveto
+} bind def
+
+% Function N: show and move to the next line
+/N {
+  Show
+  /y0 y0 bfs sub store
+  x0 y0 moveto
+} bind def
+
+/S {
+  Show
+} bind def
+
+%%BeginResource: procset a2ps-a2ps-hdr 2.0 2
+%%Copyright: (c) 1988, 89, 90, 91, 92, 93 Miguel Santana
+%%Copyright: (c) 1995, 96, 97, 98 Akim Demaille, Miguel Santana
+% Function title: prints page header.
+% <ct> <rt> <lt> are passed as argument
+/title { 
+  % 1. Draw the background
+  x v get y v get moveto
+  gsave
+    0 th 2 div neg rmoveto 
+    th setlinewidth
+    0.95 setgray
+    pw 0 rlineto stroke
+  grestore
+  % 2. Border it
+  gsave
+    0.7 setlinewidth
+    pw 0 rlineto
+    0 th neg rlineto
+    pw neg 0 rlineto
+    closepath stroke
+  grestore
+  % stk: ct rt lt
+  x v get y v get th sub 1 add moveto
+%%IncludeResource: font Helvetica
+  fHelvetica fnfs 0.8 mul scalefont setfont
+  % 3. The left title
+  gsave
+    dup stringwidth pop fnfs 0.8 mul add exch % leave space took on stack
+    fnfs 0.8 mul hm rmoveto
+    show			% left title
+  grestore
+  exch
+  % stk: ct ltw rt
+  % 4. the right title
+  gsave
+    dup stringwidth pop fnfs 0.8 mul add exch % leave space took on stack
+    dup
+    pw exch stringwidth pop fnfs 0.8 mul add sub
+    hm
+    rmoveto
+    show			% right title
+  grestore
+  % stk: ct ltw rtw
+  % 5. the center title
+  gsave
+    pw 3 1 roll
+    % stk: ct pw ltw rtw
+    3 copy 
+    % Move to the center of the left room
+    sub add 2 div hm rmoveto
+    % What is the available space in here?
+    add sub fnfs 0.8 mul sub fnfs 0.8 mul sub
+    % stk: ct space_left
+%%IncludeResource: font Helvetica-Bold
+  fHelvetica-Bold fnfs scalefont setfont
+    cfshow
+  grestore
+} bind def
+
+% Function border: prints virtual page border
+/border { %def
+  gsave				% print four sides
+    0 setgray
+    x v get y v get moveto
+    0.7 setlinewidth		% of the square
+    pw 0 rlineto
+    0 ph neg rlineto
+    pw neg 0 rlineto
+    closepath stroke
+  grestore
+} bind def
+
+% Function water: prints a water mark in background
+/water { %def
+  gsave
+    scx scy moveto rotate
+%%IncludeResource: font Times-Bold
+  fTimes-Bold 100 scalefont setfont
+    .97 setgray
+    dup stringwidth pop 2 div neg -50 rmoveto
+    show
+  grestore
+} bind def
+
+% Function rhead: prints the right header
+/rhead {  %def
+  lx ly moveto
+  fHelvetica fnfs 0.8 mul scalefont setfont
+  l-show
+} bind def
+
+% Function footer (cf rf lf -> -)
+/footer {
+  fHelvetica fnfs 0.8 mul scalefont setfont
+  dx dy moveto
+  show
+
+  snx sny moveto
+  l-show
+  
+  fnx fny moveto
+  c-show
+} bind def
+%%EndResource
+%%BeginResource: procset a2ps-black+white-Prolog 2.0 1
+
+% Function T(ab), jumps to the n-th tabulation in the current line
+/T { 
+  cw mul x0 add y0 moveto
+} bind def
+
+% Function n: move to the next line
+/n { %def
+  /y0 y0 bfs sub store
+  x0 y0 moveto
+} bind def
+
+% Function N: show and move to the next line
+/N {
+  Show
+  /y0 y0 bfs sub store
+  x0 y0 moveto
+}  bind def
+
+/S {
+  Show
+} bind def
+
+/p {
+  false UL
+  false BX
+  fCourier bfs scalefont setfont
+  Show
+} bind def
+
+/sy {
+  false UL
+  false BX
+  fSymbol bfs scalefont setfont
+  Show
+} bind def
+
+/k {
+  false UL
+  false BX
+  fCourier-Oblique bfs scalefont setfont
+  Show
+} bind def
+
+/K {
+  false UL
+  false BX
+  fCourier-Bold bfs scalefont setfont
+  Show
+} bind def
+
+/c {
+  false UL
+  false BX
+  fCourier-Oblique bfs scalefont setfont
+  Show
+} bind def
+
+/C {
+  false UL
+  false BX
+  fCourier-BoldOblique bfs scalefont setfont
+  Show 
+} bind def
+
+/l {
+  false UL
+  false BX
+  fHelvetica bfs scalefont setfont
+  Show
+} bind def
+
+/L {
+  false UL
+  false BX
+  fHelvetica-Bold bfs scalefont setfont
+  Show 
+} bind def
+
+/str{
+  false UL
+  false BX
+  fTimes-Roman bfs scalefont setfont
+  Show
+} bind def
+
+/e{
+  false UL
+  true BX
+  fHelvetica-Bold bfs scalefont setfont
+  Show
+} bind def
+
+%%EndResource
+%%EndProlog
+%%BeginSetup
+%%IncludeResource: font Courier
+%%IncludeResource: font Courier-Oblique
+%%IncludeResource: font Courier-Bold
+%%IncludeResource: font Times-Roman
+%%IncludeResource: font Symbol
+%%IncludeResource: font Courier-BoldOblique
+%%BeginResource: encoding ISO-8859-1Encoding
+/ISO-8859-1Encoding [
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/space /exclam /quotedbl /numbersign /dollar /percent /ampersand /quoteright 
+/parenleft /parenright /asterisk /plus /comma /minus /period /slash 
+/zero /one /two /three /four /five /six /seven 
+/eight /nine /colon /semicolon /less /equal /greater /question 
+/at /A /B /C /D /E /F /G 
+/H /I /J /K /L /M /N /O 
+/P /Q /R /S /T /U /V /W 
+/X /Y /Z /bracketleft /backslash /bracketright /asciicircum /underscore 
+/quoteleft /a /b /c /d /e /f /g 
+/h /i /j /k /l /m /n /o 
+/p /q /r /s /t /u /v /w 
+/x /y /z /braceleft /bar /braceright /asciitilde /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/space /exclamdown /cent /sterling /currency /yen /brokenbar /section 
+/dieresis /copyright /ordfeminine /guillemotleft /logicalnot /hyphen /registered /macron 
+/degree /plusminus /twosuperior /threesuperior /acute /mu /paragraph /bullet 
+/cedilla /onesuperior /ordmasculine /guillemotright /onequarter /onehalf /threequarters /questiondown 
+/Agrave /Aacute /Acircumflex /Atilde /Adieresis /Aring /AE /Ccedilla 
+/Egrave /Eacute /Ecircumflex /Edieresis /Igrave /Iacute /Icircumflex /Idieresis 
+/Eth /Ntilde /Ograve /Oacute /Ocircumflex /Otilde /Odieresis /multiply 
+/Oslash /Ugrave /Uacute /Ucircumflex /Udieresis /Yacute /Thorn /germandbls 
+/agrave /aacute /acircumflex /atilde /adieresis /aring /ae /ccedilla 
+/egrave /eacute /ecircumflex /edieresis /igrave /iacute /icircumflex /idieresis 
+/eth /ntilde /ograve /oacute /ocircumflex /otilde /odieresis /divide 
+/oslash /ugrave /uacute /ucircumflex /udieresis /yacute /thorn /ydieresis 
+] def
+%%EndResource
+% Initialize page description variables.
+/sh 612 def
+/sw 792 def
+/llx 24 def
+/urx 768 def
+/ury 588 def
+/lly 24 def
+/#copies 1 def
+/th 15.000000 def
+/fnfs 11 def
+/bfs 7.060185 def
+/cw 4.236111 def
+
+% Dictionary for ISO-8859-1 support
+/iso1dict 8 dict begin
+  /fCourier ISO-8859-1Encoding /Courier reencode_font
+  /fCourier-Bold ISO-8859-1Encoding /Courier-Bold reencode_font
+  /fCourier-BoldOblique ISO-8859-1Encoding /Courier-BoldOblique reencode_font
+  /fCourier-Oblique ISO-8859-1Encoding /Courier-Oblique reencode_font
+  /fHelvetica ISO-8859-1Encoding /Helvetica reencode_font
+  /fHelvetica-Bold ISO-8859-1Encoding /Helvetica-Bold reencode_font
+  /fTimes-Bold ISO-8859-1Encoding /Times-Bold reencode_font
+  /fTimes-Roman ISO-8859-1Encoding /Times-Roman reencode_font
+currentdict end def
+/bgcolor [ 0 0 0 ] def
+/bg false def
+/ul false def
+/bx false def
+% The font for line numbering
+/f# /Helvetica findfont bfs .6 mul scalefont def
+/fSymbol /Symbol findfont def
+/hm fnfs 0.25 mul def
+/pw
+   cw 86.400000 mul
+def
+/ph
+   520.335631 th add
+def
+/pmw urx llx sub pw 2 mul sub 1 div def
+/pmh 0 def
+/v 0 def
+/x [
+  0
+  dup pmw add pw add
+] def
+/y [
+  pmh ph add 0 mul ph add
+  dup
+] def
+/scx sw 2 div def
+/scy sh 2 div def
+/snx urx def
+/sny lly 2 add def
+/dx llx def
+/dy sny def
+/fnx scx def
+/fny dy def
+/lx snx def
+/ly ury fnfs 0.8 mul sub def
+/sx 5 def
+/tab 8 def
+/x0 0 def
+/y0 0 def
+%%EndSetup
+
+%%Page: (1-2) 1
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 2.965278 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+0 T (from) K
+( single_server ) p
+(import) K
+( single_basic, single_queueing, single_queueing_B) p n
+0 T () S
+(from) K
+( multi_server ) p
+(import) K
+( *) p n
+0 T () S
+(from) K
+( multi_server_b ) p
+(import) K
+( *) p n
+0 T () S
+(import) K
+( sys) p n
+(5) # () N
+0 T () N
+0 T (total = len\(sys.argv\)) N
+0 T () S
+(if) K
+( total ) p
+(\271) sy
+( 2:) p n
+0 T () S 8 T () S
+(print) K
+( ') p
+(Usage: python) str
+(', str\(sys.argv[0]\), ') p
+(<problem_number>) str
+(') p n
+(10) # () S 8 T (exit\(0\)) N
+0 T () S 8 T () N
+0 T (problem = str\(sys.argv[1]\)) N
+0 T () N
+0 T () S
+(if) K
+( problem ) p
+(\272) sy
+( ') p
+(1) str
+(':) p n
+(15) # () S 8 T () S
+(print) K
+( ') p
+(Problem 1:) str
+(') p n
+0 T () S 8 T (single_basic\(\)) N
+0 T () S 8 T () N
+0 T () S
+(elif) K
+( problem ) p
+(\272) sy
+( ') p
+(2) str
+(':) p n
+0 T () S 8 T () S
+(print) K
+( ') p
+(Problem 2:) str
+(') p n
+(20) # () S 8 T (my_rate = .2) N
+0 T () S 8 T () S
+(while) K
+( my_rate ) p
+(\243) sy
+( .951:) p n
+0 T () S 8 T () S 16 T (single_queueing\(my_rate, 200000, 1\)) N
+0 T () S 8 T () S 16 T (my_rate = my_rate + .15) N
+0 T () S 8 T () S 16 T () N
+(25) # () S
+(elif) K
+( problem ) p
+(\272) sy
+( ') p
+(3) str
+(':) p n
+0 T () S 8 T () S
+(print) K
+( ') p
+(Problem 3:) str
+(') p n
+0 T () S 8 T (my_B = 10) N
+0 T () S 8 T () S
+(while) K
+( my_B ) p
+(\243) sy
+( 50:) p n
+0 T () S 8 T () S 16 T (single_queueing_B\(.95, my_B, 200000, 1\)) N
+(30) # () S 8 T () S 16 T (my_B = my_B + 5) N
+0 T () S 8 T () S 16 T () N
+0 T () S
+(elif) K
+( problem ) p
+(\272) sy
+( ') p
+(4a) str
+(':) p n
+0 T () S 8 T () S
+(#1: 3\(lambda\) arrival, 3 servers rate mu) c n
+0 T () S
+() p 8 T (my_lambda = .1) N
+(35) # () S 8 T () S
+(while) K
+( my_lambda ) p
+(\243) sy
+( .91:) p n
+0 T () S 8 T () S 16 T (single_queueing_3_server\(my_lambda, 10000, 200000, 1\)) N
+0 T () S 8 T () S 16 T (my_lambda = my_lambda + .1) N
+0 T () N
+0 T () S
+(elif) K
+( problem ) p
+(\272) sy
+( ') p
+(4b) str
+(':) p 24 T () N
+(40) # () S 8 T () S
+(#2: 3\(lambda\) arrival, 1 server rate 3*mu) c n
+0 T () S
+() p 8 T (my_lambda = .1) N
+0 T () S 8 T () S
+(while) K
+( my_lambda ) p
+(\243) sy
+( .91:) p n
+0 T () S 8 T () S 16 T (single_queueing\(3*my_lambda, 200000, 3*1\)) N
+0 T () S 8 T () S 16 T (my_lambda = my_lambda + .1) N
+(45) # () N
+0 T () S
+(elif) K
+( problem ) p
+(\272) sy
+( ') p
+(4c) str
+(':) p n
+0 T () S 8 T () S
+(#3: 3 queue lambda arrival, 1 server rate 3*mu \(priority\)) c n
+0 T () S
+() p 8 T (my_lambda = .1) N
+0 T () S 8 T () S
+(while) K
+( my_lambda ) p
+(\243) sy
+( .91:) p n
+(50) # () S 8 T () S 16 T (three_queueing_single_server_priority\(my_lambda, 10000, 200000, ) N
+0 T (3*1\)) N
+0 T () S 8 T () S 16 T (my_lambda = my_lambda + .1) N
+0 T () N
+0 T () S
+(elif) K
+( problem ) p
+(\272) sy
+( ') p
+(4d) str
+(':) p 24 T () N
+0 T () S 8 T () S
+(#4: 3 queue lambda arrival, 1 server rate 3*mu \(Longest Queue First\)) c n
+(55) # () S
+() p 8 T (my_lambda = .1) N
+0 T () S 8 T () S
+(while) K
+( my_lambda ) p
+(\243) sy
+( .91:) p n
+0 T () S 8 T () S 16 T (three_queueing_single_server_LQF\(my_lambda, 10000, 200000, 3*1\)) N
+0 T () S 8 T () S 16 T (my_lambda = my_lambda + .1) N
+0 T () S 8 T () N
+(60) # () S
+(elif) K
+( problem ) p
+(\272) sy
+( ') p
+(5a) str
+(':) p n
+0 T () S 8 T () S
+(#1: 3\(lambda\) arrival, 3 servers rate mu) c n
+0 T () S
+() p 8 T (my_B = 10) N
+0 T () S 8 T () S
+(while) K
+( my_B ) p
+(\243) sy
+( 50:) p n
+0 T () S 8 T () S 16 T (single_queueing_3_server_b\(3*0.9, my_B, 200000, 1\)) N
+(65) # () S 8 T () S 16 T (my_B = my_B + 5) N
+0 T () N
+0 T () S
+(elif) K
+( problem ) p
+(\272) sy
+( ') p
+(5b) str
+(':) p 24 T () N
+0 T () S 8 T () S
+(#2: 3\(lambda\) arrival, 1 server rate 3*mu) c n
+0 T () S
+() p 8 T (my_B = 10) N
+(70) # () S 8 T () S
+(while) K
+( my_B ) p
+(\243) sy
+( 50:) p n
+0 T () S 8 T () S 16 T (single_queueing_B\(3*0.9, my_B, 200000, 3*1\)) N
+0 T () S 8 T () S 16 T (my_B = my_B + 5) N
+(csc710sbse: hw0:Theisen) (Page 1/2) (Mar 28, 14 15:00) title
+border
+/v 1 store
+/x0 x v get 2.965278 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+0 T () p n
+0 T () S
+(elif) K
+( problem ) p
+(\272) sy
+( ') p
+(5c) str
+(':) p n
+(75) # () S 8 T () S
+(#3: 3 queue lambda arrival, 1 server rate 3*mu \(priority\)) c n
+0 T () S
+() p 8 T (my_B = 10) N
+0 T () S 8 T () S
+(while) K
+( my_B ) p
+(\243) sy
+( 50:) p n
+0 T () S 8 T () S 16 T (three_queueing_single_server_priority_b\(0.9, my_B, 200000, 3*1\)) N
+0 T () S 8 T () S 16 T (my_B = my_B + 5) N
+(80) # () N
+0 T () S
+(elif) K
+( problem ) p
+(\272) sy
+( ') p
+(5d) str
+(':) p 24 T () N
+0 T () S 8 T () S
+(#4: 3 queue lambda arrival, 1 server rate 3*mu \(Longest Queue First\)) c n
+0 T () S
+() p 8 T (my_B = 10) N
+0 T () S 8 T () S
+(while) K
+( my_B ) p
+(\243) sy
+( 50:) p n
+(85) # () S 8 T () S 16 T (three_queueing_single_server_LQF_b\(0.9, my_B, 200000, 3*1\)) N
+0 T () S 8 T () S 16 T (my_B = my_B + 5) N
+0 T () S 8 T () S 16 T () N
+0 T () S
+(elif) K
+( problem ) p
+(\272) sy
+( ') p
+(custom) str
+(':) p n
+0 T () S 8 T () S
+(#Use this space to construct custom queries for testing.) c n
+(90) # () S
+() p 8 T (three_queueing_single_server_LQF_b\(0.9, 10, 200000, 3*1\)) N
+0 T () S 8 T () N
+0 T () S
+(else) K
+(:) p n
+0 T () S 8 T () S
+(print) K
+( ') p
+(Invalid Problem Specified. Exiting.) str
+(') p n
+0 T () S 8 T () S
+(print) K
+( ') p
+(Usage: python) str
+(', str\(sys.argv[0]\), ') p
+(<problem_number>) str
+(') p n
+(csc710sbse: hw0:Theisen) (Page 2/2) (Mar 28, 14 15:00) title
+border
+grestore
+(Printed by Christopher Theisen) rhead
+(./files/crtheise_sim_assignment.py) (1/3) (Tuesday September 02, 2014) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (1) 2
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 2.965278 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+0 T (import) K
+( math) p n
+0 T () S
+(import) K
+( random) p n
+0 T () N
+0 T (Seed = 10) N
+(5) # (random.seed\( Seed \)) N
+0 T () N
+0 T () S
+(def) K
+( expTime\(rate\):) p n
+0 T (     ) S
+(#Individual values in exponential distribution can be represented via:) c n
+0 T () S
+(     ) p
+(#x = ln\(1-R\)/\(-lambda\)) c n
+(10) # () S
+(     ) p
+(#Can do this because of inversion method: this is arrived at via) c n
+0 T () S
+(     ) p
+(#integrating and inverting the exponential distribution:) c n
+0 T () S
+(     ) p
+(#F\(y\) = 1 - e^\(-\(lambda\)y\)) c n
+0 T () S
+(     ) p
+(#) c n
+0 T () S
+(     ) p
+(#Can use this function for both arrival rate and service rate. Mu = 1 for) c n
+(15) # () S
+(     ) p
+(#entire project, so for service rate, we will always call expTime\(1\).) c n
+0 T () S
+(     ) p
+(return) K
+( math.log\(1.0 - random.uniform\(1, 10000000\)\) / -rate) p n
+0 T (     ) N
+0 T () S
+(class) K
+( Packet:) p n
+0 T (    ) S
+(#Packet Class. Returns arrival time, wait time, service time) c n
+(20) # () S
+(    arrival = -1.0) p n
+0 T (    serviceStart = -1.0) N
+0 T (    service = -1.0) N
+0 T (    ) N
+0 T (    ) S
+(def) K
+( getTotalTime\(self\):) p n
+(25) # (        ) S
+(return) K
+( \(self.serviceStart+self.service\)-self.arrival) p
+(csc710sbse: hw0:Theisen) (Page 1/1) (Aug 31, 14 21:50) title
+border
+grestore
+(Printed by Christopher Theisen) rhead
+(./files/sim_definitions.py) (2/3) (Tuesday September 02, 2014) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (1-2) 3
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 2.965278 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+0 T (from) K
+( Queue ) p
+(import) K
+( *) p n
+0 T () S
+(import) K
+( matplotlib.pyplot as plt) p n
+0 T () S
+(import) K
+( numpy as np) p n
+0 T () N
+(5) # () S
+(from) K
+( sim_definitions ) p
+(import) K
+( expTime, Packet, Seed) p n
+0 T () N
+0 T () S
+(def) K
+( single_basic\(\):) p n
+0 T () S 8 T (B = 5) N
+0 T () S 8 T (N = 200000) N
+(10) # () S 8 T (rate = 0.5) N
+0 T () S 8 T (mu = 1) N
+0 T () S 8 T (total = 0) N
+0 T () N
+0 T () S 8 T (list = []) N
+(15) # () S 8 T () S
+(for) K
+( x ) p
+(in) K
+( xrange\(1, N\):) p n
+0 T () S 8 T () S 16 T (total = total + 1) N
+0 T () S 8 T () S 16 T (list.append\(expTime\(rate\)\);) N
+0 T () S 8 T (hist, bins = np.histogram\(list, bins=200, normed=True\)) N
+0 T () S 8 T (width = 0.7 * \(bins[1] - bins[0]\)) N
+(20) # () S 8 T (center = \(bins[:-1] + bins[1:]\) / 2) N
+0 T () S 8 T (plt.bar\(center, hist, align=') S
+(center) str
+(', width=width\)) p n
+0 T () S 8 T (plt.show\(\)) N
+0 T () S 8 T () S
+(print) K
+( ') p
+(Total:) str
+(', total) p n
+0 T () S 8 T () S
+(print) K
+( ') p
+(Average Arrival Time:) str
+(', sum\(list\)/N) p n
+(25) # () S 8 T () S
+(print) K
+( ') p
+(Seed:) str
+(', Seed) p n
+0 T () N
+0 T () S
+(def) K
+( single_queueing\(rate, N, mu\):) p n
+0 T () S 8 T (currentTime = 0) N
+0 T () S 8 T (totalLeft = N) N
+(30) # () S 8 T (q = Queue\(\)) N
+0 T () S 8 T (lost = 0.0) N
+0 T () S 8 T (minWait = 9999999) N
+0 T () S 8 T (maxWait = 0) N
+0 T () S 8 T (serverBusy = 0) N
+(35) # () N
+0 T () S 8 T (list = []) N
+0 T () S 8 T () S
+(while) K
+( totalLeft > 0:) p n
+0 T () N
+0 T () S 8 T () S 16 T (oldTime = currentTime) N
+(40) # () S 8 T () S 16 T (nextArrival = currentTime + expTime\(rate\)) N
+0 T () S 8 T () S 16 T (nextDeparture = currentTime + expTime\(mu\)) N
+0 T () S 8 T () S 16 T (currentTime = min\(nextArrival, nextDeparture\)) N
+0 T () N
+0 T () S 8 T () S 16 T () S
+(if) K
+( nextArrival < nextDeparture ) p
+(\331) sy
+( ) p
+(\330) sy
+(\(q.full\(\)\):) p n
+(45) # () S 8 T () S 16 T () S 24 T (totalLeft = totalLeft - 1) N
+0 T () S 8 T () S 16 T () S 24 T (packet = Packet\(\)) N
+0 T () S 8 T () S 16 T () S 24 T (packet.arrival = currentTime) N
+0 T () S 8 T () S 16 T () S 24 T (q.put\(packet\)) N
+0 T () S 8 T () S 16 T () S
+(if) K
+( nextArrival ) p
+(\263) sy
+( nextDeparture ) p
+(\331) sy
+( ) p
+(\330) sy
+(\(q.empty\(\)\):) p n
+(50) # () S 8 T () S 16 T () S 24 T (item = q.get\(\)) N
+0 T () S 8 T () S 16 T () S 24 T (currentWait = currentTime-item.arrival) N
+0 T () S 8 T () S 16 T () S 24 T () S
+(if) K
+( currentWait < minWait:) p n
+0 T () S 8 T () S 16 T () S 24 T () S 32 T (minWait = currentWait) N
+0 T () S 8 T () S 16 T () S 24 T () S
+(elif) K
+( currentWait > maxWait:) p n
+(55) # () S 8 T () S 16 T () S 24 T () S 32 T (maxWait = currentWait) N
+0 T () S 8 T () S 16 T () S 24 T (list.append\(currentTime-item.arrival\)) N
+0 T () S 8 T () S 16 T () S
+(if) K
+( ) p
+(\330) sy
+(\(q.empty\(\)\):) p n
+0 T () S 8 T () S 16 T () S 24 T (serverBusy = serverBusy + \(currentTime - oldTime\)) N
+0 T () S 8 T () S 16 T () S 24 T () N
+(60) # () S 8 T () S
+(print) K
+( ') p
+(Parameters - Seed:) str
+(', Seed, ') p
+(Rate:) str
+(', rate, ') p
+(Mu:) str
+(', mu, ') p
+(Number:) str
+(', N) p n
+0 T () S 8 T () S
+(print) K
+( ') p
+(End Time of Simulation:) str
+(', currentTime) p n
+0 T () S 8 T () S
+(print) K
+( ') p
+(Wait Times - Average:) str
+(', sum\(list\)/N,) p n
+0 T () S 8 T () S
+(print) K
+( ') p
+(Server Utilization: ) str
+(', serverBusy/currentTime) p n
+0 T () S 8 T () S
+(print) K
+( ') p
+(Percentage lost: ) str
+(', \(lost/\(N+lost\)\)*100, ') p
+(%) str
+(') p n
+(65) # () S 8 T () S
+(print) K
+( '') p n
+0 T () S 8 T () N
+0 T () S
+(def) K
+( single_queueing_B\(rate, B, N, mu\):) p n
+0 T () S 8 T () N
+0 T () S 8 T (currentTime = 0) N
+(70) # () S 8 T (totalLeft = 0) N
+0 T () S 8 T (lost = 0.0) N
+0 T () S 8 T () S
+(##Queue size plus the service position, so B+1) c n
+0 T () S
+() p 8 T (q = Queue\(maxsize=B+1\)) N
+(csc710sbse: hw0:Theisen) (Page 1/2) (Aug 31, 14 21:50) title
+border
+/v 1 store
+/x0 x v get 2.965278 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+0 T () p 8 T (serverBusy = 0) N
+(75) # () S 8 T (minWait = 9999999) N
+0 T () S 8 T (maxWait = 0) N
+0 T () N
+0 T () S 8 T (list = []) N
+0 T () S 8 T () S
+(while) K
+( totalLeft < N:) p n
+(80) # () S 8 T () N
+0 T () S 8 T () S 16 T (oldTime = currentTime) N
+0 T () S 8 T () S 16 T (nextArrival = currentTime + expTime\(rate\)) N
+0 T () S 8 T () S 16 T () S
+(if) K
+( q.empty\(\):) p n
+0 T () S 8 T () S 16 T () S 24 T (currentTime = nextArrival) N
+(85) # () S 8 T () S 16 T () S 24 T (nextDeparture = nextArrival + 1) N
+0 T () S 8 T () S 16 T () S
+(else) K
+(:) p n
+0 T () S 8 T () S 16 T () S 24 T (nextDeparture = currentTime + expTime\(mu\)) N
+0 T () S 8 T () S 16 T () S 24 T (currentTime = min\(nextArrival, nextDeparture\)) N
+0 T () S 8 T () S 16 T () S 24 T () N
+(90) # () S 8 T () S 16 T () S
+(if) K
+( nextArrival < nextDeparture:) p n
+0 T () S 8 T () S 16 T () S 24 T () S
+(if) K
+( q.full\(\):) p n
+0 T () S 8 T () S 16 T () S 24 T () S 32 T (lost = lost + 1.0) N
+0 T () S 8 T () S 16 T () S 24 T () S
+(else) K
+(:) p n
+0 T () S 8 T () S 16 T () S 24 T () S 32 T (packet = Packet\(\)) N
+(95) # () S 8 T () S 16 T () S 24 T () S 32 T (packet.arrival = currentTime) N
+0 T () S 8 T () S 16 T () S 24 T () S 32 T (q.put\(packet\)) S 48 T () S 56 T () N
+0 T () N
+0 T () S 8 T () S 16 T () S
+(elif) K
+( nextArrival ) p
+(\263) sy
+( nextDeparture:) p n
+0 T () S 8 T () S 16 T () S 24 T (item = q.get\(\)) N
+(100) # () S 8 T () S 16 T () S 24 T (list.append\(currentTime-item.arrival\)) N
+0 T () S 8 T () S 16 T () S 24 T (currentWait = currentTime-item.arrival) N
+0 T () S 8 T () S 16 T () S 24 T () S
+(if) K
+( currentWait < minWait:) p n
+0 T () S 8 T () S 16 T () S 24 T () S 32 T (minWait = currentWait) N
+0 T () S 8 T () S 16 T () S 24 T () S
+(elif) K
+( currentWait > maxWait:) p n
+(105) # () S 8 T () S 16 T () S 24 T () S 32 T (maxWait = currentWait) N
+0 T () S 8 T () S 16 T () S 24 T (totalLeft = totalLeft + 1) N
+0 T () S 8 T () S 16 T () N
+0 T () S 8 T () S 16 T () S
+(if) K
+( ) p
+(\330) sy
+(\(q.empty\(\)\):) p n
+0 T () S 8 T () S 16 T () S 24 T (serverBusy = serverBusy + \(currentTime - oldTime\)) N
+(110) # () S 8 T () N
+0 T () S 8 T () S
+(print) K
+( ') p
+(Parameters - Seed:) str
+(', Seed, ') p
+(Rate:) str
+(', rate, ') p
+(Mu:) str
+(', mu, ') p
+(Number:) str
+(', N) p n
+0 T () S 8 T () S
+(print) K
+( ') p
+(End Time of Simulation:) str
+(', currentTime) p n
+0 T () S 8 T () S
+(print) K
+( ') p
+(Wait Times - Average \(B=) str
+(', B, ') p
+(\)) str
+(', sum\(list\)/N) p n
+0 T () S 8 T () S
+(print) K
+( ') p
+(Server Utilization: ) str
+(', serverBusy/currentTime) p n
+(115) # () S 8 T () S
+(print) K
+( ') p
+(Percentage lost: ) str
+(', \(lost/\(N+lost\)\)*100, ') p
+(%) str
+(') p n
+0 T () S 8 T () S
+(print) K
+( '') p
+(csc710sbse: hw0:Theisen) (Page 2/2) (Aug 31, 14 21:50) title
+border
+grestore
+(Printed by Christopher Theisen) rhead
+(./files/single_server.py) (3/3) (Tuesday September 02, 2014) footer
+end % of iso1dict
+pagesave restore
+showpage
+
+%%Trailer
+end
+%%EOF
