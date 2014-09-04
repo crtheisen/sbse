@@ -47,7 +47,7 @@ def main():
 			e = eNew     
 			say('+')       
 		#Probability Check from SA Lecture
-		elif math.exp(-1*(e*eNew)/(k/kmax)) < myRand:
+		elif math.exp(-1*(e-eNew)/(k/kmax)) < myRand:
 		#P function should be between 0 and 1
 		#more random hops early, then decreasing as time goes on
 			s = sNew
