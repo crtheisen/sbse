@@ -5,6 +5,7 @@ import numpy as np
 sys.dont_write_bytecode = True
 
 kmax = 5000
+cooling = .6
 
 #Structure from SA Lecture
 def say(x): 
@@ -12,9 +13,9 @@ def say(x):
         
 rand = random.random
 
-class Fonesca:
-  smin = -4
-  smax = 4
+class Kursawe:
+  smin = -5
+  smax = 5
   XVar = [random.uniform(smin, smax) for i in range (0, 3)]
   XVarMax = XVar
   eMax = 0
@@ -65,27 +66,29 @@ class Fonesca:
   
 #Structure from SA Lecture
 def main():
-  fon = Fonesca()
+  sa = Kursawe()
+  XVarBest = sa.XVar
   eBest = e = 1
   print 'start energy: ', eBest           
   k = 1
   say(int(math.fabs(eBest-1)*100))
   say(' ')
   while k < kmax:   
-    fon.Neighbor()
-    eNew = fon.Energy()
+    sa.Neighbor()
+    eNew = sa.Energy()
     if eNew < eBest:               
       eBest = eNew
+      XVarBest = list(sa.XVar)
       say('!')
 	  
     if eNew < e:                 
       e = eNew     
       say('+')       
     #Probability Check from SA Lecture
-    elif math.exp(-1*(e-eNew)/(k/kmax)) < random.uniform(0,1):
+    elif math.exp(-1*(eNew-e)/(k/kmax**cooling)) < random.uniform(0,1):
     #P function should be between 0 and 1
     #more random hops early, then decreasing as time goes on
-      fon.Chaos()
+      sa.Chaos()
       say('?')        
     say('.')
     k = k + 1
@@ -95,6 +98,6 @@ def main():
       say(' ')
 
   print '\nFound best - e: ', eBest
-  print 'Variables: ', fon.XVar[0], ', ', fon.XVar[1], ', ', fon.XVar[2]
+  print 'Variables: ', XVarBest[0], ', ', XVarBest[1], ', ', XVarBest[2]
   
 main()

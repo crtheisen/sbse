@@ -5,6 +5,7 @@ import numpy as np
 sys.dont_write_bytecode = True
 
 kmax = 5000
+cooling = .6
 
 #Structure from SA Lecture
 def say(x): 
@@ -64,6 +65,7 @@ class Fonesca:
 #Structure from SA Lecture
 def main():
   fon = Fonesca()
+  XVarBest = fon.XVar
   eBest = e = 1
   print 'start energy: ', eBest           
   k = 1
@@ -74,13 +76,16 @@ def main():
     eNew = fon.Energy()
     if eNew < eBest:               
       eBest = eNew
+      XVarBest = list(fon.XVar)
       say('!')
+      
+    #print 'Check: ', math.exp(-1*(eNew-e)/(k/kmax**cooling))
 	  
     if eNew < e:                 
       e = eNew     
       say('+')       
     #Probability Check from SA Lecture
-    elif math.exp(-1*(e-eNew)/(k/kmax)) < random.uniform(0,1):
+    elif math.exp(-1*(eNew-e)/(k/kmax**cooling)) < random.uniform(0,1):
     #P function should be between 0 and 1
     #more random hops early, then decreasing as time goes on
       fon.Chaos()
@@ -93,6 +98,6 @@ def main():
       say(' ')
 
   print '\nFound best - e: ', eBest
-  print 'Variables: ', fon.XVar[0], ', ', fon.XVar[1], ', ', fon.XVar[2]
+  print 'Variables: ', XVarBest[0], ', ', XVarBest[1], ', ', XVarBest[2]
   
 main()

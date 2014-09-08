@@ -4,6 +4,7 @@ import sys,re,random,math
 sys.dont_write_bytecode = True
 
 kmax = 500
+cooling = .6
 
 #From Baseline Study - schaffer_trials.py
 emax = 44
@@ -41,13 +42,16 @@ def main():
 			say('!')
 	
 		myRand = random.random()
+		#print 'e: ', e, 'eNew: ', eNew
+		#print 't: ', k/kmax
+		#print 'Check: ', math.e**(1*(e-eNew)/(k/kmax))
 	
 		if eNew < e:                 
 			s = sNew
 			e = eNew     
 			say('+')       
 		#Probability Check from SA Lecture
-		elif math.exp(-1*(e-eNew)/(k/kmax)) < myRand:
+		elif math.exp(-1*(eNew-e)/(k/kmax**cooling)) < myRand:
 		#P function should be between 0 and 1
 		#more random hops early, then decreasing as time goes on
 			s = sNew
