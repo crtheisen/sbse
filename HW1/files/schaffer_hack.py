@@ -42,9 +42,6 @@ def main():
 			say('!')
 	
 		myRand = random.random()
-		#print 'e: ', e, 'eNew: ', eNew
-		#print 't: ', k/kmax
-		#print 'Check: ', math.e**(1*(e-eNew)/(k/kmax))
 	
 		if eNew < e:                 
 			s = sNew
