@@ -2,13 +2,13 @@
 %%Title: example_run.txt, schaffer_hack.py, schaffer_trials.py
 %%For: Christopher Theisen
 %%Creator: a2ps version 4.14
-%%CreationDate: Tue Sep  2 11:54:34 2014
-%%BoundingBox: 24 24 588 768
+%%CreationDate: Tue Sep  9 11:55:54 2014
+%%BoundingBox: 24 24 571 818
 %%DocumentData: Clean7Bit
 %%Orientation: Landscape
 %%Pages: 3
 %%PageOrder: Ascend
-%%DocumentMedia: Letter 612 792 0 () ()
+%%DocumentMedia: A4 595 842 0 () ()
 %%DocumentNeededResources: font Courier
 %%+ font Courier-Bold
 %%+ font Courier-BoldOblique
@@ -539,17 +539,17 @@ a2psdict begin
 ] def
 %%EndResource
 % Initialize page description variables.
-/sh 612 def
-/sw 792 def
+/sh 595 def
+/sw 842 def
 /llx 24 def
-/urx 768 def
-/ury 588 def
+/urx 818 def
+/ury 571 def
 /lly 24 def
 /#copies 1 def
 /th 15.000000 def
 /fnfs 11 def
-/bfs 6.327801 def
-/cw 3.796680 def
+/bfs 7.129832 def
+/cw 4.277899 def
 
 % Dictionary for ISO-8859-1 support
 /iso1dict 8 dict begin
@@ -571,10 +571,10 @@ currentdict end def
 /fSymbol /Symbol findfont def
 /hm fnfs 0.25 mul def
 /pw
-   cw 96.400000 mul
+   cw 91.400000 mul
 def
 /ph
-   523.309122 th add
+   504.079141 th add
 def
 /pmw urx llx sub pw 2 mul sub 1 div def
 /pmh 0 def
@@ -597,7 +597,7 @@ def
 /fny dy def
 /lx snx def
 /ly ury fnfs 0.8 mul sub def
-/sx 5 def
+/sx 0 def
 /tab 8 def
 /x0 0 def
 /y0 0 def
@@ -612,29 +612,26 @@ iso1dict begin
 gsave
 llx lly 12 add translate
 /v 0 store
-/x0 x v get 2.657676 add sx cw mul add store
+/x0 x v get 2.994530 add sx cw mul add store
 /y0 y v get bfs th add sub store
 x0 y0 moveto
-0 T (//Note to reader; I decided to let the top line wrap in order to preserve) p n
-0 T (//context here; First line is still the first 50 runs of my simulation.) N
-0 T () N
-0 T (46 ?.?.!+.?.?.+.?.+.+.?.!+.!+...?.?.+.+.?.+.?.+.+...?.+.?.+.?.+.+.?.?.+.+...?.?.?.!+......) N
-0 T (..) N
-(5) # (98 .............................!+.....................) N
-0 T (99 ..........?.+.+.+.?.+...+....?.+...?.+.+.+.............?.+..?.+....) N
-0 T (99 ?.+.?.+....?.+.+.+....+....................................) N
-0 T (99 .................................+.................) N
-0 T (99 ..................................................) N
-(10) # (99 ?.+.+..+..+.+.......................?.+..+........+...+.?.+.+..?.) N
-0 T (99 +..+......+...................+.....+...?.+...........+...) N
-0 T (99 ..............................!+....................) N
-0 T (99 ..................................................) N
-0 T (Found best - s: 0.934735340081  e:  0.00593315090177) S
-(csc710sbse: hw1:Theisen) (Page 1/1) (Sep 01, 14 19:04) title
+(46 ?.?.!+.?.?.+.?.+.+.?.!+.!+...?.?.+.+.?.+.?.+.+...?.+.?.+.?.+.+.?.?.) p n
+(   +.+...?.?.?.!+........) N
+(98 .............................!+.....................) N
+(99 ..........?.+.+.+.?.+...+....?.+...?.+.+.+.............?.+..?.+....) N
+(99 ?.+.?.+....?.+.+.+....+....................................) N
+(99 .................................+.................) N
+(99 ..................................................) N
+(99 ?.+.+..+..+.+.......................?.+..+........+...+.?.+.+..?.) N
+(99 +..+......+...................+.....+...?.+...........+...) N
+(99 ..............................!+....................) N
+(99 ..................................................) N
+(Found best - s: 0.934735340081  e:  0.00593315090177) S
+(csc710sbse: hw1:Theisen) (Page 1/1) (Sep 08, 14 22:05) title
 border
 grestore
 (Printed by Christopher Theisen) rhead
-(./files/example_run.txt) (1/3) (Tuesday September 02, 2014) footer
+(./files/example_run.txt) (1/3) (Tuesday September 09, 2014) footer
 end % of iso1dict
 pagesave restore
 showpage
@@ -647,118 +644,104 @@ iso1dict begin
 gsave
 llx lly 12 add translate
 /v 0 store
-/x0 x v get 2.657676 add sx cw mul add store
+/x0 x v get 2.994530 add sx cw mul add store
 /y0 y v get bfs th add sub store
 x0 y0 moveto
-0 T (#From Class Discussion 8/26/2014) c n
-0 T () S
+(#From Class Discussion 8/26/2014) c n
 (from) K
 ( __future__ ) p
 (import) K
 ( division) p n
-0 T () S
 (import) K
 ( sys,re,random,math) p n
-0 T (sys.dont_write_bytecode = True) N
-(5) # () N
-0 T (kmax = 500) N
-0 T () N
-0 T () S
+(sys.dont_write_bytecode = True) N
+() N
+(kmax = 500) N
+(cooling = .6) N
+() N
 (#From Baseline Study - schaffer_trials.py) c n
-0 T () S
 (emax = 44) p n
-(10) # (emin = 0) N
-0 T () N
-0 T (rand = random.random) N
-0 T () N
-0 T () S
+(emin = 0) N
+() N
+(rand = random.random) N
+() N
 (#Structure from SA Lecture) c n
-(15) # () S
 (def) K
 ( say\(x\): ) p n
-0 T (  sys.stdout.write\(str\(x\)\); sys.stdout.flush\(\)) N
-0 T (  ) N
-0 T () S
+(  sys.stdout.write\(str\(x\)\); sys.stdout.flush\(\)) N
+(  ) N
 (def) K
 ( Energy\(x\):) p n
-0 T () S 8 T (rawAns = math.fabs\(\(x*x\) - \(x-2\)*\(x-2\)\)) N
-(20) # () S 8 T (ans = \(rawAns - emin\) / \(emax - emin\)) N
-0 T () S 8 T () S
+() S 8 T (rawAns = math.fabs\(\(x*x\) + \(x-2\)*\(x-2\)\)) N
+() S 8 T (ans = \(rawAns + emin\) / \(emax - emin\)) N
+() S 8 T () S
 (return) K
 ( ans) p n
-0 T () N
-0 T () S
+() N
 (def) K
 ( Neighbor\(x\):) p n
-0 T () S 8 T () S
+() S 8 T () S
 (return) K
 ( random.uniform\(-10, 10\)) p n
-(25) # () N
-0 T () S
+() N
 (#Structure from SA Lecture) c n
-0 T () S
 (def) K
 ( main\(\):) p n
-0 T () S 8 T (s = random.uniform\(-10, 10\) ) S
+() S 8 T (s = random.uniform\(-10, 10\) ) S
 (#random start) c n
-0 T () S
 () p 8 T (e = Energy\(s\)   ) N
-(30) # () S 8 T (sBest = s) N
-0 T () S 8 T (eBest = e             ) N
-0 T () S 8 T (k = 1) N
-0 T () S 8 T (say\(int\(math.fabs\(eBest-1\)*100\)\)) N
-0 T () S 8 T (say\(') S
+() S 8 T (sBest = s) N
+() S 8 T (eBest = e             ) N
+() S 8 T (k = 1) N
+() S 8 T (say\(int\(math.fabs\(eBest-1\)*100\)\)) N
+() S 8 T (say\(') S
 ( ) str
 ('\)) p n
-(35) # () S 8 T () S
+() S 8 T () S
 (while) K
 ( k < kmax:   ) p n
-0 T () S 8 T () S 16 T (sNew = Neighbor\(s\)) N
-0 T () S 8 T () S 16 T (eNew = Energy\(sNew\)) N
-0 T () S 8 T () S 16 T () S
+() S 8 T () S 16 T (sNew = Neighbor\(s\)) N
+() S 8 T () S 16 T (eNew = Energy\(sNew\)) N
+() S 8 T () S 16 T () S
 (if) K
 ( eNew < eBest:               ) p n
-0 T () S 8 T () S 16 T () S 24 T (sBest = sNew ) N
-(40) # () S 8 T () S 16 T () S 24 T (eBest = eNew) N
-0 T () S 8 T () S 16 T () S 24 T (say\(') S
+() S 8 T () S 16 T () S 24 T (sBest = sNew ) N
+() S 8 T () S 16 T () S 24 T (eBest = eNew) N
+() S 8 T () S 16 T () S 24 T (say\(') S
 (!) str
 ('\)) p n
-0 T () S 8 T () N
-0 T () S 8 T () S 16 T (myRand = random.random\(\)) N
-0 T () S 8 T () N
-(45) # () S 8 T () S 16 T () S
+() S 8 T () N
+() S 8 T () S 16 T (myRand = random.random\(\)) N
+() S 8 T () N
+() S 8 T () S 16 T () S
 (if) K
 ( eNew < e:                 ) p n
-0 T () S 8 T () S 16 T () S 24 T (s = sNew) N
-0 T () S 8 T () S 16 T () S 24 T (e = eNew     ) N
-0 T () S 8 T () S 16 T () S 24 T (say\(') S
+() S 8 T () S 16 T () S 24 T (s = sNew) N
+() S 8 T () S 16 T () S 24 T (e = eNew     ) N
+() S 8 T () S 16 T () S 24 T (say\(') S
 (+) str
 ('\)       ) p n
-0 T () S 8 T () S 16 T () S
+() S 8 T () S 16 T () S
 (#Probability Check from SA Lecture) c n
-(50) # () S
 () p 8 T () S 16 T () S
 (elif) K
-( math.exp\(-1*\(e*eNew\)/\(k/kmax\)\) < myRand:) p n
-0 T () S 8 T () S 16 T () S
+( math.exp\(-1*\(eNew-e\)/\(k/kmax**cooling\)\) < myRand:) p n
+() S 8 T () S 16 T () S
 (#P function should be between 0 and 1) c n
-0 T () S
 () p 8 T () S 16 T () S
 (#more random hops early, then decreasing as time goes on) c n
-0 T () S
 () p 8 T () S 16 T () S 24 T (s = sNew) N
-0 T () S 8 T () S 16 T () S 24 T (e = eNew) N
-(55) # () S 8 T () S 16 T () S 24 T (say\(') S
+() S 8 T () S 16 T () S 24 T (e = eNew) N
+() S 8 T () S 16 T () S 24 T (say\(') S
 (?) str
 ('\)        ) p n
-0 T () S 8 T () S 16 T () S 24 T () S
+() S 8 T () S 16 T () S 24 T () S
 (#print 'Random Hop! \(?\)') c n
-0 T () S
 () p 8 T () S 16 T (say\(') S
 (.) str
 ('\)) p n
-0 T () S 8 T () S 16 T (k = k + 1) N
-0 T () S 8 T () S 16 T () S
+() S 8 T () S 16 T (k = k + 1) N
+() S 8 T () S 16 T () S
 (if) K
 ( k % 50 ) p
 (\272) sy
@@ -767,28 +750,28 @@ x0 y0 moveto
 ( k ) p
 (\271) sy
 ( kmax:) p n
-(60) # () S 8 T () S 16 T () S 24 T () S
+() S 8 T () S 16 T () S 24 T () S
 (print) K
 ( '') p n
-0 T () S 8 T () S 16 T () S 24 T (say\(int\(math.fabs\(eBest-1\)*100\)\)) N
-0 T () S 8 T () S 16 T () S 24 T (say\(') S
+() S 8 T () S 16 T () S 24 T (say\(int\(math.fabs\(eBest-1\)*100\)\)) N
+() S 8 T () S 16 T () S 24 T (say\(') S
 ( ) str
 ('\)) p n
-0 T () S 8 T () N
-0 T () S 8 T () S
+() S 8 T () N
+() S 8 T () S
 (print) K
 ( ') p
 (\\nFound best - s:) str
 (', sBest, ') p
 ( e: ) str
 (', eBest) p n
-(65) # () S 8 T () N
-0 T (main\(\)) S
-(csc710sbse: hw1:Theisen) (Page 1/1) (Sep 01, 14 19:09) title
+() S 8 T () N
+(main\(\)) S
+(csc710sbse: hw1:Theisen) (Page 1/1) (Sep 08, 14 22:10) title
 border
 grestore
 (Printed by Christopher Theisen) rhead
-(./files/schaffer_hack.py) (2/3) (Tuesday September 02, 2014) footer
+(./files/schaffer_hack.py) (2/3) (Tuesday September 09, 2014) footer
 end % of iso1dict
 pagesave restore
 showpage
@@ -801,120 +784,108 @@ iso1dict begin
 gsave
 llx lly 12 add translate
 /v 0 store
-/x0 x v get 2.657676 add sx cw mul add store
+/x0 x v get 2.994530 add sx cw mul add store
 /y0 y v get bfs th add sub store
 x0 y0 moveto
-0 T (#From Class Discussion 8/26/2014) c n
-0 T () S
+(#From Class Discussion 8/26/2014) c n
 (from) K
 ( __future__ ) p
 (import) K
 ( division) p n
-0 T () S
 (import) K
 ( sys,re,random,math) p n
-0 T (sys.dont_write_bytecode = True) N
-(5) # () N
-0 T (kmax = 100000 ) S
+(sys.dont_write_bytecode = True) N
+() N
+(kmax = 100000 ) S
 (#100000 run trial for max) c n
-0 T () N
-0 T () S
-(rand = random.random) p n
-0 T () N
-(10) # (low = 100) N
-0 T () N
-0 T () S
+() p n
+(rand = random.random) N
+() N
+(low = 100) N
+() N
 (def) K
 ( say\(x\): ) p n
-0 T (  sys.stdout.write\(str\(x\)\); sys.stdout.flush\(\)) N
-0 T (  ) N
-(15) # () S
+(  sys.stdout.write\(str\(x\)\); sys.stdout.flush\(\)) N
+(  ) N
 (def) K
 ( Energy\(x\):) p n
-0 T () S 8 T (ans = math.fabs\(\(x*x\) - \(x-2\)*\(x-2\)\)) N
-0 T () S 8 T () S
+() S 8 T (ans = math.fabs\(\(x*x\) - \(x-2\)*\(x-2\)\)) N
+() S 8 T () S
 (return) K
 ( ans) p n
-0 T () N
-0 T () S
+() N
 (def) K
 ( Neighbor\(x\):) p n
-(20) # () S 8 T () S
+() S 8 T () S
 (return) K
 ( random.uniform\(-10, 10\)) p n
-0 T () N
-0 T () S
+() N
 (def) K
 ( eMax\(\):) p n
-0 T () S 8 T (s = random.uniform\(-10, 10\) ) S
+() S 8 T (s = random.uniform\(-10, 10\) ) S
 (#random start) c n
-0 T () S
 () p 8 T (e = Energy\(s\)  ) N
-(25) # () S 8 T (sBest = s) N
-0 T () S 8 T (eBest = e             ) N
-0 T () S 8 T (k = 1) N
-0 T () S 8 T () S
+() S 8 T (sBest = s) N
+() S 8 T (eBest = e             ) N
+() S 8 T (k = 1) N
+() S 8 T () S
 (while) K
 ( k < kmax:   ) p n
-0 T () S 8 T () S 16 T (sNew = Neighbor\(s\)) N
-(30) # () S 8 T () S 16 T (eNew = Energy\(sNew\)) N
-0 T () S 8 T () S 16 T () S
+() S 8 T () S 16 T (sNew = Neighbor\(s\)) N
+() S 8 T () S 16 T (eNew = Energy\(sNew\)) N
+() S 8 T () S 16 T () S
 (if) K
 ( eNew > eBest: ) p
 (#find largest difference               ) c n
-0 T () S
 () p 8 T () S 16 T () S 24 T (sBest = sNew ) N
-0 T () S 8 T () S 16 T () S 24 T (eBest = eNew) N
-0 T () S 8 T () S 16 T (k = k + 1) N
-(35) # () S 8 T () N
-0 T () S 8 T () S
+() S 8 T () S 16 T () S 24 T (eBest = eNew) N
+() S 8 T () S 16 T (k = k + 1) N
+() S 8 T () N
+() S 8 T () S
 (print) K
 ( ') p
 (Found eMax - s:) str
 (', sBest, ') p
 ( e: ) str
 (', eBest) p n
-0 T () S 8 T () N
-0 T () S
+() S 8 T () N
 (def) K
 ( eMin\(\):) p n
-0 T () S 8 T (s = random.uniform\(-10, 10\) ) S
+() S 8 T (s = random.uniform\(-10, 10\) ) S
 (#random start) c n
-(40) # () S
 () p 8 T (e = Energy\(s\)  ) N
-0 T () S 8 T (sBest = s) N
-0 T () S 8 T (eBest = e             ) N
-0 T () S 8 T (k = 1) N
-0 T () S 8 T () S
+() S 8 T (sBest = s) N
+() S 8 T (eBest = e             ) N
+() S 8 T (k = 1) N
+() S 8 T () S
 (while) K
 ( k < kmax:   ) p n
-(45) # () S 8 T () S 16 T (sNew = Neighbor\(s\)) N
-0 T () S 8 T () S 16 T (eNew = Energy\(sNew\)) N
-0 T () S 8 T () S 16 T () S
+() S 8 T () S 16 T (sNew = Neighbor\(s\)) N
+() S 8 T () S 16 T (eNew = Energy\(sNew\)) N
+() S 8 T () S 16 T () S
 (if) K
 ( eNew < eBest: ) p
 (#find smallest difference               ) c n
-0 T () S
 () p 8 T () S 16 T () S 24 T (sBest = sNew ) N
-0 T () S 8 T () S 16 T () S 24 T (eBest = eNew) N
-(50) # () S 8 T () S 16 T (k = k + 1) N
-0 T () S 8 T () N
-0 T () S 8 T () S
+() S 8 T () S 16 T () S 24 T (eBest = eNew) N
+() S 8 T () S 16 T (k = k + 1) N
+() S 8 T () N
+() S 8 T () S
 (print) K
 ( ') p
 (Found eMin - s:) str
 (', sBest, ') p
 ( e: ) str
 (', eBest) p n
-0 T () S 8 T () N
-0 T (eMax\(\)) N
-(55) # (eMin\(\)) N
-0 T () S 8 T () S 16 T (          ) S
+() S 8 T () N
+(eMax\(\)) N
+(eMin\(\)) N
+() S 8 T () S 16 T (          ) S
 (csc710sbse: hw1:Theisen) (Page 1/1) (Sep 01, 14 12:53) title
 border
 grestore
 (Printed by Christopher Theisen) rhead
-(./files/schaffer_trials.py) (3/3) (Tuesday September 02, 2014) footer
+(./files/schaffer_trials.py) (3/3) (Tuesday September 09, 2014) footer
 end % of iso1dict
 pagesave restore
 showpage

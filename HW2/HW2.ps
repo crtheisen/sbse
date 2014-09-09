@@ -1,0 +1,1748 @@
+%!PS-Adobe-3.0
+%%Title: fonesca_hack.py, fonesca_hackrun.txt, fonesca_maxwalksat.py, fonesca_maxwalksatrun.txt, kursawe_hack.py, kursawe_hackrun.txt
+%%For: Christopher Theisen
+%%Creator: a2ps version 4.14
+%%CreationDate: Tue Sep  9 12:09:28 2014
+%%BoundingBox: 24 24 588 768
+%%DocumentData: Clean7Bit
+%%Orientation: Landscape
+%%Pages: 6
+%%PageOrder: Ascend
+%%DocumentMedia: Letter 612 792 0 () ()
+%%DocumentNeededResources: font Courier
+%%+ font Courier-Bold
+%%+ font Courier-BoldOblique
+%%+ font Courier-Oblique
+%%+ font Helvetica
+%%+ font Helvetica-Bold
+%%+ font Symbol
+%%+ font Times-Bold
+%%+ font Times-Roman
+%%DocumentProcessColors: Black 
+%%DocumentSuppliedResources: procset a2ps-a2ps-hdr
+%%+ procset a2ps-black+white-Prolog
+%%+ encoding ISO-8859-1Encoding
+%%EndComments
+/a2psdict 200 dict def
+a2psdict begin
+%%BeginProlog
+%%Copyright: (c) 1988, 89, 90, 91, 92, 93 Miguel Santana
+%%Copyright: (c) 1995, 96, 97, 98 Akim Demaille, Miguel Santana
+% Check PostScript language level.
+/languagelevel where {
+  pop /gs_languagelevel languagelevel def
+} {
+  /gs_languagelevel 1 def
+} ifelse
+
+% EPSF import as in the Red Book
+/BeginInclude {
+  /b4_Inc_state save def    		% Save state for cleanup
+  /dict_count countdictstack def	% Count objects on dict stack
+  /op_count count 1 sub def		% Count objects on operand stack 
+  userdict begin
+    0 setgray 0 setlinecap
+    1 setlinewidth 0 setlinejoin
+    10 setmiterlimit [ ] 0 setdash newpath
+    gs_languagelevel 1 ne {
+      false setstrokeadjust false setoverprint 
+    } if
+} bind def
+
+/EndInclude {
+  count op_count sub { pos } repeat	% Clean up stacks
+  countdictstack dict_count sub { end } repeat
+  b4_Inc_state restore
+} bind def
+
+/BeginEPSF {
+  BeginInclude
+  /showpage { } def
+} bind def
+
+/EndEPSF {
+  EndInclude
+} bind def
+
+% Page prefeed
+/page_prefeed {         % bool -> -
+  statusdict /prefeed known {
+    statusdict exch /prefeed exch put
+  } {
+    pop
+  } ifelse
+} bind def
+
+/deffont {
+  findfont exch scalefont def
+} bind def
+
+/reencode_font {
+  findfont reencode 2 copy definefont pop def
+} bind def
+
+% Function c-show (str => -)
+% centers text only according to x axis.
+/c-show { 
+  dup stringwidth pop
+  2 div neg 0 rmoveto
+  show
+} bind def
+
+% Function l-show (str => -)
+% prints texts so that it ends at currentpoint
+/l-show {
+  dup stringwidth pop neg 
+  0 
+  rmoveto show
+} bind def
+
+% center-fit show (str w => -)
+% show centered, and scale currentfont so that the width is less than w
+/cfshow {
+  exch dup stringwidth pop
+  % If the title is too big, try to make it smaller
+  3 2 roll 2 copy
+  gt
+  { % if, i.e. too big
+    exch div
+    currentfont exch scalefont setfont
+  } { % ifelse
+    pop pop 
+  }
+  ifelse
+  c-show			% center title
+} bind def
+
+% Return the y size of the current font
+% - => fontsize
+/currentfontsize {
+  currentfont /FontMatrix get 3 get 1000 mul
+} bind def
+
+% reencode the font
+% <encoding-vector> <fontdict> -> <newfontdict>
+/reencode { %def
+  dup length 5 add dict begin
+    { %forall
+      % <vector> <key> <val>
+      1 index /FID ne 
+      { def }{ pop pop } ifelse
+    } forall
+    /Encoding exch def % -
+
+    % Use the font's bounding box to determine the ascent, descent,
+    % and overall height; don't forget that these values have to be
+    % transformed using the font's matrix.
+    % We use `load' because sometimes BBox is executable, sometimes not.
+    % Since we need 4 numbers an not an array avoid BBox from being executed
+    /FontBBox load aload pop
+    FontMatrix transform /Ascent exch def pop
+    FontMatrix transform /Descent exch def pop
+    /FontHeight Ascent Descent sub def
+
+    % Get the underline position and thickness if they're defined.
+    % Use 1 if they are not defined.
+    currentdict /FontInfo 2 copy known
+    { get
+      /UnderlinePosition 2 copy % <FontInfo> /UP <FontInfo> /UP
+      2 copy known
+      { get }{ pop pop 1 } ifelse
+      0 exch FontMatrix transform exch pop
+      def % <FontInfo>
+
+      /UnderlineThickness 2 copy % <FontInfo> /UT <FontInfo> /UT
+      2 copy known
+      { get }{ pop pop 1 } ifelse
+      0 exch FontMatrix transform exch pop
+      def % <FontInfo>
+      pop % -
+    }{ pop pop
+    } ifelse
+
+    currentdict
+  end 
+} bind def
+
+% Function print line number (<string> # -)
+/# {
+  gsave
+    sx cw mul neg 2 div 0 rmoveto
+    f# setfont
+    c-show
+  grestore
+} bind def
+
+% -------- Some routines to enlight plain b/w printings ---------
+
+% Underline
+% width --
+/dounderline {
+  currentpoint
+  gsave
+    moveto
+    0 currentfont /Descent get currentfontsize mul rmoveto
+    0 rlineto
+    stroke
+  grestore
+} bind def
+
+% Underline a string
+% string --
+/dounderlinestring {
+  stringwidth pop
+  dounderline
+} bind def
+
+/UL {
+  /ul exch store
+} bind def
+
+% Draw a box of WIDTH wrt current font
+% width --
+/dobox {
+  currentpoint
+  gsave
+    newpath
+    moveto
+    0 currentfont /Descent get currentfontsize mul rmoveto
+    dup 0 rlineto
+    0 currentfont /FontHeight get currentfontsize mul rlineto
+    neg 0 rlineto
+    closepath
+    stroke
+  grestore
+} bind def
+
+/BX {
+  /bx exch store
+} bind def
+
+% Box a string
+% string --
+/doboxstring {
+  stringwidth pop
+  dobox
+} bind def
+
+%
+% ------------- Color routines ---------------
+%
+/FG /setrgbcolor load def
+
+% Draw the background
+% width --
+/dobackground {
+  currentpoint
+  gsave
+    newpath
+    moveto
+    0 currentfont /Descent get currentfontsize mul rmoveto
+    dup 0 rlineto
+    0 currentfont /FontHeight get currentfontsize mul rlineto
+    neg 0 rlineto
+    closepath
+    bgcolor aload pop setrgbcolor
+    fill
+  grestore
+} bind def
+
+% Draw bg for a string
+% string --
+/dobackgroundstring {
+  stringwidth pop
+  dobackground
+} bind def
+
+
+/BG {
+  dup /bg exch store
+  { mark 4 1 roll ] /bgcolor exch store } if
+} bind def
+
+
+/Show {
+  bg { dup dobackgroundstring } if
+  ul { dup dounderlinestring } if
+  bx { dup doboxstring } if
+  show
+} bind def
+
+% Function T(ab), jumps to the n-th tabulation in the current line
+/T {
+  cw mul x0 add
+  bg { dup currentpoint pop sub dobackground } if
+  ul { dup currentpoint pop sub dounderline } if
+  bx { dup currentpoint pop sub dobox } if
+  y0 moveto
+} bind def
+
+% Function n: move to the next line
+/n {
+  /y0 y0 bfs sub store
+  x0 y0 moveto
+} bind def
+
+% Function N: show and move to the next line
+/N {
+  Show
+  /y0 y0 bfs sub store
+  x0 y0 moveto
+} bind def
+
+/S {
+  Show
+} bind def
+
+%%BeginResource: procset a2ps-a2ps-hdr 2.0 2
+%%Copyright: (c) 1988, 89, 90, 91, 92, 93 Miguel Santana
+%%Copyright: (c) 1995, 96, 97, 98 Akim Demaille, Miguel Santana
+% Function title: prints page header.
+% <ct> <rt> <lt> are passed as argument
+/title { 
+  % 1. Draw the background
+  x v get y v get moveto
+  gsave
+    0 th 2 div neg rmoveto 
+    th setlinewidth
+    0.95 setgray
+    pw 0 rlineto stroke
+  grestore
+  % 2. Border it
+  gsave
+    0.7 setlinewidth
+    pw 0 rlineto
+    0 th neg rlineto
+    pw neg 0 rlineto
+    closepath stroke
+  grestore
+  % stk: ct rt lt
+  x v get y v get th sub 1 add moveto
+%%IncludeResource: font Helvetica
+  fHelvetica fnfs 0.8 mul scalefont setfont
+  % 3. The left title
+  gsave
+    dup stringwidth pop fnfs 0.8 mul add exch % leave space took on stack
+    fnfs 0.8 mul hm rmoveto
+    show			% left title
+  grestore
+  exch
+  % stk: ct ltw rt
+  % 4. the right title
+  gsave
+    dup stringwidth pop fnfs 0.8 mul add exch % leave space took on stack
+    dup
+    pw exch stringwidth pop fnfs 0.8 mul add sub
+    hm
+    rmoveto
+    show			% right title
+  grestore
+  % stk: ct ltw rtw
+  % 5. the center title
+  gsave
+    pw 3 1 roll
+    % stk: ct pw ltw rtw
+    3 copy 
+    % Move to the center of the left room
+    sub add 2 div hm rmoveto
+    % What is the available space in here?
+    add sub fnfs 0.8 mul sub fnfs 0.8 mul sub
+    % stk: ct space_left
+%%IncludeResource: font Helvetica-Bold
+  fHelvetica-Bold fnfs scalefont setfont
+    cfshow
+  grestore
+} bind def
+
+% Function border: prints virtual page border
+/border { %def
+  gsave				% print four sides
+    0 setgray
+    x v get y v get moveto
+    0.7 setlinewidth		% of the square
+    pw 0 rlineto
+    0 ph neg rlineto
+    pw neg 0 rlineto
+    closepath stroke
+  grestore
+} bind def
+
+% Function water: prints a water mark in background
+/water { %def
+  gsave
+    scx scy moveto rotate
+%%IncludeResource: font Times-Bold
+  fTimes-Bold 100 scalefont setfont
+    .97 setgray
+    dup stringwidth pop 2 div neg -50 rmoveto
+    show
+  grestore
+} bind def
+
+% Function rhead: prints the right header
+/rhead {  %def
+  lx ly moveto
+  fHelvetica fnfs 0.8 mul scalefont setfont
+  l-show
+} bind def
+
+% Function footer (cf rf lf -> -)
+/footer {
+  fHelvetica fnfs 0.8 mul scalefont setfont
+  dx dy moveto
+  show
+
+  snx sny moveto
+  l-show
+  
+  fnx fny moveto
+  c-show
+} bind def
+%%EndResource
+%%BeginResource: procset a2ps-black+white-Prolog 2.0 1
+
+% Function T(ab), jumps to the n-th tabulation in the current line
+/T { 
+  cw mul x0 add y0 moveto
+} bind def
+
+% Function n: move to the next line
+/n { %def
+  /y0 y0 bfs sub store
+  x0 y0 moveto
+} bind def
+
+% Function N: show and move to the next line
+/N {
+  Show
+  /y0 y0 bfs sub store
+  x0 y0 moveto
+}  bind def
+
+/S {
+  Show
+} bind def
+
+/p {
+  false UL
+  false BX
+  fCourier bfs scalefont setfont
+  Show
+} bind def
+
+/sy {
+  false UL
+  false BX
+  fSymbol bfs scalefont setfont
+  Show
+} bind def
+
+/k {
+  false UL
+  false BX
+  fCourier-Oblique bfs scalefont setfont
+  Show
+} bind def
+
+/K {
+  false UL
+  false BX
+  fCourier-Bold bfs scalefont setfont
+  Show
+} bind def
+
+/c {
+  false UL
+  false BX
+  fCourier-Oblique bfs scalefont setfont
+  Show
+} bind def
+
+/C {
+  false UL
+  false BX
+  fCourier-BoldOblique bfs scalefont setfont
+  Show 
+} bind def
+
+/l {
+  false UL
+  false BX
+  fHelvetica bfs scalefont setfont
+  Show
+} bind def
+
+/L {
+  false UL
+  false BX
+  fHelvetica-Bold bfs scalefont setfont
+  Show 
+} bind def
+
+/str{
+  false UL
+  false BX
+  fTimes-Roman bfs scalefont setfont
+  Show
+} bind def
+
+/e{
+  false UL
+  true BX
+  fHelvetica-Bold bfs scalefont setfont
+  Show
+} bind def
+
+%%EndResource
+%%EndProlog
+%%BeginSetup
+%%IncludeResource: font Courier
+%%IncludeResource: font Courier-Oblique
+%%IncludeResource: font Courier-Bold
+%%IncludeResource: font Times-Roman
+%%IncludeResource: font Symbol
+%%IncludeResource: font Courier-BoldOblique
+%%BeginResource: encoding ISO-8859-1Encoding
+/ISO-8859-1Encoding [
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/space /exclam /quotedbl /numbersign /dollar /percent /ampersand /quoteright 
+/parenleft /parenright /asterisk /plus /comma /minus /period /slash 
+/zero /one /two /three /four /five /six /seven 
+/eight /nine /colon /semicolon /less /equal /greater /question 
+/at /A /B /C /D /E /F /G 
+/H /I /J /K /L /M /N /O 
+/P /Q /R /S /T /U /V /W 
+/X /Y /Z /bracketleft /backslash /bracketright /asciicircum /underscore 
+/quoteleft /a /b /c /d /e /f /g 
+/h /i /j /k /l /m /n /o 
+/p /q /r /s /t /u /v /w 
+/x /y /z /braceleft /bar /braceright /asciitilde /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/space /exclamdown /cent /sterling /currency /yen /brokenbar /section 
+/dieresis /copyright /ordfeminine /guillemotleft /logicalnot /hyphen /registered /macron 
+/degree /plusminus /twosuperior /threesuperior /acute /mu /paragraph /bullet 
+/cedilla /onesuperior /ordmasculine /guillemotright /onequarter /onehalf /threequarters /questiondown 
+/Agrave /Aacute /Acircumflex /Atilde /Adieresis /Aring /AE /Ccedilla 
+/Egrave /Eacute /Ecircumflex /Edieresis /Igrave /Iacute /Icircumflex /Idieresis 
+/Eth /Ntilde /Ograve /Oacute /Ocircumflex /Otilde /Odieresis /multiply 
+/Oslash /Ugrave /Uacute /Ucircumflex /Udieresis /Yacute /Thorn /germandbls 
+/agrave /aacute /acircumflex /atilde /adieresis /aring /ae /ccedilla 
+/egrave /eacute /ecircumflex /edieresis /igrave /iacute /icircumflex /idieresis 
+/eth /ntilde /ograve /oacute /ocircumflex /otilde /odieresis /divide 
+/oslash /ugrave /uacute /ucircumflex /udieresis /yacute /thorn /ydieresis 
+] def
+%%EndResource
+% Initialize page description variables.
+/sh 612 def
+/sw 792 def
+/llx 24 def
+/urx 768 def
+/ury 588 def
+/lly 24 def
+/#copies 1 def
+/th 15.000000 def
+/fnfs 11 def
+/bfs 6.673961 def
+/cw 4.004376 def
+
+% Dictionary for ISO-8859-1 support
+/iso1dict 8 dict begin
+  /fCourier ISO-8859-1Encoding /Courier reencode_font
+  /fCourier-Bold ISO-8859-1Encoding /Courier-Bold reencode_font
+  /fCourier-BoldOblique ISO-8859-1Encoding /Courier-BoldOblique reencode_font
+  /fCourier-Oblique ISO-8859-1Encoding /Courier-Oblique reencode_font
+  /fHelvetica ISO-8859-1Encoding /Helvetica reencode_font
+  /fHelvetica-Bold ISO-8859-1Encoding /Helvetica-Bold reencode_font
+  /fTimes-Bold ISO-8859-1Encoding /Times-Bold reencode_font
+  /fTimes-Roman ISO-8859-1Encoding /Times-Roman reencode_font
+currentdict end def
+/bgcolor [ 0 0 0 ] def
+/bg false def
+/ul false def
+/bx false def
+% The font for line numbering
+/f# /Helvetica findfont bfs .6 mul scalefont def
+/fSymbol /Symbol findfont def
+/hm fnfs 0.25 mul def
+/pw
+   cw 91.400000 mul
+def
+/ph
+   518.566745 th add
+def
+/pmw urx llx sub pw 2 mul sub 1 div def
+/pmh 0 def
+/v 0 def
+/x [
+  0
+  dup pmw add pw add
+] def
+/y [
+  pmh ph add 0 mul ph add
+  dup
+] def
+/scx sw 2 div def
+/scy sh 2 div def
+/snx urx def
+/sny lly 2 add def
+/dx llx def
+/dy sny def
+/fnx scx def
+/fny dy def
+/lx snx def
+/ly ury fnfs 0.8 mul sub def
+/sx 0 def
+/tab 8 def
+/x0 0 def
+/y0 0 def
+%%EndSetup
+
+%%Page: (1-2) 1
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 2.803063 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(#From Class Discussion 8/26/2014) c n
+(from) K
+( __future__ ) p
+(import) K
+( division) p n
+(import) K
+( sys,re,random,math) p n
+(import) K
+( numpy as np) p n
+(sys.dont_write_bytecode = True) N
+() N
+(kmax = 5000) N
+(cooling = 1) N
+() N
+(#Structure from SA Lecture) c n
+(def) K
+( say\(x\): ) p n
+(  sys.stdout.write\(str\(x\)\); sys.stdout.flush\(\)) N
+(        ) N
+(rand = random.random) N
+() N
+(class) K
+( Fonesca:) p n
+(  smin = -4) N
+(  smax = 4) N
+(  XVar = [random.uniform\(smin, smax\) ) S
+(for) K
+( i ) p
+(in) K
+( range \(0, 3\)]) p n
+(  XVarMax = XVar) N
+(  eMax = 0) N
+(  eMin = 0) N
+(  ) N
+(  ) S
+(def) K
+( Energy\(self\):) p n
+(    f1 = \(1-math.e**\(-np.sum\([self.XVar[i]-\(1/np.sqrt\(i+1\)\)**2 ) S
+(for) K
+( i ) p
+(in) K
+( range \(0, 3\)]\)\)\)) p n
+(    f2 = \(1-math.e**\(-np.sum\([self.XVar[i]+\(1/np.sqrt\(i+1\)\)**2 ) S
+(for) K
+( i ) p
+(in) K
+( range \(0, 3\)]\)\)\)) p n
+(    ) S
+(return) K
+( \(math.fabs\(f1+f2\) - self.eMin\) / \(self.eMax - self.eMin\)) p n
+(    ) N
+(  ) S
+(def) K
+( RawEnergy\(self\):) p n
+(    f1 = \(1-math.exp\(-np.sum\([self.XVar[i]-\(1/np.sqrt\(i+1\)\)**2 ) S
+(for) K
+( i ) p
+(in) K
+( range \(0, 3\)]\)\)\)) p n
+(    f2 = \(1-math.exp\(-np.sum\([self.XVar[i]+\(1/np.sqrt\(i+1\)\)**2 ) S
+(for) K
+( i ) p
+(in) K
+( range \(0, 3\)]\)\)\)) p n
+(    ) S
+(return) K
+( math.fabs\(f1+f2\)) p n
+() N
+(  ) S
+(def) K
+( Neighbor\(self\):) p n
+(    self.XVar[random.randint\(0, 2\)] = random.uniform\(self.smin, self.smax\)) N
+(    ) N
+(  ) S
+(def) K
+( Chaos\(self\):) p n
+(    self.XVar[0] = random.uniform\(self.smin, self.smax\)) N
+(    self.XVar[1] = random.uniform\(self.smin, self.smax\)) N
+(    self.XVar[2] = random.uniform\(self.smin, self.smax\)) N
+(    ) N
+(  ) S
+(def) K
+( Baseline\(self, numRuns\):) p n
+(    self.Chaos\(\)) N
+(    self.eMax = self.eMin = self.RawEnergy\(\)) N
+(    runs = 1) N
+(    ) S
+(while) K
+( runs < numRuns:   ) p n
+(      self.Neighbor\(\)) N
+(      eNew = self.RawEnergy\(\)) N
+(      ) S
+(if) K
+( eNew > self.eMax: ) p
+(#find largest difference               ) c n
+(        self.eMax = eNew) p n
+(        self.XVarMax = self.XVar) N
+(        ) S
+(#print self.XVarMax, eNew) c n
+(      ) p
+(if) K
+( eNew < self.eMin: ) p
+(#find smallest difference  ) c n
+(        self.eMin = eNew) p n
+(        ) S
+(#print 'Min: ', self.XVar, eNew) c n
+(      runs += 1) p n
+(    ) S
+(print) K
+( ') p
+(Baseline: ) str
+(', self.eMin, ') p
+(, ) str
+(', self.eMax) p n
+(    ) N
+(  ) S
+(def) K
+( __init__\(self\):) p n
+(    ) S
+(print) K
+( ') p
+(Initializing Fonesca...) str
+(') p n
+(    self.Baseline\(10000\)) N
+(    self.XVar = self.XVarMax) N
+(    ) S
+(print) K
+( ') p
+(Initialized.) str
+(') p n
+(  ) N
+(#Structure from SA Lecture) c n
+(def) K
+( main\(\):) p n
+(  fon = Fonesca\(\)) N
+(  XVarBest = fon.XVar) N
+(  eBest = e = 1) N
+(  ) S
+(print) K
+( ') p
+(start energy: ) str
+(', eBest           ) p n
+(  k = 1) N
+(  say\(int\(math.fabs\(eBest-1\)*100\)\)) N
+(  say\(') S
+( ) str
+('\)) p n
+(  ) S
+(while) K
+( k < kmax:   ) p n
+(    fon.Neighbor\(\)) N
+(    eNew = fon.Energy\(\)) N
+(    ) S
+(if) K
+( eNew < eBest:               ) p n
+(csc710sbse: HW2:Theisen) (Page 1/2) (Sep 08, 14 22:10) title
+border
+/v 1 store
+/x0 x v get 2.803063 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(      eBest = eNew) p n
+(      XVarBest = list\(fon.XVar\)) N
+(      say\(') S
+(!) str
+('\)) p n
+(      ) N
+(    ) S
+(#print 'Check: ', math.exp\(-1*\(eNew-e\)/\(k/kmax**cooling\)\)) c n
+() p 8 T (  ) N
+(    ) S
+(if) K
+( eNew < e:                 ) p n
+(      e = eNew     ) N
+(      say\(') S
+(+) str
+('\)       ) p n
+(    ) S
+(#Probability Check from SA Lecture) c n
+(    ) p
+(elif) K
+( math.exp\(-1*\(eNew-e\)/\(k/kmax**cooling\)\) < random.uniform\(0,1\):) p n
+(    ) S
+(#P function should be between 0 and 1) c n
+(    ) p
+(#more random hops early, then decreasing as time goes on) c n
+(      fon.Chaos\(\)) p n
+(      say\(') S
+(?) str
+('\)        ) p n
+(    say\(') S
+(.) str
+('\)) p n
+(    k = k + 1) N
+(    ) S
+(if) K
+( k % 50 ) p
+(\272) sy
+( 0 ) p
+(\331) sy
+( k ) p
+(\271) sy
+( kmax:) p n
+(      ) S
+(print) K
+( '') p n
+(      say\(int\(math.fabs\(eBest-1\)*100\)\)) N
+(      say\(') S
+( ) str
+('\)) p n
+() N
+(  ) S
+(print) K
+( ') p
+(\\nFound best - e: ) str
+(', eBest) p n
+(  ) S
+(print) K
+( ') p
+(Variables: ) str
+(', XVarBest[0], ') p
+(, ) str
+(', XVarBest[1], ') p
+(, ) str
+(', XVarBest[2]) p n
+(  ) N
+(main\(\)) N
+(csc710sbse: HW2:Theisen) (Page 2/2) (Sep 08, 14 22:10) title
+border
+grestore
+(Printed by Christopher Theisen) rhead
+(./HW2/files/fonesca_hack.py) (1/6) (Tuesday September 09, 2014) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (1-2) 2
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 2.803063 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(Initializing Fonesca...) p n
+(Baseline:  4.5882286632e-05 ,  558799.359426) N
+(Initialized.) N
+(start energy:  1) N
+(0 !+.........?........?.!+.........!+.............!+.....!+....) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ......!+............................................) N
+(99 ..................................................) N
+(99 .........................................?.........) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 .!+.................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 .................?.................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 .......?...........................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 .......................?...........................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(csc710sbse: HW2:Theisen) (Page 1/2) (Sep 08, 14 22:09) title
+border
+/v 1 store
+/x0 x v get 2.803063 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(99 ..................................................) p n
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(Found best - e:  1.78963630605e-10) N
+(Variables:  3.64764598844 ,  3.73831469169 ,  3.25415662207) S
+(csc710sbse: HW2:Theisen) (Page 2/2) (Sep 08, 14 22:09) title
+border
+grestore
+(Printed by Christopher Theisen) rhead
+(./HW2/files/fonesca_hackrun.txt) (2/6) (Tuesday September 09, 2014) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (1-2) 3
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 2.803063 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(#From Class Discussion 8/26/2014) c n
+(from) K
+( __future__ ) p
+(import) K
+( division) p n
+(import) K
+( sys,re,random,math) p n
+(import) K
+( numpy as np) p n
+(sys.dont_write_bytecode = True) N
+() N
+(maxTries = 500) N
+(maxChanges = 500) N
+(#threshold; well, how close do we want to get?) c n
+(threshold = .000001) p n
+(cooling = 1) N
+() N
+() N
+(#Structure from SA Lecture) c n
+(def) K
+( say\(x\): ) p n
+(  sys.stdout.write\(str\(x\)\); sys.stdout.flush\(\)) N
+(        ) N
+(rand = random.random) N
+() N
+(class) K
+( FonescaMWS:) p n
+(  smin = -4) N
+(  smax = 4) N
+(  XVar = [random.uniform\(smin, smax\) ) S
+(for) K
+( i ) p
+(in) K
+( range \(0, 3\)]) p n
+(  XVarMax = XVar) N
+(  eMax = 0) N
+(  eMin = 0) N
+(  slices = 10) N
+(  ) N
+(  ) S
+(def) K
+( Energy\(self\):) p n
+(    f1 = \(1-math.e**\(-np.sum\([self.XVar[i]-\(1/np.sqrt\(i+1\)\)**2 ) S
+(for) K
+( i ) p
+(in) K
+( range \(0, 3\)]\)\)\)) p n
+(    f2 = \(1-math.e**\(-np.sum\([self.XVar[i]+\(1/np.sqrt\(i+1\)\)**2 ) S
+(for) K
+( i ) p
+(in) K
+( range \(0, 3\)]\)\)\)) p n
+(    ) S
+(return) K
+( \(math.fabs\(f1+f2\) - self.eMin\) / \(self.eMax - self.eMin\)) p n
+(    ) N
+(  ) S
+(def) K
+( RawEnergy\(self\):) p n
+(    f1 = \(1-math.exp\(-np.sum\([self.XVar[i]-\(1/np.sqrt\(i+1\)\)**2 ) S
+(for) K
+( i ) p
+(in) K
+( range \(0, 3\)]\)\)\)) p n
+(    f2 = \(1-math.exp\(-np.sum\([self.XVar[i]+\(1/np.sqrt\(i+1\)\)**2 ) S
+(for) K
+( i ) p
+(in) K
+( range \(0, 3\)]\)\)\)) p n
+(    ) S
+(return) K
+( math.fabs\(f1+f2\)) p n
+() N
+(  ) S
+(def) K
+( Neighbor\(self, toChange\):) p n
+(    self.XVar[toChange] = self.smin + \(self.smax - self.smin\) * random.uniform\(0,1\)) N
+(  ) N
+(  ) S
+(def) K
+( BestNeighbor\(self, toChange\):) p n
+(    toIncrement = \(self.smax - self.smin\) / self.slices) N
+(    curMax = 1) N
+(    maxVal = self.XVar[toChange]) N
+(    ) S
+(for) K
+( i ) p
+(in) K
+( xrange\(10\):) p n
+(      self.XVar[toChange] = self.smin + toIncrement) N
+(      x = self.Energy\(\)) N
+(      ) S
+(if) K
+( x < curMax:) p n
+(        curMax = x) N
+(        maxVal = self.XVar[toChange]) N
+(    ) N
+(  ) S
+(def) K
+( Chaos\(self\):) p n
+(    self.XVar[0] = random.uniform\(self.smin, self.smax\)) N
+(    self.XVar[1] = random.uniform\(self.smin, self.smax\)) N
+(    self.XVar[2] = random.uniform\(self.smin, self.smax\)) N
+(    ) N
+(  ) S
+(def) K
+( Baseline\(self, numRuns\):) p n
+(    self.Chaos\(\)) N
+(    self.eMax = self.eMin = self.RawEnergy\(\)) N
+(    runs = 1) N
+(    ) S
+(while) K
+( runs < numRuns:   ) p n
+(      self.Neighbor\(random.randint\(0,2\)\)) N
+(      eNew = self.RawEnergy\(\)) N
+(      ) S
+(if) K
+( eNew > self.eMax: ) p
+(#find largest difference               ) c n
+(        self.eMax = eNew) p n
+(        self.XVarMax = self.XVar) N
+(        ) S
+(#print self.XVarMax, eNew) c n
+(      ) p
+(if) K
+( eNew < self.eMin: ) p
+(#find smallest difference  ) c n
+(        self.eMin = eNew) p n
+(        ) S
+(#print 'Min: ', self.XVar, eNew) c n
+(      runs += 1) p n
+(    ) S
+(print) K
+( ') p
+(Baseline: ) str
+(', self.eMin, ') p
+(, ) str
+(', self.eMax) p n
+(  ) N
+(  ) S
+(def) K
+( EnergyChecker\(self, x, y, z\):) p n
+(    self.XVar[0] = x) N
+(    self.XVar[1] = y) N
+(csc710sbse: HW2:Theisen) (Page 1/2) (Sep 09, 14 11:37) title
+border
+/v 1 store
+/x0 x v get 2.803063 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(    self.XVar[2] = z) p n
+(    ) S
+(print) K
+( ') p
+(Energy @ ) str
+(', x, ') p
+( ) str
+(', y, ') p
+( ) str
+(', z, ') p
+(: ) str
+(', self.Energy\(\)) p n
+(    ) N
+(  ) S
+(def) K
+( __init__\(self\):) p n
+(    ) S
+(print) K
+( ') p
+(\\nInitializing Fonesca \(MaxWalkSat\)...) str
+(') p n
+(    self.Baseline\(10000\)) N
+(    self.XVar = self.XVarMax) N
+(    ) S
+(print) K
+( ') p
+(Initialized.) str
+(') p n
+(  ) N
+(#Structure from MaxWalkSat Lecture) c n
+(def) K
+( MWS\(probability\):) p n
+(  fon = FonescaMWS\(\)) N
+(  XVarBest = fon.XVar) N
+(  eBest = e = 1       ) N
+(  k = 1) N
+(  say\(int\(math.fabs\(eBest-1\)*100\)\)) N
+(  say\(') S
+( ) str
+('\)) p n
+(  ) S
+(for) K
+( i ) p
+(in) K
+( xrange\(maxTries\): ) p n
+(    fon.Chaos\(\)) N
+(    ) S
+(for) K
+( j ) p
+(in) K
+( xrange\(maxChanges\):) p n
+(      eNew = fon.Energy\(\)) N
+(      ) S
+(if) K
+(\(eNew < threshold\):) p n
+(        ) S
+(#% means found a solution and quit) c n
+(        say\(') p
+(%) str
+('\)) p n
+(        eBest = eNew) N
+(        XVarBest = list\(fon.XVar\)) N
+(        ) S
+(print) K
+( ') p
+(\\nQuitting...) str
+(') p n
+(        ) S
+(return) K
+( eBest, XVarBest) p n
+(      ) S
+(else) K
+(:) p n
+(        ) S
+(#modify random part of solution) c n
+(        ) p
+(if) K
+( probability > random.uniform\(0,1\):) p n
+(          fon.Neighbor\(random.randint\(0, 2\)\)) N
+(          say\(') S
+(+) str
+('\)) p n
+(        ) S
+(#maximize for some random) c n
+(        ) p
+(else) K
+(:) p n
+(          fon.BestNeighbor\(random.randint\(0,2\)\)) N
+(        say\(') S
+(.) str
+('\)) p n
+(        ) S
+(if) K
+( \(i+1\)*\(j+1\) % 40 ) p
+(\272) sy
+( 0:) p n
+(          ) S
+(print) K
+( '') p n
+(          say\(int\(math.fabs\(eNew-1\)*100\)\)) N
+(          say\(') S
+( ) str
+('\)) p n
+(    ) S
+(print) K
+( '') p n
+(    ) S
+(return) K
+( -1, XVarBest) p n
+(  ) N
+(for) K
+( i ) p
+(in) K
+( [0.25, 0.5, 0.75]:) p n
+(  eBest, XVarBest = MWS\(i\)) N
+(  ) S
+(if) K
+( eBest ) p
+(\272) sy
+( -1:) p n
+(    ) S
+(print) K
+( ') p
+(No Best Found for prob = ) str
+(', i) p n
+(  ) S
+(else) K
+(:) p n
+(    ) S
+(print) K
+( ') p
+(Found best - e: ) str
+(', eBest, ') p
+( for prob = ) str
+(', i) p n
+(    ) S
+(print) K
+( ') p
+(Variables: ) str
+(', XVarBest[0], ') p
+(, ) str
+(', XVarBest[1], ') p
+(, ) str
+(', XVarBest[2]) p n
+(csc710sbse: HW2:Theisen) (Page 2/2) (Sep 09, 14 11:37) title
+border
+grestore
+(Printed by Christopher Theisen) rhead
+(./HW2/files/fonesca_maxwalksat.py) (3/6) (Tuesday September 09, 2014) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (1) 4
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 2.803063 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(Initializing Fonesca \(MaxWalkSat\)...) p n
+(Baseline:  0.00217219138581 ,  489100.818994) N
+(Initialized.) N
+(0 ...+.+............+..+........+........+......) N
+(80 .+..................+...+.....+.....+.+..+..+.+..) N
+(0 +..+....+....+..+...+..+...+.+.+..+...+.......+.+..+.+..) N
+(98 +.+..+.+.+....+.+...+...+.+.......+..........+..+.+.+..) N
+(99 +.......+......+..+.+.+....+.+.....+.+...+......+...) N
+(80 .+...+..+.....+........+...+.....+...........+..) N
+(87 ...+.+.....+.+......+.+...+.+......+.+..+..+.+..+...+..) N
+(98 ...+....+...+....+........+..................) N
+(80 +....+.+.+........+......+......+...+.+.....+.+....) N
+(80 +...........+..+.+............+.........+.....) N
+(99 +...+.+...+.....+............+.+..+.....+.....+...) N
+(99 ....+..+...+........+..+.+....+.+.+.....+...+......) N
+(80 +.+...+.......+.........) N
+(No Best Found for prob = 0.25) N
+() N
+(Initializing Fonesca \(MaxWalkSat\)...) N
+(Baseline:  0.000932916523078 ,  469528.012899) N
+(Initialized.) N
+(0 .+..+.........+..+..+.+....+..+.+...+.+.+.+...+..+.+..+.+.) N
+(99 +.+.+.+.+..+..+.+.%) N
+(Quitting...) N
+(Found best - e:  1.04329763784e-07  for prob =  0.5) N
+(Variables:  3.64250077891 ,  1.23269440387 ,  -3.68449263252) N
+() N
+(Initializing Fonesca \(MaxWalkSat\)...) N
+(Baseline:  0.00125834048295 ,  781901.399856) N
+(Initialized.) N
+(0 +.+.+..+..+.+.+.+.+.+.+..+.+.+..+.+.+.+.+.+.%) N
+(Quitting...) N
+(Found best - e:  3.19187866439e-07  for prob =  0.75) N
+(Variables:  -2.94522839581 ,  3.64262171318 ,  0.349880488063) N
+() N
+(###################################) N
+() N
+(Based on the runs above, I would assume that there isn't much difference between running) N
+(at higher probabilities of randomizing, depending on the threshold set. The higher) N
+(probabilities terminated faster and still had reasonable results. This may change as) N
+(you modify your threshold, however.) N
+() N
+(Note that I also don't trust my energy functions right now for Fonesca despite spending) N
+(hours upon hours trying to fiddle with them. It seems like the scale is all out of whack) N
+(when normalizing, but I can't find anything wrong with my math \(yet\).) S
+(csc710sbse: HW2:Theisen) (Page 1/1) (Sep 09, 14 11:53) title
+border
+grestore
+(Printed by Christopher Theisen) rhead
+(./HW2/files/fonesca_maxwalksatrun.txt) (4/6) (Tuesday September 09, 2014) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (1-2) 5
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 2.803063 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(#From Class Discussion 8/26/2014) c n
+(from) K
+( __future__ ) p
+(import) K
+( division) p n
+(import) K
+( sys,re,random,math) p n
+(import) K
+( numpy as np) p n
+(sys.dont_write_bytecode = True) N
+() N
+(kmax = 5000) N
+(cooling = .6) N
+() N
+(#Structure from SA Lecture) c n
+(def) K
+( say\(x\): ) p n
+(  sys.stdout.write\(str\(x\)\); sys.stdout.flush\(\)) N
+(        ) N
+(rand = random.random) N
+() N
+(class) K
+( Kursawe:) p n
+(  smin = -5) N
+(  smax = 5) N
+(  XVar = [random.uniform\(smin, smax\) ) S
+(for) K
+( i ) p
+(in) K
+( range \(0, 3\)]) p n
+(  XVarMax = XVar) N
+(  eMax = 0) N
+(  eMin = 0) N
+(  a = 0.8) N
+(  b = 3) N
+(  ) N
+(  ) S
+(def) K
+( Energy\(self\):) p n
+(    X = self.XVar) N
+(    f1 = np.sum\([-10*math.exp\(-0.2*\(np.sqrt\(X[i]**2+X[i]**2\)\)\) ) S
+(for) K
+( i ) p
+(in) K
+( range \(0, 3-1\)]\)) p n
+(    f2 = np.sum\([math.fabs\(X[i]\)**self.a + 5*np.sin\(X[i]\)**self.b ) S
+(for) K
+( i ) p
+(in) K
+( range \(0, 3\)]\)) p n
+(    ) S
+(return) K
+( \(math.fabs\(f1-f2\) - self.eMin\) / \(self.eMax - self.eMin\)) p n
+(    ) N
+(  ) S
+(def) K
+( RawEnergy\(self\):) p n
+(    X = self.XVar) N
+(    f1 = np.sum\([-10*math.exp\(-0.2*\(np.sqrt\(X[i]**2+X[i]**2\)\)\) ) S
+(for) K
+( i ) p
+(in) K
+( range \(0, 3-1\)]\)) p n
+(    f2 = np.sum\([math.fabs\(X[i]\)**self.a + 5*np.sin\(X[i]\)**self.b ) S
+(for) K
+( i ) p
+(in) K
+( range \(0, 3\)]\)) p n
+(    ) S
+(return) K
+( math.fabs\(f1-f2\)) p n
+() N
+(  ) S
+(def) K
+( Neighbor\(self\):) p n
+(    self.XVar[random.randint\(0, 2\)] = random.uniform\(self.smin, self.smax\)) N
+(    ) N
+(  ) S
+(def) K
+( Chaos\(self\):) p n
+(    self.XVar[0] = random.uniform\(self.smin, self.smax\)) N
+(    self.XVar[1] = random.uniform\(self.smin, self.smax\)) N
+(    self.XVar[2] = random.uniform\(self.smin, self.smax\)) N
+(    ) N
+(  ) S
+(def) K
+( Baseline\(self, numRuns\):) p n
+(    self.Chaos\(\)) N
+(    self.eMax = self.eMin = self.RawEnergy\(\)) N
+(    runs = 1) N
+(    ) S
+(while) K
+( runs < numRuns:   ) p n
+(      self.Neighbor\(\)) N
+(      eNew = self.RawEnergy\(\)) N
+(      ) S
+(if) K
+( eNew > self.eMax: ) p
+(#find largest difference               ) c n
+(        self.eMax = eNew) p n
+(        self.XVarMax = self.XVar) N
+(        ) S
+(#print self.XVarMax, eNew) c n
+(      ) p
+(if) K
+( eNew < self.eMin: ) p
+(#find smallest difference  ) c n
+(        self.eMin = eNew) p n
+(        ) S
+(#print 'Min: ', self.XVar, eNew) c n
+(      runs += 1) p n
+(    ) S
+(print) K
+( ') p
+(Baseline: ) str
+(', self.eMin, ') p
+(, ) str
+(', self.eMax) p n
+(    ) N
+(  ) S
+(def) K
+( __init__\(self\):) p n
+(    ) S
+(print) K
+( ') p
+(Initializing Kursawe...) str
+(') p n
+(    self.Baseline\(10000\)) N
+(    self.XVar = self.XVarMax) N
+(    ) S
+(print) K
+( ') p
+(Initialized.) str
+(') p n
+(  ) N
+(#Structure from SA Lecture) c n
+(def) K
+( main\(\):) p n
+(  sa = Kursawe\(\)) N
+(  XVarBest = sa.XVar) N
+(  eBest = e = 1) N
+(  ) S
+(print) K
+( ') p
+(start energy: ) str
+(', eBest           ) p n
+(  k = 1) N
+(  say\(int\(math.fabs\(eBest-1\)*100\)\)) N
+(  say\(') S
+( ) str
+('\)) p n
+(csc710sbse: HW2:Theisen) (Page 1/2) (Sep 09, 14 11:51) title
+border
+/v 1 store
+/x0 x v get 2.803063 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(  ) p
+(while) K
+( k < kmax:   ) p n
+(    sa.Neighbor\(\)) N
+(    eNew = sa.Energy\(\)) N
+(    ) S
+(if) K
+( eNew < eBest:               ) p n
+(      eBest = eNew) N
+(      XVarBest = list\(sa.XVar\)) N
+(      say\(') S
+(!) str
+('\)) p n
+() S 8 T (  ) N
+(    ) S
+(if) K
+( eNew < e:                 ) p n
+(      e = eNew     ) N
+(      say\(') S
+(+) str
+('\)       ) p n
+(    ) S
+(#Probability Check from SA Lecture) c n
+(    ) p
+(elif) K
+( math.exp\(-1*\(eNew-e\)/\(k/kmax**cooling\)\) < random.uniform\(0,1\):) p n
+(    ) S
+(#P function should be between 0 and 1) c n
+(    ) p
+(#more random hops early, then decreasing as time goes on) c n
+(      sa.Chaos\(\)) p n
+(      say\(') S
+(?) str
+('\)        ) p n
+(    say\(') S
+(.) str
+('\)) p n
+(    k = k + 1) N
+(    ) S
+(if) K
+( k % 50 ) p
+(\272) sy
+( 0 ) p
+(\331) sy
+( k ) p
+(\271) sy
+( kmax:) p n
+(      ) S
+(print) K
+( '') p n
+(      say\(int\(math.fabs\(eBest-1\)*100\)\)) N
+(      say\(') S
+( ) str
+('\)) p n
+() N
+(  ) S
+(print) K
+( ') p
+(\\nFound best - e: ) str
+(', eBest) p n
+(  ) S
+(print) K
+( ') p
+(Variables: ) str
+(', XVarBest[0], ') p
+(, ) str
+(', XVarBest[1], ') p
+(, ) str
+(', XVarBest[2]) p n
+(  ) N
+(main\(\)) N
+(csc710sbse: HW2:Theisen) (Page 2/2) (Sep 09, 14 11:51) title
+border
+grestore
+(Printed by Christopher Theisen) rhead
+(./HW2/files/kursawe_hack.py) (5/6) (Tuesday September 09, 2014) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (1-2) 6
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 2.803063 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(Initializing Kursawe...) p n
+(Baseline:  0.177029099874 ,  31.6067662396) N
+(Initialized.) N
+(start energy:  1) N
+(0 !+.!+.?.!+.!+.?.!+.?.!+.!+.?.?.?.?.?.?.?.!+.?.?.?.?..?.?.?.?.?..?.?.?.?.?.?.) N
+(  ?..?..?.?.?.?.?...?.?.?.) N
+(85 ?.?.?.?.?..?.?...?.?.?.?...?.....?..?...?..?.?..?.?.?.......?.?.?..?.?.....) N
+(85 ..?.?..?...?......?.!+...?...............?.?.?....?..?..?.?.?...?..) N
+(95 ..?.?......?.?.?.?.........?.?..?..?.?..?..?.?.?.?....?....?.....?...) N
+(95 ..?...?...?.?.?..........?.....?.....?..........?.?.........) N
+(95 ....?...?.......?.?..?....?.?...?.......?.?..?...?.?...?..?...?...) N
+(95 ............?..?..?........?.?......?...........?......?..) N
+(95 ........?..............?..........?..?.?.?........?......) N
+(95 ..?......?.?........?.......?.?......?..?...?...?.?.?........?.) N
+(95 .?.?........?......?........?........?...?...............) N
+(95 .............?...?...?............?..............?.....) N
+(95 ....?......?.?..........?..............?.?.......?.?.....?.) N
+(95 .?.?.....?.......................?.?...?...?.............) N
+(95 ?..?...............?..............................?...) N
+(95 .................?.?.........?...................?....) N
+(95 ................?........?....?...?.............?......) N
+(95 ?...................?......?....?.................?....) N
+(95 .......?.....?.....?.................................) N
+(95 ..................................................) N
+(95 .?...?.............................?.?................) N
+(95 ...?................................!+..!+.............) N
+(97 ....?........................?.........?.........?...?.) N
+(97 ?.........................................?.........) N
+(97 ...?.............................?.........?.........) N
+(97 ....?......................?.....................?...) N
+(97 ...................................?...?....?..?......) N
+(97 ..........?.....?......?...?..........................) N
+(97 ..?............................................?....) N
+(97 ....?...................?.?..........?.........?.......) N
+(97 ......?.....?.......?............................?....) N
+(97 ..?...?......?.....?...........?...?...................?.) N
+(97 ........?....?......?........?.....................?.?..) N
+(97 ............................................?......) N
+(97 ........................!+..........................) N
+(99 ...............?...................................) N
+(99 ...?...................?.................?...........) N
+(99 .........................................?.........) N
+(99 .....?.............................................) N
+(99 ..?..?.........................?.....................) N
+(99 ......................?..........................?..) N
+(99 .......?...?...................?...?..................) N
+(99 ..........?.........?............?..?...?..............) N
+(99 ............?...............?............?...........) N
+(99 .......?....?.........?..............................) N
+(99 .......................?...?........?..............?.?.) N
+(99 .....................................?.............) N
+(99 ...........................?.......................) N
+(99 ..................................................) N
+(99 .......................?.......?....?........?........) N
+(99 ..............................................?....) N
+(99 ...........................?...............?........) N
+(99 ..................................................) N
+(99 ..............?....?................?................) N
+(99 .......?.....................................?......) N
+(99 ..................................................) N
+(99 ........................?..........................) N
+(99 .?.................................?................) N
+(99 ......?............................................) N
+(99 .........................?......?....?...............) N
+(99 .?........................?...............?..........) N
+(99 .........................................?.........) N
+(99 ............................................?......) N
+(99 ...................................?...............) N
+(99 ..................................................) N
+(99 .........................?...........?..............) N
+(99 ..................................................) N
+(99 .........?.........................................) N
+(99 ..?................................................) N
+(99 ........?..........................................) N
+(99 ........................?.?.........................) N
+(99 ...........................................?.......) N
+(99 ..................................................) N
+(csc710sbse: HW2:Theisen) (Page 1/2) (Sep 09, 14 11:49) title
+border
+/v 1 store
+/x0 x v get 2.803063 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(99 ..................................................) p n
+(99 ..........?........................................) N
+(99 ?..................................................) N
+(99 .........................?.........................) N
+(99 ........................?.........?.................) N
+(99 .................................?.................) N
+(99 ..................................................) N
+(99 ............................................?......) N
+(99 ............................?......................) N
+(99 ..............................?....................) N
+(99 ..........................?................?........) N
+(99 ..........................................?........) N
+(99 ..................................?................) N
+(99 .?.................?................................) N
+(99 ..................................................) N
+(99 ..............................?....................) N
+(99 ...............................................?...) N
+(99 ..................................................) N
+(99 ......?.........?...................................) N
+(99 ........?..........................................) N
+(99 ........................?........?..................) N
+(99 .........?...................?......................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 .............?.....................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(99 ..................................................) N
+(Found best - e:  0.00357909119159) N
+(Variables:  -1.74434673516 ,  4.42207333232 ,  -1.77862694257) S
+(csc710sbse: HW2:Theisen) (Page 2/2) (Sep 09, 14 11:49) title
+border
+grestore
+(Printed by Christopher Theisen) rhead
+(./HW2/files/kursawe_hackrun.txt) (6/6) (Tuesday September 09, 2014) footer
+end % of iso1dict
+pagesave restore
+showpage
+
+%%Trailer
+end
+%%EOF

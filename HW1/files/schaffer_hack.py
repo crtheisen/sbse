@@ -17,8 +17,8 @@ def say(x):
   sys.stdout.write(str(x)); sys.stdout.flush()
   
 def Energy(x):
-	rawAns = math.fabs((x*x) - (x-2)*(x-2))
-	ans = (rawAns - emin) / (emax - emin)
+	rawAns = math.fabs((x*x) + (x-2)*(x-2))
+	ans = (rawAns + emin) / (emax - emin)
 	return ans
 
 def Neighbor(x):

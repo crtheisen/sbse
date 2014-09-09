@@ -1,0 +1,45 @@
+Initializing Fonesca (MaxWalkSat)...
+Baseline:  0.00217219138581 ,  489100.818994
+Initialized.
+0 ...+.+............+..+........+........+......
+80 .+..................+...+.....+.....+.+..+..+.+..
+0 +..+....+....+..+...+..+...+.+.+..+...+.......+.+..+.+..
+98 +.+..+.+.+....+.+...+...+.+.......+..........+..+.+.+..
+99 +.......+......+..+.+.+....+.+.....+.+...+......+...
+80 .+...+..+.....+........+...+.....+...........+..
+87 ...+.+.....+.+......+.+...+.+......+.+..+..+.+..+...+..
+98 ...+....+...+....+........+..................
+80 +....+.+.+........+......+......+...+.+.....+.+....
+80 +...........+..+.+............+.........+.....
+99 +...+.+...+.....+............+.+..+.....+.....+...
+99 ....+..+...+........+..+.+....+.+.+.....+...+......
+80 +.+...+.......+.........
+No Best Found for prob = 0.25
+
+Initializing Fonesca (MaxWalkSat)...
+Baseline:  0.000932916523078 ,  469528.012899
+Initialized.
+0 .+..+.........+..+..+.+....+..+.+...+.+.+.+...+..+.+..+.+.
+99 +.+.+.+.+..+..+.+.%
+Quitting...
+Found best - e:  1.04329763784e-07  for prob =  0.5
+Variables:  3.64250077891 ,  1.23269440387 ,  -3.68449263252
+
+Initializing Fonesca (MaxWalkSat)...
+Baseline:  0.00125834048295 ,  781901.399856
+Initialized.
+0 +.+.+..+..+.+.+.+.+.+.+..+.+.+..+.+.+.+.+.+.%
+Quitting...
+Found best - e:  3.19187866439e-07  for prob =  0.75
+Variables:  -2.94522839581 ,  3.64262171318 ,  0.349880488063
+
+###################################
+
+Based on the runs above, I would assume that there isn't much difference between running
+at higher probabilities of randomizing, depending on the threshold set. The higher
+probabilities terminated faster and still had reasonable results. This may change as
+you modify your threshold, however.
+
+Note that I also don't trust my energy functions right now for Fonesca despite spending
+hours upon hours trying to fiddle with them. It seems like the scale is all out of whack
+when normalizing, but I can't find anything wrong with my math (yet).

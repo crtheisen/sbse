@@ -5,7 +5,7 @@ import numpy as np
 sys.dont_write_bytecode = True
 
 kmax = 5000
-cooling = .6
+cooling = 1
 
 #Structure from SA Lecture
 def say(x): 
@@ -24,12 +24,12 @@ class Fonesca:
   def Energy(self):
     f1 = (1-math.e**(-np.sum([self.XVar[i]-(1/np.sqrt(i+1))**2 for i in range (0, 3)])))
     f2 = (1-math.e**(-np.sum([self.XVar[i]+(1/np.sqrt(i+1))**2 for i in range (0, 3)])))
-    return (math.fabs(f1-f2) - self.eMin) / (self.eMax - self.eMin)
+    return (math.fabs(f1+f2) - self.eMin) / (self.eMax - self.eMin)
     
   def RawEnergy(self):
     f1 = (1-math.exp(-np.sum([self.XVar[i]-(1/np.sqrt(i+1))**2 for i in range (0, 3)])))
     f2 = (1-math.exp(-np.sum([self.XVar[i]+(1/np.sqrt(i+1))**2 for i in range (0, 3)])))
-    return math.fabs(f1-f2)
+    return math.fabs(f1+f2)
 
   def Neighbor(self):
     self.XVar[random.randint(0, 2)] = random.uniform(self.smin, self.smax)
