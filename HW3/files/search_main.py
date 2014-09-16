@@ -23,12 +23,12 @@ for klass in [Fonseca, Schaffer, Kursawe, ZDT1]:
       
 #TODOs (roughly prioritized)
 
-#Implement models folder and searchers folder to import
+#Implement models folder and searchers folder to import - this is dumb and I'm tired
 
 # Actually implement the numerical analysis functions in searchers
 #     -this includes saving of the seed. THIS IS REALLY IMPORTANT DO NOT FORGET
 
-#Further abstraction of models; lots of repeated code
+#Further abstraction of models; lots of repeated code. Baseline/Neighbor prime for this.
 
 # Break out prints of the algorithm into a debug setting (can turn off/on as needed)
 #     -this kind of works now, but I need to handle prints as well without ugly
