@@ -6,6 +6,7 @@ from options import *
 myOpt = Options()
 
 class SA:
+  name = "SA"
   
   def say(self, x): 
     if myOpt.debug:
@@ -52,6 +53,6 @@ class SA:
       #print "\n"
     return eBest, True
     
-  def printOptions():
+  def printOptions(self):
     print "SA Options:"
-    print "KMAX: ", myOpt.sa_kmax, "Cooling: ", myOpt.mws_cooling
+    print "KMAX:", myOpt.sa_kmax, "Cooling:", myOpt.sa_cooling

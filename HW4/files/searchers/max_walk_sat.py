@@ -8,6 +8,7 @@ myOpt = Options()
 
 class MWS:
   debug = False
+  name = "MaxWalkSat"
   
   def say(self, x): 
     if self.debug:
@@ -59,8 +60,8 @@ class MWS:
       valid = True
     return theBest, valid
   
-  def printOptions():
+  def printOptions(self):
     print "MaxWalkSat Options:"
-    print "Prob: ", myOpt.mws_prob
-    print "MaxTries: ", myOpt.mws_maxTries, "MaxChanges ", myOpt.mws_maxChanges
-    print "Threshold: ", myOpt.mws_theshold, "Slices: ", myOpt.mws_slices 
+    print "Prob:", myOpt.mws_prob
+    print "MaxTries:", myOpt.mws_maxTries, "MaxChanges", myOpt.mws_maxChanges
+    print "Threshold:", myOpt.mws_threshold, "Slices:", myOpt.mws_slices 

@@ -1,64 +1,96 @@
 ===============================================================
 Model Name:  Fonseca
 Searcher Name:  SA
-Time to run (s):  3.969176
+Seed: 1
+SA Options:
+KMAX: 5000 Cooling: 0.6
+Time to run (s):  3.777827
 Runs:  10
-Average per run (s):  0.3969176
-*           |            , -0.00000,  -0.00000,  0.00000,  0.00000,  0.00000
+Average per run (s):  0.3777827
+*           |            , -0.00000,  0.00000,  0.00000,  0.00000,  0.00000
 ===============================================================
 ===============================================================
 Model Name:  Fonseca
-Searcher Name:  MWS
-Time to run (s):  0.611429
+Searcher Name:  MaxWalkSat
+Seed: 1
+MaxWalkSat Options:
+Prob: 0.75
+MaxTries: 500 MaxChanges 500
+Threshold: 1e-06 Slices: 10
+Time to run (s):  0.570184
 Runs:  10
-Average per run (s):  0.0611429
+Average per run (s):  0.0570184
 *           |            , 0.00000,  0.00000,  0.00000,  0.00000,  0.00000
 ===============================================================
 ===============================================================
 Model Name:  Schaffer
 Searcher Name:  SA
-Time to run (s):  0.23406
+Seed: 1
+SA Options:
+KMAX: 5000 Cooling: 0.6
+Time to run (s):  0.227492
 Runs:  10
-Average per run (s):  0.023406
+Average per run (s):  0.0227492
 *           |            , -0.00000,  -0.00000,  0.00000,  0.00000,  0.00000
 ===============================================================
 ===============================================================
 Model Name:  Schaffer
-Searcher Name:  MWS
-Time to run (s):  0.03036
+Searcher Name:  MaxWalkSat
+Seed: 1
+MaxWalkSat Options:
+Prob: 0.75
+MaxTries: 500 MaxChanges 500
+Threshold: 1e-06 Slices: 10
+Time to run (s):  0.030728
 Runs:  9
-Average per run (s):  0.00337333333333
+Average per run (s):  0.00341422222222
 *           |            , 0.00000,  0.00000,  0.00000,  0.00000,  0.00000
 ===============================================================
 ===============================================================
 Model Name:  Kursawe
 Searcher Name:  SA
-Time to run (s):  3.167994
+Seed: 1
+SA Options:
+KMAX: 5000 Cooling: 0.6
+Time to run (s):  3.083479
 Runs:  10
-Average per run (s):  0.3167994
+Average per run (s):  0.3083479
 ------   *  |    --------, -0.00547,  0.00199,  0.00597,  0.01490,  0.02413
 ===============================================================
 ===============================================================
 Model Name:  Kursawe
-Searcher Name:  MWS
-Time to run (s):  0.877597
+Searcher Name:  MaxWalkSat
+Seed: 1
+MaxWalkSat Options:
+Prob: 0.75
+MaxTries: 500 MaxChanges 500
+Threshold: 1e-06 Slices: 10
+Time to run (s):  0.860436
 Runs:  6
-Average per run (s):  0.146266166667
+Average per run (s):  0.143406
 *           |            , -0.00092,  -0.00092,  -0.00092,  -0.00092,  -0.00092
 ===============================================================
 ===============================================================
 Model Name:  ZDT1
 Searcher Name:  SA
-Time to run (s):  1.818018
+Seed: 1
+SA Options:
+KMAX: 5000 Cooling: 0.6
+Time to run (s):  1.824436
 Runs:  10
-Average per run (s):  0.1818018
+Average per run (s):  0.1824436
             |      *    -, 0.06181,  0.06355,  0.07678,  0.10068,  0.10510
 ===============================================================
 ===============================================================
 Model Name:  ZDT1
-Searcher Name:  MWS
-Time to run (s):  0.306497
+Searcher Name:  MaxWalkSat
+Seed: 1
+MaxWalkSat Options:
+Prob: 0.75
+MaxTries: 500 MaxChanges 500
+Threshold: 1e-06 Slices: 10
+Time to run (s):  0.301238
 Runs:  10
-Average per run (s):  0.0306497
+Average per run (s):  0.0301238
 *           |            , -0.02102,  -0.02102,  -0.02102,  -0.02102,  -0.02102
 ===============================================================

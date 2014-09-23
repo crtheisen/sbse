@@ -19,6 +19,3 @@ class Options:
   #Simulated Annealing options
   sa_kmax = 5000
   sa_cooling = .6
-  
-  def print_globals():
-    print "Seed: ", self.seed

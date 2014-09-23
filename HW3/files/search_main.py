@@ -17,6 +17,7 @@ def display(model, searcher, startTime, scores, r):
   print "Model Name: ", model.__name__
   print "Searcher Name: ", searcher.name
   diff = (datetime.now() - startTime).total_seconds()
+  myOpt.printGlobals()
   searcher.printOptions()
   print "Time to run (s): ", diff
   if r == 0:

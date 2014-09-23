@@ -15,7 +15,7 @@ myOpt = Options()
 def display(model, searcher, startTime, scores, r):
   print "==============================================================="
   print "Model Name: ", model.__name__
-  print "Searcher Name: ", searcher.__name__
+  print "Searcher Name: ", searcher.name
   diff = (datetime.now() - startTime).total_seconds()
   searcher.printOptions()
   print "Time to run (s): ", diff
@@ -34,12 +34,13 @@ def main(modelList, searcherList):
       startTime = datetime.now()
       scores = []
       myKlass = klass()
+      mySearcher = searcher()
       random.seed(myOpt.seed)
       for _ in range(r):
-        result, valid = searcher().run(myKlass)
+        result, valid = mySearcher.run(myKlass)
         if valid == True:
           scores.append(result)
-      display(klass, searcher, startTime, scores, len(scores))
+      display(klass, mySearcher, startTime, scores, len(scores))
 
 modelList = [Fonseca, Schaffer, Kursawe, ZDT1]
 searcherList = [SA, MWS]
