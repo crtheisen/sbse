@@ -3,39 +3,25 @@ from __future__ import division
 import sys,re,random,math
 import numpy as np
 sys.dont_write_bytecode = True
-
-kmax = 5000
-cooling = .6
-
-#Structure from SA Lecture
-def say(x): 
-  sys.stdout.write(str(x)); sys.stdout.flush()
         
 rand = random.random
 
-class ZDT1:
-  smin = 0
+class Model:
+  #Default Values overwritten by subclass; should have better defaults, but...
+  n = 1
+  smin = 1
   smax = 1
-  n = 30
+  slices = 10
   XVar = [random.uniform(smin, smax) for i in range (0, n)]
   XVarMax = XVar
   eMax = 0
   eMin = 0
-  slices = 10
   
   def Energy(self):
-    X = self.XVar
-    f1 = X[0]
-    g = 1+9*(np.sum([X[i] for i in range (1, self.n)])/(self.n-1))
-    f2 = g*(1-np.sqrt(X[0]/g))
-    return (math.fabs(f1-f2) - self.eMin) / (self.eMax - self.eMin)
+    print "Energy Class Undefined!"
     
   def RawEnergy(self):
-    X = self.XVar
-    f1 = X[0]
-    g = 1+9*(np.sum([X[i] for i in range (1, self.n)])/(self.n-1))
-    f2 = g*(1-np.sqrt(X[0]/g))
-    return math.fabs(f1-f2)
+    print "RawEnergy Class Undefined!"
 
   def Neighbor(self):
     self.XVar[random.randint(0, self.n-1)] = random.uniform(self.smin, self.smax)
@@ -74,5 +60,4 @@ class ZDT1:
     #print 'Baseline: ', self.eMin, ', ', self.eMax
     
   def __init__(self):
-    self.Baseline(10000)
-    self.XVar = self.XVarMax
+    print "Default init Shouldn't be used!"
