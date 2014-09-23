@@ -4,6 +4,8 @@ import sys,re,random,math
 import numpy as np
 sys.dont_write_bytecode = True
 
+from options import *
+
 def pairs(lst):
   last=lst[0]
   for i in lst[1:]:

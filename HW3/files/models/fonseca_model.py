@@ -5,6 +5,7 @@ import numpy as np
 sys.dont_write_bytecode = True
 
 from model_base import *
+from options import *
 
 class Fonseca(Model):
   n = 3

@@ -1,11 +1,15 @@
 import sys
 from datetime import datetime
+import random
 
 sys.dont_write_bytecode = True
 
 from models import *
 from searchers import *
 from utils import *
+from options import *
+
+myOpt = Options()
 
 #Inspired by vivekaxl's display function
 def display(model, searcher, startTime, scores, r):
@@ -28,12 +32,14 @@ def main(modelList, searcherList):
       startTime = datetime.now()
       scores = []
       myKlass = klass()
-      #seed here
+      random.seed(myOpt.seed)
       for _ in range(r):
-        result, valid = searcher(500, .6, 500, .00001, False).run(myKlass)
+        result, valid = searcher().run(myKlass)
         if valid == True:
           scores.append(result)
       display(klass, searcher, startTime, scores, len(scores))
 
-main([Fonseca, Schaffer, Kursawe, ZDT1], [SA, MWS])
-#main([Kursawe], [SA, MWS])
+modelList = [Fonseca, Schaffer, Kursawe, ZDT1]
+searcherList = [SA, MWS]
+
+main(modelList, searcherList)

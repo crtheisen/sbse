@@ -5,6 +5,9 @@ import numpy as np
 sys.dont_write_bytecode = True
 
 from model_base import *
+from options import *
+
+myOpt = Options()
 
 class Kursawe(Model):
   n = 3

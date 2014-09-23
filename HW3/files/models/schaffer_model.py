@@ -4,6 +4,7 @@ import sys,re,random,math
 import numpy as np
 
 from model_base import *
+from options import *
 
 sys.dont_write_bytecode = True
 

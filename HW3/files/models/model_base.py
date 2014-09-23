@@ -4,6 +4,8 @@ import sys,re,random,math
 import numpy as np
 sys.dont_write_bytecode = True
         
+from options import *
+
 rand = random.random
 
 class Model:

@@ -2,13 +2,11 @@
 import sys,re,random,math
 sys.dont_write_bytecode = True
   
-prob = 0.25
+from options import *
+
+myOpt = Options()
 
 class MWS:
-  maxTries = 500
-  maxChanges = 500
-  cooling = .6
-  threshold = .000001
   debug = False
   
   def say(self, x): 
@@ -22,11 +20,11 @@ class MWS:
     k = 1
     self.say(int(math.fabs(eBest-1)*100))
     self.say(' ')
-    for i in xrange(self.maxTries): 
+    for i in xrange(myOpt.mws_maxTries): 
       fon.Chaos()
-      for j in xrange(self.maxChanges):
+      for j in xrange(myOpt.mws_maxChanges):
         eNew = fon.Energy()
-        if(eNew < self.threshold):
+        if(eNew < myOpt.mws_threshold):
           #% means found a solution and quit
           self.say('%')
           eBest = eNew
@@ -52,7 +50,7 @@ class MWS:
   def run(self, klass):
     theBest = -1
     valid = False
-    eBest, XVarBest = self.specificRun(prob, klass)
+    eBest, XVarBest = self.specificRun(myOpt.mws_prob, klass)
     if eBest == -1:
       #print 'No Best Found for prob = ', i
       self.say('')
@@ -60,10 +58,3 @@ class MWS:
       theBest = eBest
       valid = True
     return theBest, valid
-        
-  def __init__(self, newMaxTries, newCooling, newMaxChanges, newT, newDebug):
-    self.maxTries = newMaxTries
-    self.cooling = newCooling
-    self.maxChanges = newMaxChanges
-    self.threshold = newT
-    self.debug = newDebug
