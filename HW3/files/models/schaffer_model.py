@@ -16,7 +16,6 @@ class Schaffer(Model):
   XVarMax = XVar
   eMax = 0
   eMin = 0
-  slices = 10
   
   def Energy(self):
     f1 = self.XVar[0]*self.XVar[0]

@@ -21,6 +21,7 @@ def display(model, searcher, startTime, scores, r):
   if r == 0:
     print "No valid runs!"
   else:
+    print "Runs: ", r
     print "Average per run (s): ", diff/r
     print xtile(scores,width=25,show=" %1.5f")
   print "==============================================================="

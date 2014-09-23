@@ -6,6 +6,8 @@ sys.dont_write_bytecode = True
 
 from options import *
 
+#Taken verbatim from the class website.
+
 def pairs(lst):
   last=lst[0]
   for i in lst[1:]:

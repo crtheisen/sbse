@@ -19,7 +19,6 @@ class Kursawe(Model):
   eMin = 0
   a = 0.8
   b = 3
-  slices = 10
   
   def Energy(self):
     X = self.XVar

@@ -1,12 +1,12 @@
 %!PS-Adobe-3.0
-%%Title: ZDT1_model.py, fonseca_model.py, kursawe_model.py, max_walk_sat.py, schaffer_model.py, search_main.py, sim_anneal.py
+%%Title: __init__.py, models, options.py, results.txt, search_main.py, searchers, utils.py, __init__.py, max_walk_sat.py, sim_anneal.py
 %%For: Christopher Theisen
 %%Creator: a2ps version 4.14
-%%CreationDate: Tue Sep 16 00:41:26 2014
+%%CreationDate: Tue Sep 23 01:52:14 2014
 %%BoundingBox: 24 24 588 768
 %%DocumentData: Clean7Bit
 %%Orientation: Landscape
-%%Pages: 7
+%%Pages: 13
 %%PageOrder: Ascend
 %%DocumentMedia: Letter 612 792 0 () ()
 %%DocumentNeededResources: font Courier
@@ -603,7 +603,7 @@ def
 /y0 0 def
 %%EndSetup
 
-%%Page: (1-2) 1
+%%Page: (1) 1
 %%BeginPageSetup
 /pagesave save def
 sh 0 translate 90 rotate
@@ -626,142 +626,30 @@ x0 y0 moveto
 ( numpy as np) p n
 (sys.dont_write_bytecode = True) N
 () N
-(kmax = 5000) N
-(cooling = .6) N
-() N
-(#Structure from SA Lecture) c n
-(def) K
-( say\(x\): ) p n
-(  sys.stdout.write\(str\(x\)\); sys.stdout.flush\(\)) N
-(        ) N
-(rand = random.random) N
-() N
 (class) K
-( ZDT1:) p n
-(  smin = 0) N
-(  smax = 1) N
-(  n = 30) N
-(  XVar = [random.uniform\(smin, smax\) ) S
-(for) K
-( i ) p
-(in) K
-( range \(0, n\)]) p n
-(  XVarMax = XVar) N
-(  eMax = 0) N
-(  eMin = 0) N
-(  slices = 10) N
+( Options:) p n
+(  ) S
+(#Globals) c n
+(  debug = False) p n
+(  seed = 1) N
 (  ) N
 (  ) S
-(def) K
-( Energy\(self\):) p n
-(    X = self.XVar) N
-(    f1 = X[0]) N
-(    g = 1+9*\(np.sum\([X[i] ) S
-(for) K
-( i ) p
-(in) K
-( range \(1, self.n\)]\)/\(self.n-1\)\)) p n
-(    f2 = g*\(1-np.sqrt\(X[0]/g\)\)) N
-(    ) S
-(return) K
-( \(math.fabs\(f1-f2\) - self.eMin\) / \(self.eMax - self.eMin\)) p n
-(    ) N
+(#MaxWalkSat options) c n
+(  mws_prob = 0.75) p n
+(  mws_maxTries = 500) N
+(  mws_maxChanges = 500) N
+(  mws_threshold = .000001) N
+(  mws_slices = 10) N
+(  ) N
 (  ) S
-(def) K
-( RawEnergy\(self\):) p n
-(    X = self.XVar) N
-(    f1 = X[0]) N
-(    g = 1+9*\(np.sum\([X[i] ) S
-(for) K
-( i ) p
-(in) K
-( range \(1, self.n\)]\)/\(self.n-1\)\)) p n
-(    f2 = g*\(1-np.sqrt\(X[0]/g\)\)) N
-(    ) S
-(return) K
-( math.fabs\(f1-f2\)) p n
-() N
-(  ) S
-(def) K
-( Neighbor\(self\):) p n
-(    self.XVar[random.randint\(0, self.n-1\)] = random.uniform\(self.smin, self.smax\)) N
-(    ) N
-(  ) S
-(def) K
-( BestNeighbor\(self\):) p n
-(    toChange = random.randint\(0, self.n-1\)) N
-(    toIncrement = \(self.smax - self.smin\) / self.slices) N
-(    curMax = 1) N
-(    maxVal = self.XVar[toChange]) N
-(    ) S
-(for) K
-( i ) p
-(in) K
-( xrange\(self.slices\):) p n
-(      self.XVar[toChange] = self.smin + toIncrement) N
-(      x = self.Energy\(\)) N
-(      ) S
-(if) K
-( x < curMax:) p n
-(        curMax = x) N
-(        maxVal = self.XVar[toChange]) N
-(    ) N
-(  ) S
-(def) K
-( Chaos\(self\):) p n
-(    ) S
-(for) K
-( vars ) p
-(in) K
-( self.XVar:) p n
-(      vars = random.uniform\(self.smin, self.smax\)) N
-(    ) N
-(  ) S
-(def) K
-( Baseline\(self, numRuns\):) p n
-(    self.Chaos\(\)) N
-(    self.eMax = self.eMin = self.RawEnergy\(\)) N
-(    runs = 1) N
-(    ) S
-(while) K
-( runs < numRuns:   ) p n
-(      self.Neighbor\(\)) N
-(      eNew = self.RawEnergy\(\)) N
-(      ) S
-(if) K
-( eNew > self.eMax: ) p
-(#find largest difference               ) c n
-(        self.eMax = eNew) p n
-(        self.XVarMax = self.XVar) N
-(        ) S
-(#print self.XVarMax, eNew) c n
-(      ) p
-(if) K
-( eNew < self.eMin: ) p
-(#find smallest difference  ) c n
-(        self.eMin = eNew) p n
-(        ) S
-(#print 'Min: ', self.XVar, eNew) c n
-(      runs += 1) p n
-(    ) S
-(#print 'Baseline: ', self.eMin, ', ', self.eMax) c n
-(    ) p n
-(  ) S
-(def) K
-( __init__\(self\):) p n
-(    self.Baseline\(10000\)) N
-(csc710sbse: HW3:Theisen) (Page 1/2) (Sep 16, 14 0:28) title
-border
-/v 1 store
-/x0 x v get 2.803063 add sx cw mul add store
-/y0 y v get bfs th add sub store
-x0 y0 moveto
-(    self.XVar = self.XVarMax) p
-(csc710sbse: HW3:Theisen) (Page 2/2) (Sep 16, 14 0:28) title
+(#Simulated Annealing options) c n
+(  sa_kmax = 5000) p n
+(  sa_cooling = .6) S
+(csc710sbse: HW3:Theisen) (Page 1/1) (Sep 23, 14 1:47) title
 border
 grestore
 (Printed by Christopher Theisen) rhead
-(./HW3/files/ZDT1_model.py) (1/7) (Tuesday September 16, 2014) footer
+(./HW3/files/options.py) (1/13) (Tuesday September 23, 2014) footer
 end % of iso1dict
 pagesave restore
 showpage
@@ -777,162 +665,222 @@ llx lly 12 add translate
 /x0 x v get 2.803063 add sx cw mul add store
 /y0 y v get bfs th add sub store
 x0 y0 moveto
-(#From Class Discussion 8/26/2014) c n
-(from) K
-( __future__ ) p
-(import) K
-( division) p n
-(import) K
-( sys,re,random,math) p n
-(import) K
-( numpy as np) p n
-(sys.dont_write_bytecode = True) N
-(        ) N
-(rand = random.random) N
-() N
-(class) K
-( Fonseca:) p n
-(  smin = -4) N
-(  smax = 4) N
-(  XVar = [random.uniform\(smin, smax\) ) S
-(for) K
-( i ) p
-(in) K
-( range \(0, 3\)]) p n
-(  XVarMax = XVar) N
-(  eMax = 0) N
-(  eMin = 0) N
-(  slices = 10) N
-(  ) N
-(  ) S
-(def) K
-( Energy\(self\):) p n
-(    f1 = \(1-math.e**\(-np.sum\([self.XVar[i]-\(1/np.sqrt\(i+1\)\)**2 ) S
-(for) K
-( i ) p
-(in) K
-( range \(0, 3\)]\)\)\)) p n
-(    f2 = \(1-math.e**\(-np.sum\([self.XVar[i]+\(1/np.sqrt\(i+1\)\)**2 ) S
-(for) K
-( i ) p
-(in) K
-( range \(0, 3\)]\)\)\)) p n
-(    ) S
-(return) K
-( \(math.fabs\(f1+f2\) - self.eMin\) / \(self.eMax - self.eMin\)) p n
-(    ) N
-(  ) S
-(def) K
-( RawEnergy\(self\):) p n
-(    f1 = \(1-math.exp\(-np.sum\([self.XVar[i]-\(1/np.sqrt\(i+1\)\)**2 ) S
-(for) K
-( i ) p
-(in) K
-( range \(0, 3\)]\)\)\)) p n
-(    f2 = \(1-math.exp\(-np.sum\([self.XVar[i]+\(1/np.sqrt\(i+1\)\)**2 ) S
-(for) K
-( i ) p
-(in) K
-( range \(0, 3\)]\)\)\)) p n
-(    ) S
-(return) K
-( math.fabs\(f1+f2\)) p n
-() N
-(  ) S
-(def) K
-( Neighbor\(self\):) p n
-(    r = random.randint\(0, 2\)) N
-(    self.XVar[r] = self.smin + \(self.smax - self.smin\) * random.uniform\(0,1\)) N
-(  ) N
-(  ) S
-(def) K
-( BestNeighbor\(self\):) p n
-(    toChange = random.randint\(0,2\)) N
-(    toIncrement = \(self.smax - self.smin\) / self.slices) N
-(    curMax = 1) N
-(    maxVal = self.XVar[toChange]) N
-(    ) S
-(for) K
-( i ) p
-(in) K
-( xrange\(self.slices\):) p n
-(      self.XVar[toChange] = self.smin + toIncrement) N
-(      x = self.Energy\(\)) N
-(      ) S
-(if) K
-( x < curMax:) p n
-(        curMax = x) N
-(        maxVal = self.XVar[toChange]) N
-(    ) N
-(  ) S
-(def) K
-( Chaos\(self\):) p n
-(    self.XVar[0] = random.uniform\(self.smin, self.smax\)) N
-(    self.XVar[1] = random.uniform\(self.smin, self.smax\)) N
-(    self.XVar[2] = random.uniform\(self.smin, self.smax\)) N
-(    ) N
-(  ) S
-(def) K
-( Baseline\(self, numRuns\):) p n
-(    self.Chaos\(\)) N
-(    self.eMax = self.eMin = self.RawEnergy\(\)) N
-(    runs = 1) N
-(    ) S
-(while) K
-( runs < numRuns:   ) p n
-(      self.Neighbor\(\)) N
-(      eNew = self.RawEnergy\(\)) N
-(      ) S
-(if) K
-( eNew > self.eMax: ) p
-(#find largest difference               ) c n
-(        self.eMax = eNew) p n
-(        self.XVarMax = self.XVar) N
-(        ) S
-(#print self.XVarMax, eNew) c n
-(      ) p
-(if) K
-( eNew < self.eMin: ) p
-(#find smallest difference  ) c n
-(        self.eMin = eNew) p n
-(        ) S
-(#print 'Min: ', self.XVar, eNew) c n
-(      runs += 1) p n
-(    ) S
-(#print 'Baseline: ', self.eMin, ', ', self.eMax) c n
-(  ) p n
-(  ) S
-(def) K
-( EnergyChecker\(self, x, y, z\):) p n
-(    self.XVar[0] = x) N
-(    self.XVar[1] = y) N
-(    self.XVar[2] = z) N
-(    ) S
-(print) K
-( ') p
-(Energy @ ) str
-(', x, ') p
-( ) str
-(', y, ') p
-( ) str
-(', z, ') p
-(: ) str
-(', self.Energy\(\)) p n
-(    ) N
-(  ) S
-(def) K
-( __init__\(self\):) p n
-(    self.Baseline\(10000\)) N
-(    self.XVar = self.XVarMax) N
-(csc710sbse: HW3:Theisen) (Page 1/1) (Sep 16, 14 0:28) title
+(===============================================================) p n
+(Model Name:  Fonseca) N
+(Searcher Name:  SA) N
+(Time to run \(s\):  3.969176) N
+(Runs:  10) N
+(Average per run \(s\):  0.3969176) N
+(*           |            , -0.00000,  -0.00000,  0.00000,  0.00000,  0.00000) N
+(===============================================================) N
+(===============================================================) N
+(Model Name:  Fonseca) N
+(Searcher Name:  MWS) N
+(Time to run \(s\):  0.611429) N
+(Runs:  10) N
+(Average per run \(s\):  0.0611429) N
+(*           |            , 0.00000,  0.00000,  0.00000,  0.00000,  0.00000) N
+(===============================================================) N
+(===============================================================) N
+(Model Name:  Schaffer) N
+(Searcher Name:  SA) N
+(Time to run \(s\):  0.23406) N
+(Runs:  10) N
+(Average per run \(s\):  0.023406) N
+(*           |            , -0.00000,  -0.00000,  0.00000,  0.00000,  0.00000) N
+(===============================================================) N
+(===============================================================) N
+(Model Name:  Schaffer) N
+(Searcher Name:  MWS) N
+(Time to run \(s\):  0.03036) N
+(Runs:  9) N
+(Average per run \(s\):  0.00337333333333) N
+(*           |            , 0.00000,  0.00000,  0.00000,  0.00000,  0.00000) N
+(===============================================================) N
+(===============================================================) N
+(Model Name:  Kursawe) N
+(Searcher Name:  SA) N
+(Time to run \(s\):  3.167994) N
+(Runs:  10) N
+(Average per run \(s\):  0.3167994) N
+(------   *  |    --------, -0.00547,  0.00199,  0.00597,  0.01490,  0.02413) N
+(===============================================================) N
+(===============================================================) N
+(Model Name:  Kursawe) N
+(Searcher Name:  MWS) N
+(Time to run \(s\):  0.877597) N
+(Runs:  6) N
+(Average per run \(s\):  0.146266166667) N
+(*           |            , -0.00092,  -0.00092,  -0.00092,  -0.00092,  -0.00092) N
+(===============================================================) N
+(===============================================================) N
+(Model Name:  ZDT1) N
+(Searcher Name:  SA) N
+(Time to run \(s\):  1.818018) N
+(Runs:  10) N
+(Average per run \(s\):  0.1818018) N
+(            |      *    -, 0.06181,  0.06355,  0.07678,  0.10068,  0.10510) N
+(===============================================================) N
+(===============================================================) N
+(Model Name:  ZDT1) N
+(Searcher Name:  MWS) N
+(Time to run \(s\):  0.306497) N
+(Runs:  10) N
+(Average per run \(s\):  0.0306497) N
+(*           |            , -0.02102,  -0.02102,  -0.02102,  -0.02102,  -0.02102) N
+(===============================================================) N
+(csc710sbse: HW3:Theisen) (Page 1/1) (Sep 23, 14 1:50) title
 border
 grestore
 (Printed by Christopher Theisen) rhead
-(./HW3/files/fonseca_model.py) (2/7) (Tuesday September 16, 2014) footer
+(./HW3/files/results.txt) (2/13) (Tuesday September 23, 2014) footer
 end % of iso1dict
 pagesave restore
 showpage
 %%Page: (1) 3
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 2.803063 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(import) K
+( sys) p n
+(from) K
+( datetime ) p
+(import) K
+( datetime) p n
+(import) K
+( random) p n
+() N
+(sys.dont_write_bytecode = True) N
+() N
+(from) K
+( models ) p
+(import) K
+( *) p n
+(from) K
+( searchers ) p
+(import) K
+( *) p n
+(from) K
+( utils ) p
+(import) K
+( *) p n
+(from) K
+( options ) p
+(import) K
+( *) p n
+() N
+(myOpt = Options\(\)) N
+() N
+(#Inspired by vivekaxl's display function) c n
+(def) K
+( display\(model, searcher, startTime, scores, r\):) p n
+(  ) S
+(print) K
+( ") p
+(===============================================================) str
+(") p n
+(  ) S
+(print) K
+( ") p
+(Model Name: ) str
+(", model.__name__) p n
+(  ) S
+(print) K
+( ") p
+(Searcher Name: ) str
+(", searcher.__name__) p n
+(  diff = \(datetime.now\(\) - startTime\).total_seconds\(\)) N
+(  ) S
+(print) K
+( ") p
+(Time to run \(s\): ) str
+(", diff) p n
+(  ) S
+(if) K
+( r ) p
+(\272) sy
+( 0:) p n
+(    ) S
+(print) K
+( ") p
+(No valid runs!) str
+(") p n
+(  ) S
+(else) K
+(:) p n
+(    ) S
+(print) K
+( ") p
+(Runs: ) str
+(", r) p n
+(    ) S
+(print) K
+( ") p
+(Average per run \(s\): ) str
+(", diff/r) p n
+(    ) S
+(print) K
+( xtile\(scores,width=25,show=") p
+( %1.5f) str
+("\)) p n
+(  ) S
+(print) K
+( ") p
+(===============================================================) str
+(") p n
+() N
+(def) K
+( main\(modelList, searcherList\):) p n
+(  r = 10) N
+(  ) S
+(for) K
+( klass ) p
+(in) K
+( modelList:) p n
+(    ) S
+(for) K
+( searcher ) p
+(in) K
+( searcherList:) p n
+(      startTime = datetime.now\(\)) N
+(      scores = []) N
+(      myKlass = klass\(\)) N
+(      random.seed\(myOpt.seed\)) N
+(      ) S
+(for) K
+( _ ) p
+(in) K
+( range\(r\):) p n
+(        result, valid = searcher\(\).run\(myKlass\)) N
+(        ) S
+(if) K
+( valid ) p
+(\272) sy
+( True:) p n
+(          scores.append\(result\)) N
+(      display\(klass, searcher, startTime, scores, len\(scores\)\)) N
+() N
+(modelList = [Fonseca, Schaffer, Kursawe, ZDT1]) N
+(searcherList = [SA, MWS]) N
+() N
+(main\(modelList, searcherList\)) S
+(csc710sbse: HW3:Theisen) (Page 1/1) (Sep 23, 14 1:50) title
+border
+grestore
+(Printed by Christopher Theisen) rhead
+(./HW3/files/search_main.py) (3/13) (Tuesday September 23, 2014) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (1) 4
 %%BeginPageSetup
 /pagesave save def
 sh 0 translate 90 rotate
@@ -954,137 +902,150 @@ x0 y0 moveto
 (import) K
 ( numpy as np) p n
 (sys.dont_write_bytecode = True) N
-(        ) N
-(rand = random.random) N
 () N
-(class) K
-( Kursawe:) p n
-(  smin = -5) N
-(  smax = 5) N
-(  XVar = [random.uniform\(smin, smax\) ) S
+(from) K
+( options ) p
+(import) K
+( *) p n
+() N
+(#Taken verbatim from the class website.) c n
+() p n
+(def) K
+( pairs\(lst\):) p n
+(  last=lst[0]) N
+(  ) S
 (for) K
 ( i ) p
 (in) K
-( range \(0, 3\)]) p n
-(  XVarMax = XVar) N
-(  eMax = 0) N
-(  eMin = 0) N
-(  a = 0.8) N
-(  b = 3) N
-(  slices = 10) N
-(  ) N
+( lst[1:]:) p n
+(    yield last,i) N
+(    last = i) N
+() N
+(def) K
+( xtile\(lst,lo=0,hi=0.001,width=50,) p n
+(             chops=[0.1 ,0.3,0.5,0.7,0.9],) N
+(             marks=[") S
+(-) str
+(" ,") p
+( ) str
+(",") p
+( ) str
+(",") p
+(-) str
+(",") p
+( ) str
+("],) p n
+(             bar=") S
+(|) str
+(",star=") p
+(*) str
+(",show=") p
+( %3.0f) str
+("\):) p n
+(  """) S
+(The function _xtile_ takes a list of \(possibly\)) str n
+(  unsorted numbers and presents them as a horizontal) N
+(  xtile chart \(in ascii format\). The default is a ) N
+(  contracted _quintile_ that shows the ) N
+(  10,30,50,70,90 breaks in the data \(but this can be ) N
+(  changed- see the optional flags of the function\).) N
+(  ) S
+(""") p n
 (  ) S
 (def) K
-( Energy\(self\):) p n
-(    X = self.XVar) N
-(    f1 = np.sum\([-10*math.exp\(-0.2*\(np.sqrt\(X[i]**2+X[i]**2\)\)\) ) S
-(for) K
-( i ) p
-(in) K
-( range \(0, 3-1\)]\)) p n
-(    f2 = np.sum\([math.fabs\(X[i]\)**self.a + 5*np.sin\(X[i]\)**self.b ) S
-(for) K
-( i ) p
-(in) K
-( range \(0, 3\)]\)) p n
+( pos\(p\): ) p
+(return) K
+( ordered[int\(len\(lst\)*p\)]) p n
+(  ) S
+(def) K
+( place\(x\): ) p n
 (    ) S
 (return) K
-( \(math.fabs\(f1-f2\) - self.eMin\) / \(self.eMax - self.eMin\)) p n
-(    ) N
+( int\(width*float\(\(x - lo\)\)/\(hi - lo\)\)) p n
 (  ) S
 (def) K
-( RawEnergy\(self\):) p n
-(    X = self.XVar) N
-(    f1 = np.sum\([-10*math.exp\(-0.2*\(np.sqrt\(X[i]**2+X[i]**2\)\)\) ) S
-(for) K
-( i ) p
-(in) K
-( range \(0, 3-1\)]\)) p n
-(    f2 = np.sum\([math.fabs\(X[i]\)**self.a + 5*np.sin\(X[i]\)**self.b ) S
-(for) K
-( i ) p
-(in) K
-( range \(0, 3\)]\)) p n
+( pretty\(lst\): ) p n
 (    ) S
 (return) K
-( math.fabs\(f1-f2\)) p n
-() N
+( ') p
+(, ) str
+('.join\([show % x ) p
+(for) K
+( x ) p
+(in) K
+( lst]\)) p n
+(  ordered = sorted\(lst\)) N
+(  lo      = min\(lo,ordered[0]\)) N
+(  hi      = max\(hi,ordered[-1]\)) N
+(  what    = [pos\(p\)   ) S
+(for) K
+( p ) p
+(in) K
+( chops]) p n
+(  where   = [place\(n\) ) S
+(for) K
+( n ) p
+(in) K
+(  what]) p n
+(  out     = [") S
+( ) str
+("] * width) p n
 (  ) S
-(def) K
-( Neighbor\(self\):) p n
-(    self.XVar[random.randint\(0, 2\)] = random.uniform\(self.smin, self.smax\)) N
-(    ) N
-(  ) S
-(def) K
-( BestNeighbor\(self\):) p n
-(    toChange = random.randint\(0,2\)) N
-(    toIncrement = \(self.smax - self.smin\) / self.slices) N
-(    curMax = 1) N
-(    maxVal = self.XVar[toChange]) N
+(for) K
+( one,two ) p
+(in) K
+( pairs\(where\):) p n
 (    ) S
 (for) K
 ( i ) p
 (in) K
-( xrange\(self.slices\):) p n
-(      self.XVar[toChange] = self.smin + toIncrement) N
-(      x = self.Energy\(\)) N
-(      ) S
-(if) K
-( x < curMax:) p n
-(        curMax = x) N
-(        maxVal = self.XVar[toChange]) N
-(    ) N
+( range\(one,two\): ) p n
+(      out[i] = marks[0]) N
+(    marks = marks[1:]) N
+(  out[int\(width/2\)]    = bar) N
+(  out[place\(pos\(0.5\)\)] = star ) N
 (  ) S
-(def) K
-( Chaos\(self\):) p n
-(    self.XVar[0] = random.uniform\(self.smin, self.smax\)) N
-(    self.XVar[1] = random.uniform\(self.smin, self.smax\)) N
-(    self.XVar[2] = random.uniform\(self.smin, self.smax\)) N
-(    ) N
-(  ) S
-(def) K
-( Baseline\(self, numRuns\):) p n
-(    self.Chaos\(\)) N
-(    self.eMax = self.eMin = self.RawEnergy\(\)) N
-(    runs = 1) N
-(    ) S
-(while) K
-( runs < numRuns:   ) p n
-(      self.Neighbor\(\)) N
-(      eNew = self.RawEnergy\(\)) N
-(      ) S
-(if) K
-( eNew > self.eMax: ) p
-(#find largest difference               ) c n
-(        self.eMax = eNew) p n
-(        self.XVarMax = self.XVar) N
-(        ) S
-(#print self.XVarMax, eNew) c n
-(      ) p
-(if) K
-( eNew < self.eMin: ) p
-(#find smallest difference  ) c n
-(        self.eMin = eNew) p n
-(        ) S
-(#print 'Min: ', self.XVar, eNew) c n
-(      runs += 1) p n
-(    ) S
-(#print 'Baseline: ', self.eMin, ', ', self.eMax) c n
-(    ) p n
-(  ) S
-(def) K
-( __init__\(self\):) p n
-(    self.Baseline\(10000\)) N
-(    self.XVar = self.XVarMax) N
-(csc710sbse: HW3:Theisen) (Page 1/1) (Sep 16, 14 0:28) title
+(return) K
+( ''.join\(out\) +  ") p
+(,) str
+(" +  pretty\(what\)) p
+(csc710sbse: HW3:Theisen) (Page 1/1) (Sep 23, 14 1:52) title
 border
 grestore
 (Printed by Christopher Theisen) rhead
-(./HW3/files/kursawe_model.py) (3/7) (Tuesday September 16, 2014) footer
+(./HW3/files/utils.py) (4/13) (Tuesday September 23, 2014) footer
 end % of iso1dict
 pagesave restore
 showpage
-%%Page: (1) 4
+%%Page: (1) 5
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 2.803063 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(from) K
+( sim_anneal ) p
+(import) K
+( *) p n
+(from) K
+( max_walk_sat ) p
+(import) K
+( *) p
+(csc710sbse: HW3:Theisen) (Page 1/1) (Sep 23, 14 1:11) title
+border
+grestore
+(Printed by Christopher Theisen) rhead
+(./HW3/files/searchers/__init__.py) (5/13) (Tuesday September 23, 2014) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (1) 6
 %%BeginPageSetup
 /pagesave save def
 sh 0 translate 90 rotate
@@ -1101,12 +1062,15 @@ x0 y0 moveto
 ( sys,re,random,math) p n
 (sys.dont_write_bytecode = True) N
 (  ) N
+(from) K
+( options ) p
+(import) K
+( *) p n
+() N
+(myOpt = Options\(\)) N
+() N
 (class) K
 ( MWS:) p n
-(  maxTries = 500) N
-(  maxChanges = 500) N
-(  cooling = .6) N
-(  threshold = .000001) N
 (  debug = False) N
 (  ) N
 (  ) S
@@ -1120,7 +1084,7 @@ x0 y0 moveto
 (  ) S
 (def) K
 ( specificRun\(self, probability, klass\):) p n
-(    fon = klass\(\)) N
+(    fon = klass) N
 (    XVarBest = fon.XVar) N
 (    eBest = e = 1       ) N
 (    k = 1) N
@@ -1132,17 +1096,17 @@ x0 y0 moveto
 (for) K
 ( i ) p
 (in) K
-( xrange\(self.maxTries\): ) p n
+( xrange\(myOpt.mws_maxTries\): ) p n
 (      fon.Chaos\(\)) N
 (      ) S
 (for) K
 ( j ) p
 (in) K
-( xrange\(self.maxChanges\):) p n
+( xrange\(myOpt.mws_maxChanges\):) p n
 (        eNew = fon.Energy\(\)) N
 (        ) S
 (if) K
-(\(eNew < self.threshold\):) p n
+(\(eNew < myOpt.mws_threshold\):) p n
 (          ) S
 (#% means found a solution and quit) c n
 (          self.say\(') p
@@ -1196,74 +1160,164 @@ x0 y0 moveto
 (  ) S
 (def) K
 ( run\(self, klass\):) p n
-(    theBest = 0.0) N
-(    totalFound = 0) N
+(    theBest = -1) N
+(    valid = False) N
+(    eBest, XVarBest = self.specificRun\(myOpt.mws_prob, klass\)) N
 (    ) S
-(for) K
-( i ) p
-(in) K
-( [0.25, 0.5, 0.75]:) p n
-(      eBest, XVarBest = self.specificRun\(i, klass\)) N
-(      ) S
 (if) K
 ( eBest ) p
 (\272) sy
 ( -1:) p n
-(        ) S
-(#print 'No Best Found for prob = ', i) c n
-(        self.say\(''\)) p n
 (      ) S
+(#print 'No Best Found for prob = ', i) c n
+(      self.say\(''\)) p n
+(    ) S
 (else) K
 (:) p n
+(      theBest = eBest) N
+(      valid = True) N
+(    ) S
+(return) K
+( theBest, valid) p
+(csc710sbse: HW3:Theisen) (Page 1/1) (Sep 23, 14 1:34) title
+border
+grestore
+(Printed by Christopher Theisen) rhead
+(./HW3/files/searchers/max_walk_sat.py) (6/13) (Tuesday September 23, 2014) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (1) 7
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 2.803063 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(#Structure from SA Lecture) c n
+(import) K
+( sys,re,random,math) p n
+(sys.dont_write_bytecode = True) N
+() N
+(from) K
+( options ) p
+(import) K
+( *) p n
+(myOpt = Options\(\)) N
+() N
+(class) K
+( SA:) p n
+(  ) N
+(  ) S
+(def) K
+( say\(self, x\): ) p n
+(    ) S
+(if) K
+( myOpt.debug:) p n
+(      sys.stdout.write\(str\(x\)\); sys.stdout.flush\(\)) N
+() N
+(  ) S
+(def) K
+( run\(self, klass\):) p n
+(    sa = klass) N
+(    XVarBest = sa.XVar) N
+(    eBest = e = 1) N
+(    ) S
+(#print 'start energy: ', eBest           ) c n
+(    k = 1) p n
+(    self.say\(int\(math.fabs\(eBest-1\)*100\)\)) N
+(    self.say\(') S
+( ) str
+('\)) p n
+(    ) S
+(while) K
+( k < myOpt.sa_kmax:   ) p n
+(      sa.Neighbor\(\)) N
+(      eNew = sa.Energy\(\)) N
+(      ) S
+(if) K
+( eNew < eBest:               ) p n
+(        eBest = eNew) N
+(        XVarBest = list\(sa.XVar\)) N
+(        self.say\(') S
+(!) str
+('\)) p n
+(  ) N
+(      ) S
+(if) K
+( eNew < e:                 ) p n
+(        e = eNew     ) N
+(        self.say\(') S
+(+) str
+('\)       ) p n
+(      ) S
+(#Probability Check from SA Lecture) c n
+(      ) p
+(elif) K
+( math.exp\(-1*\(eNew-e\)/\(k/myOpt.sa_kmax**myOpt.sa_cooling\)\)<random.uniform\(0,1\):) p n
+(      ) S
+(#P function should be between 0 and 1) c n
+(      ) p
+(#more random hops early, then decreasing as time goes on) c n
+(        sa.Chaos\(\)) p n
+(        self.say\(') S
+(?) str
+('\)        ) p n
+(      self.say\(') S
+(.) str
+('\)) p n
+(      k = k + 1) N
+(      ) S
+(if) K
+( k % 50 ) p
+(\272) sy
+( 0 ) p
+(\331) sy
+( k ) p
+(\271) sy
+( myOpt.sa_kmax:) p n
 (        ) S
-(#print 'Found best - e: ', eBest, ' for prob = ', i) c n
-(        ) p
+(#print '') c n
+(        self.say\(int\(math.fabs\(eBest-1\)*100\)\)) p n
+(        self.say\(') S
+( ) str
+('\)) p n
+() N
+(    ) S
+(if) K
+( myOpt.debug:) p n
+(      ) S
+(#print '\\nFound best - e: ', eBest) c n
+(      ) p
 (#print 'Variables: ') c n
-(        ) p
+(      ) p
 (for) K
 ( vars ) p
 (in) K
 ( XVarBest:) p n
-(          self.say\(vars\)) N
-(          self.say\(") S
+(        self.say\(vars\)) N
+(        self.say\(") S
 (, ) str
 ("\)) p n
-(        ) S
+(      ) S
 (#print "\\n") c n
-(        theBest += eBest) p n
-(        totalFound += 1) N
-(    ) S
-(if) K
-( totalFound ) p
-(\271) sy
-( 0:) p n
-(      ) S
+(    ) p
 (return) K
-( theBest/totalFound) p n
-(    ) S
-(else) K
-(:) p n
-(      ) S
-(return) K
-( 2) p n
-(        ) N
-(  ) S
-(def) K
-( __init__\(self, newMaxTries, newCooling, newMaxChanges, newT, newDebug\):) p n
-(    self.maxTries = newMaxTries) N
-(    self.cooling = newCooling) N
-(    self.maxChanges = newMaxChanges) N
-(    self.threshold = newT) N
-(    self.debug = newDebug) S
-(csc710sbse: HW3:Theisen) (Page 1/1) (Sep 16, 14 0:27) title
+( eBest, True) p
+(csc710sbse: HW3:Theisen) (Page 1/1) (Sep 23, 14 1:33) title
 border
 grestore
 (Printed by Christopher Theisen) rhead
-(./HW3/files/max_walk_sat.py) (4/7) (Tuesday September 16, 2014) footer
+(./HW3/files/searchers/sim_anneal.py) (7/13) (Tuesday September 23, 2014) footer
 end % of iso1dict
 pagesave restore
 showpage
-%%Page: (1) 5
+%%Page: (1) 8
 %%BeginPageSetup
 /pagesave save def
 sh 0 translate 90 rotate
@@ -1286,27 +1340,167 @@ x0 y0 moveto
 ( numpy as np) p n
 (sys.dont_write_bytecode = True) N
 () N
-(rand = random.random) N
+(from) K
+( model_base ) p
+(import) K
+( *) p n
+(from) K
+( options ) p
+(import) K
+( *) p n
 () N
 (class) K
-( Schaffer:) p n
-(  smin = -10) N
-(  smax = 10) N
+( ZDT1\(Model\):) p n
+(  smin = 0) N
+(  smax = 1) N
+(  n = 30) N
 (  XVar = [random.uniform\(smin, smax\) ) S
 (for) K
 ( i ) p
 (in) K
-( range \(0, 1\)]) p n
+( range \(0, n\)]) p n
 (  XVarMax = XVar) N
 (  eMax = 0) N
 (  eMin = 0) N
-(  slices = 10) N
 (  ) N
 (  ) S
 (def) K
 ( Energy\(self\):) p n
-(    f1 = self.XVar[0]*self.XVar[0]) N
-(    f2 = \(self.XVar[0]-2\)*\(self.XVar[0]-2\)) N
+(    X = self.XVar) N
+(    f1 = X[0]) N
+(    g = 1+9*\(np.sum\([X[i] ) S
+(for) K
+( i ) p
+(in) K
+( range \(1, self.n\)]\)/\(self.n-1\)\)) p n
+(    f2 = g*\(1-np.sqrt\(X[0]/g\)\)) N
+(    ) S
+(return) K
+( \(math.fabs\(f1-f2\) - self.eMin\) / \(self.eMax - self.eMin\)) p n
+(    ) N
+(  ) S
+(def) K
+( RawEnergy\(self\):) p n
+(    X = self.XVar) N
+(    f1 = X[0]) N
+(    g = 1+9*\(np.sum\([X[i] ) S
+(for) K
+( i ) p
+(in) K
+( range \(1, self.n\)]\)/\(self.n-1\)\)) p n
+(    f2 = g*\(1-np.sqrt\(X[0]/g\)\)) N
+(    ) S
+(return) K
+( math.fabs\(f1-f2\)) p n
+(    ) N
+(  ) S
+(def) K
+( __init__\(self\):) p n
+(    self.Baseline\(10000\)) N
+(    self.XVar = self.XVarMax) S
+(csc710sbse: HW3:Theisen) (Page 1/1) (Sep 23, 14 1:46) title
+border
+grestore
+(Printed by Christopher Theisen) rhead
+(./HW3/files/models/ZDT1_model.py) (8/13) (Tuesday September 23, 2014) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (1) 9
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 2.803063 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(from) K
+( fonseca_model ) p
+(import) K
+( *) p n
+(from) K
+( schaffer_model ) p
+(import) K
+( *) p n
+(from) K
+( kursawe_model ) p
+(import) K
+( *) p n
+(from) K
+( ZDT1_model ) p
+(import) K
+( *) p
+(csc710sbse: HW3:Theisen) (Page 1/1) (Sep 23, 14 1:10) title
+border
+grestore
+(Printed by Christopher Theisen) rhead
+(./HW3/files/models/__init__.py) (9/13) (Tuesday September 23, 2014) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (1) 10
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 2.803063 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(#From Class Discussion 8/26/2014) c n
+(from) K
+( __future__ ) p
+(import) K
+( division) p n
+(import) K
+( sys,re,random,math) p n
+(import) K
+( numpy as np) p n
+(sys.dont_write_bytecode = True) N
+() N
+(from) K
+( model_base ) p
+(import) K
+( *) p n
+(from) K
+( options ) p
+(import) K
+( *) p n
+() N
+(class) K
+( Fonseca\(Model\):) p n
+(  n = 3) N
+(  smin = -4) N
+(  smax = 4) N
+(  XVar = [random.uniform\(smin, smax\) ) S
+(for) K
+( i ) p
+(in) K
+( range \(0, 3\)]) p n
+(  XVarMax = XVar) N
+(  eMax = 0) N
+(  eMin = 0) N
+(  ) N
+(  ) S
+(def) K
+( Energy\(self\):) p n
+(    f1 = \(1-math.e**\(-np.sum\([self.XVar[i]-\(1/np.sqrt\(i+1\)\)**2 ) S
+(for) K
+( i ) p
+(in) K
+( range \(0, 3\)]\)\)\)) p n
+(    f2 = \(1-math.e**\(-np.sum\([self.XVar[i]+\(1/np.sqrt\(i+1\)\)**2 ) S
+(for) K
+( i ) p
+(in) K
+( range \(0, 3\)]\)\)\)) p n
 (    ) S
 (return) K
 ( \(math.fabs\(f1+f2\) - self.eMin\) / \(self.eMax - self.eMin\)) p n
@@ -1314,40 +1508,230 @@ x0 y0 moveto
 (  ) S
 (def) K
 ( RawEnergy\(self\):) p n
-(    f1 = self.XVar[0]*self.XVar[0]) N
-(    f2 = \(self.XVar[0]-2\)*\(self.XVar[0]-2\)) N
+(    f1 = \(1-math.exp\(-np.sum\([self.XVar[i]-\(1/np.sqrt\(i+1\)\)**2 ) S
+(for) K
+( i ) p
+(in) K
+( range \(0, 3\)]\)\)\)) p n
+(    f2 = \(1-math.exp\(-np.sum\([self.XVar[i]+\(1/np.sqrt\(i+1\)\)**2 ) S
+(for) K
+( i ) p
+(in) K
+( range \(0, 3\)]\)\)\)) p n
 (    ) S
 (return) K
 ( math.fabs\(f1+f2\)) p n
 () N
 (  ) S
 (def) K
-( Neighbor\(self\):) p n
-(    self.XVar[0] = self.smin + \(self.smax - self.smin\) * random.uniform\(0,1\)) N
+( __init__\(self\):) p n
+(    self.Baseline\(10000\)) N
+(    self.XVar = self.XVarMax) N
+(csc710sbse: HW3:Theisen) (Page 1/1) (Sep 23, 14 1:46) title
+border
+grestore
+(Printed by Christopher Theisen) rhead
+(./HW3/files/models/fonseca_model.py) (10/13) (Tuesday September 23, 2014) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (1) 11
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 2.803063 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(#From Class Discussion 8/26/2014) c n
+(from) K
+( __future__ ) p
+(import) K
+( division) p n
+(import) K
+( sys,re,random,math) p n
+(import) K
+( numpy as np) p n
+(sys.dont_write_bytecode = True) N
+() N
+(from) K
+( model_base ) p
+(import) K
+( *) p n
+(from) K
+( options ) p
+(import) K
+( *) p n
+() N
+(myOpt = Options\(\)) N
+() N
+(class) K
+( Kursawe\(Model\):) p n
+(  n = 3) N
+(  smin = -5) N
+(  smax = 5) N
+(  XVar = [random.uniform\(smin, smax\) ) S
+(for) K
+( i ) p
+(in) K
+( range \(0, 3\)]) p n
+(  XVarMax = XVar) N
+(  eMax = 0) N
+(  eMin = 0) N
+(  a = 0.8) N
+(  b = 3) N
 (  ) N
 (  ) S
 (def) K
+( Energy\(self\):) p n
+(    X = self.XVar) N
+(    f1 = np.sum\([-10*math.exp\(-0.2*\(np.sqrt\(X[i]**2+X[i]**2\)\)\) ) S
+(for) K
+( i ) p
+(in) K
+( range \(0, 3-1\)]\)) p n
+(    f2 = np.sum\([math.fabs\(X[i]\)**self.a + 5*np.sin\(X[i]\)**self.b ) S
+(for) K
+( i ) p
+(in) K
+( range \(0, 3\)]\)) p n
+(    ) S
+(return) K
+( \(math.fabs\(f1-f2\) - self.eMin\) / \(self.eMax - self.eMin\)) p n
+(    ) N
+(  ) S
+(def) K
+( RawEnergy\(self\):) p n
+(    X = self.XVar) N
+(    f1 = np.sum\([-10*math.exp\(-0.2*\(np.sqrt\(X[i]**2+X[i]**2\)\)\) ) S
+(for) K
+( i ) p
+(in) K
+( range \(0, 3-1\)]\)) p n
+(    f2 = np.sum\([math.fabs\(X[i]\)**self.a + 5*np.sin\(X[i]\)**self.b ) S
+(for) K
+( i ) p
+(in) K
+( range \(0, 3\)]\)) p n
+(    ) S
+(return) K
+( math.fabs\(f1-f2\)) p n
+(    ) N
+(  ) S
+(def) K
+( __init__\(self\):) p n
+(    self.Baseline\(10000\)) N
+(    self.XVar = self.XVarMax) N
+(csc710sbse: HW3:Theisen) (Page 1/1) (Sep 23, 14 1:46) title
+border
+grestore
+(Printed by Christopher Theisen) rhead
+(./HW3/files/models/kursawe_model.py) (11/13) (Tuesday September 23, 2014) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (1) 12
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 2.803063 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(#From Class Discussion 8/26/2014) c n
+(from) K
+( __future__ ) p
+(import) K
+( division) p n
+(import) K
+( sys,re,random,math) p n
+(import) K
+( numpy as np) p n
+(sys.dont_write_bytecode = True) N
+(        ) N
+(from) K
+( options ) p
+(import) K
+( *) p n
+(myOpt = Options\(\)) N
+(rand = random.random) N
+() N
+(class) K
+( Model:) p n
+(  ) S
+(#Default Values overwritten by subclass; should have better defaults, but...) c n
+(  n = 1) p n
+(  smin = 1) N
+(  smax = 1) N
+(  XVar = [random.uniform\(smin, smax\) ) S
+(for) K
+( i ) p
+(in) K
+( range \(0, n\)]) p n
+(  XVarMax = XVar) N
+(  eMax = 0) N
+(  eMin = 0) N
+(  ) N
+(  ) S
+(def) K
+( Energy\(self\):) p n
+(    ) S
+(print) K
+( ") p
+(Energy Class Undefined!) str
+(") p n
+(    ) N
+(  ) S
+(def) K
+( RawEnergy\(self\):) p n
+(    ) S
+(print) K
+( ") p
+(RawEnergy Class Undefined!) str
+(") p n
+() N
+(  ) S
+(def) K
+( Neighbor\(self\):) p n
+(    self.XVar[random.randint\(0, self.n-1\)] = random.uniform\(self.smin, self.smax\)) N
+(    ) N
+(  ) S
+(def) K
 ( BestNeighbor\(self\):) p n
-(    toIncrement = \(self.smax - self.smin\) / self.slices) N
+(    toChange = random.randint\(0, self.n-1\)) N
+(    toIncrement = \(self.smax - self.smin\) / myOpt.mws_slices) N
 (    curMax = 1) N
-(    maxVal = self.XVar[0]) N
+(    maxVal = self.XVar[toChange]) N
 (    ) S
 (for) K
 ( i ) p
 (in) K
-( xrange\(self.slices\):) p n
-(      self.XVar[0] = self.smin + toIncrement) N
+( xrange\(myOpt.mws_slices\):) p n
+(      self.XVar[toChange] = self.smin + toIncrement) N
 (      x = self.Energy\(\)) N
 (      ) S
 (if) K
 ( x < curMax:) p n
 (        curMax = x) N
-(        maxVal = self.XVar[0]) N
+(        maxVal = self.XVar[toChange]) N
 (    ) N
 (  ) S
 (def) K
 ( Chaos\(self\):) p n
-(    self.XVar[0] = random.uniform\(self.smin, self.smax\)) N
+(    ) S
+(for) K
+( vars ) p
+(in) K
+( self.XVar:) p n
+(      vars = random.uniform\(self.smin, self.smax\)) N
 (    ) N
 (  ) S
 (def) K
@@ -1378,259 +1762,98 @@ x0 y0 moveto
 (      runs += 1) p n
 (    ) S
 (#print 'Baseline: ', self.eMin, ', ', self.eMax) c n
-(  ) p n
+(    ) p n
 (  ) S
 (def) K
-( EnergyChecker\(self, x\):) p n
-(    self.XVar[0] = x) N
+( __init__\(self\):) p n
 (    ) S
 (print) K
-( ') p
-(Energy @ ) str
-(', x, ') p
-(: ) str
-(', self.Energy\(\)) p n
+( ") p
+(Default init Shouldn't be used!) str
+(") p
+(csc710sbse: HW3:Theisen) (Page 1/1) (Sep 23, 14 1:48) title
+border
+grestore
+(Printed by Christopher Theisen) rhead
+(./HW3/files/models/model_base.py) (12/13) (Tuesday September 23, 2014) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (1) 13
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 2.803063 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(#From Class Discussion 8/26/2014) c n
+(from) K
+( __future__ ) p
+(import) K
+( division) p n
+(import) K
+( sys,re,random,math) p n
+(import) K
+( numpy as np) p n
+() N
+(from) K
+( model_base ) p
+(import) K
+( *) p n
+(from) K
+( options ) p
+(import) K
+( *) p n
+() N
+(sys.dont_write_bytecode = True) N
+() N
+(class) K
+( Schaffer\(Model\):) p n
+(  n = 1) N
+(  smin = -10) N
+(  smax = 10) N
+(  XVar = [random.uniform\(smin, smax\) ) S
+(for) K
+( i ) p
+(in) K
+( range \(0, 1\)]) p n
+(  XVarMax = XVar) N
+(  eMax = 0) N
+(  eMin = 0) N
+(  ) N
+(  ) S
+(def) K
+( Energy\(self\):) p n
+(    f1 = self.XVar[0]*self.XVar[0]) N
+(    f2 = \(self.XVar[0]-2\)*\(self.XVar[0]-2\)) N
+(    ) S
+(return) K
+( \(math.fabs\(f1+f2\) - self.eMin\) / \(self.eMax - self.eMin\)) p n
+(    ) N
+(  ) S
+(def) K
+( RawEnergy\(self\):) p n
+(    f1 = self.XVar[0]*self.XVar[0]) N
+(    f2 = \(self.XVar[0]-2\)*\(self.XVar[0]-2\)) N
+(    ) S
+(return) K
+( math.fabs\(f1+f2\)) p n
 (    ) N
 (  ) S
 (def) K
 ( __init__\(self\):) p n
 (    self.Baseline\(10000\)) N
 (    self.XVar = self.XVarMax) S
-(csc710sbse: HW3:Theisen) (Page 1/1) (Sep 16, 14 0:28) title
+(csc710sbse: HW3:Theisen) (Page 1/1) (Sep 23, 14 1:46) title
 border
 grestore
 (Printed by Christopher Theisen) rhead
-(./HW3/files/schaffer_model.py) (5/7) (Tuesday September 16, 2014) footer
-end % of iso1dict
-pagesave restore
-showpage
-%%Page: (1) 6
-%%BeginPageSetup
-/pagesave save def
-sh 0 translate 90 rotate
-%%EndPageSetup
-iso1dict begin
-gsave
-llx lly 12 add translate
-/v 0 store
-/x0 x v get 2.803063 add sx cw mul add store
-/y0 y v get bfs th add sub store
-x0 y0 moveto
-(import) K
-( sys) p n
-() N
-(sys.dont_write_bytecode = True) N
-() N
-(from) K
-( fonseca_model ) p
-(import) K
-( *) p n
-(from) K
-( schaffer_model ) p
-(import) K
-( *) p n
-(from) K
-( kursawe_model ) p
-(import) K
-( *) p n
-(from) K
-( ZDT1_model ) p
-(import) K
-( *) p n
-() N
-(from) K
-( sim_anneal ) p
-(import) K
-( *) p n
-(from) K
-( max_walk_sat ) p
-(import) K
-( *) p n
-() N
-(r = 1) N
-(for) K
-( klass ) p
-(in) K
-( [Fonseca, Schaffer, Kursawe, ZDT1]:) p n
-(  ) S
-(print) K
-( klass.__name__ + ") p
-(:) str
-(") p n
-(  ) S
-(for) K
-( searcher ) p
-(in) K
-( [SA, MWS]:) p n
-(    ) S
-(#searcher\(500, .6, 500, .00001\).run\(klass\)) c n
-(    n = 0.0) p n
-(    ) S
-(for) K
-( _ ) p
-(in) K
-( range\(r\):) p n
-(      n += searcher\(500, .6, 500, .00001, False\).run\(klass\)) N
-(      ) S
-(print) K
-( searcher.__name__ + ') p
-(:) str
-(',  n/r) p n
-(      ) N
-(      ) N
-(#TODOs \(roughly prioritized\)) c n
-() p n
-(#Implement models folder and searchers folder to import - this is dumb and I'm tired) c n
-() p n
-(# Actually implement the numerical analysis functions in searchers) c n
-(#     -this includes saving of the seed. THIS IS REALLY IMPORTANT DO NOT FORGET) N
-() p n
-(#Further abstraction of models; lots of repeated code. Baseline/Neighbor prime for this.) c n
-() p n
-(# Break out prints of the algorithm into a debug setting \(can turn off/on as needed\)) c n
-(#     -this kind of works now, but I need to handle prints as well without ugly) N
-(#      if statements. It's bad and I should feel bad. Will be important for) N
-(#      checking if new models work!) S
-(csc710sbse: HW3:Theisen) (Page 1/1) (Sep 16, 14 0:40) title
-border
-grestore
-(Printed by Christopher Theisen) rhead
-(./HW3/files/search_main.py) (6/7) (Tuesday September 16, 2014) footer
-end % of iso1dict
-pagesave restore
-showpage
-%%Page: (1) 7
-%%BeginPageSetup
-/pagesave save def
-sh 0 translate 90 rotate
-%%EndPageSetup
-iso1dict begin
-gsave
-llx lly 12 add translate
-/v 0 store
-/x0 x v get 2.803063 add sx cw mul add store
-/y0 y v get bfs th add sub store
-x0 y0 moveto
-(#Structure from SA Lecture) c n
-(import) K
-( sys,re,random,math) p n
-(sys.dont_write_bytecode = True) N
-(  ) N
-(class) K
-( SA:) p n
-(  kmax = 5000) N
-(  cooling = .6) N
-(  debug = False) N
-(  ) N
-(  ) S
-(def) K
-( say\(self, x\): ) p n
-(    ) S
-(if) K
-( self.debug:) p n
-(      sys.stdout.write\(str\(x\)\); sys.stdout.flush\(\)) N
-() N
-(  ) S
-(def) K
-( run\(self, klass\):) p n
-(    sa = klass\(\)) N
-(    XVarBest = sa.XVar) N
-(    eBest = e = 1) N
-(    ) S
-(#print 'start energy: ', eBest           ) c n
-(    k = 1) p n
-(    self.say\(int\(math.fabs\(eBest-1\)*100\)\)) N
-(    self.say\(') S
-( ) str
-('\)) p n
-(    ) S
-(while) K
-( k < self.kmax:   ) p n
-(      sa.Neighbor\(\)) N
-(      eNew = sa.Energy\(\)) N
-(      ) S
-(if) K
-( eNew < eBest:               ) p n
-(        eBest = eNew) N
-(        XVarBest = list\(sa.XVar\)) N
-(        self.say\(') S
-(!) str
-('\)) p n
-(  ) N
-(      ) S
-(if) K
-( eNew < e:                 ) p n
-(        e = eNew     ) N
-(        self.say\(') S
-(+) str
-('\)       ) p n
-(      ) S
-(#Probability Check from SA Lecture) c n
-(      ) p
-(elif) K
-( math.exp\(-1*\(eNew-e\)/\(k/self.kmax**self.cooling\)\) < random.uniform\(0,1\):) p n
-(      ) S
-(#P function should be between 0 and 1) c n
-(      ) p
-(#more random hops early, then decreasing as time goes on) c n
-(        sa.Chaos\(\)) p n
-(        self.say\(') S
-(?) str
-('\)        ) p n
-(      self.say\(') S
-(.) str
-('\)) p n
-(      k = k + 1) N
-(      ) S
-(if) K
-( k % 50 ) p
-(\272) sy
-( 0 ) p
-(\331) sy
-( k ) p
-(\271) sy
-( self.kmax:) p n
-(        ) S
-(#print '') c n
-(        self.say\(int\(math.fabs\(eBest-1\)*100\)\)) p n
-(        self.say\(') S
-( ) str
-('\)) p n
-() N
-(    ) S
-(if) K
-( self.debug:) p n
-(      ) S
-(#print '\\nFound best - e: ', eBest) c n
-(      ) p
-(#print 'Variables: ') c n
-(      ) p
-(for) K
-( vars ) p
-(in) K
-( XVarBest:) p n
-(        self.say\(vars\)) N
-(        self.say\(") S
-(, ) str
-("\)) p n
-(      ) S
-(#print "\\n") c n
-(    ) p
-(return) K
-( eBest) p n
-(    ) N
-(  ) S
-(def) K
-( __init__\(self, newKmax, newCooling, nan1, nan2, newDebug\):) p n
-(    self.kmax = newKmax) N
-(    self.cooling = newCooling) N
-(    self.debug = newDebug) N
-(  ) S
-(csc710sbse: HW3:Theisen) (Page 1/1) (Sep 16, 14 0:29) title
-border
-grestore
-(Printed by Christopher Theisen) rhead
-(./HW3/files/sim_anneal.py) (7/7) (Tuesday September 16, 2014) footer
+(./HW3/files/models/schaffer_model.py) (13/13) (Tuesday September 23, 2014) footer
 end % of iso1dict
 pagesave restore
 showpage

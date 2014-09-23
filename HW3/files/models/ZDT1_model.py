@@ -15,7 +15,6 @@ class ZDT1(Model):
   XVarMax = XVar
   eMax = 0
   eMin = 0
-  slices = 10
   
   def Energy(self):
     X = self.XVar

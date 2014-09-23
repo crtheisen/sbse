@@ -14,6 +14,7 @@ class Options:
   mws_maxTries = 500
   mws_maxChanges = 500
   mws_threshold = .000001
+  mws_slices = 10
   
   #Simulated Annealing options
   sa_kmax = 5000

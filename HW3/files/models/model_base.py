@@ -5,7 +5,7 @@ import numpy as np
 sys.dont_write_bytecode = True
         
 from options import *
-
+myOpt = Options()
 rand = random.random
 
 class Model:
@@ -13,7 +13,6 @@ class Model:
   n = 1
   smin = 1
   smax = 1
-  slices = 10
   XVar = [random.uniform(smin, smax) for i in range (0, n)]
   XVarMax = XVar
   eMax = 0
@@ -30,10 +29,10 @@ class Model:
     
   def BestNeighbor(self):
     toChange = random.randint(0, self.n-1)
-    toIncrement = (self.smax - self.smin) / self.slices
+    toIncrement = (self.smax - self.smin) / myOpt.mws_slices
     curMax = 1
     maxVal = self.XVar[toChange]
-    for i in xrange(self.slices):
+    for i in xrange(myOpt.mws_slices):
       self.XVar[toChange] = self.smin + toIncrement
       x = self.Energy()
       if x < curMax:

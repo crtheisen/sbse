@@ -15,7 +15,6 @@ class Fonseca(Model):
   XVarMax = XVar
   eMax = 0
   eMin = 0
-  slices = 10
   
   def Energy(self):
     f1 = (1-math.e**(-np.sum([self.XVar[i]-(1/np.sqrt(i+1))**2 for i in range (0, 3)])))
