@@ -3,6 +3,8 @@ import sys,re,random,math
 sys.dont_write_bytecode = True
 
 from options import *
+from utils import *
+
 myOpt = Options()
 
 class SA:
@@ -18,6 +20,7 @@ class SA:
     eBest = e = 1
     #print 'start energy: ', eBest           
     k = 1
+    temp = []
     self.say(int(math.fabs(eBest-1)*100))
     self.say(' ')
     while k < myOpt.sa_kmax:   
@@ -39,10 +42,13 @@ class SA:
         self.say('?')        
       self.say('.')
       k = k + 1
-      if k % 50 == 0 and k != myOpt.sa_kmax:
+      temp.append(eBest)
+      if k % 50 == 0 and k != myOpt.sa_kmax and len(temp) != 0:
         #print ''
         self.say(int(math.fabs(eBest-1)*100))
         self.say(' ')
+        print xtile(temp,width=25,show=" %1.5f")
+        temp = []
 
     if myOpt.debug:
       #print '\nFound best - e: ', eBest

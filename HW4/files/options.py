@@ -17,5 +17,8 @@ class Options:
   mws_slices = 10
   
   #Simulated Annealing options
-  sa_kmax = 5000
+  sa_kmax = 500
   sa_cooling = .6
+  
+  def printGlobals(self):
+    print "Seed:", self.seed

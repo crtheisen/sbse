@@ -3,6 +3,7 @@ import sys,re,random,math
 sys.dont_write_bytecode = True
   
 from options import *
+from utils import *
 
 myOpt = Options()
 
@@ -19,6 +20,7 @@ class MWS:
     XVarBest = fon.XVar
     eBest = e = 1       
     k = 1
+    temp = []
     self.say(int(math.fabs(eBest-1)*100))
     self.say(' ')
     for i in xrange(myOpt.mws_maxTries): 
@@ -41,10 +43,13 @@ class MWS:
           else:
             fon.BestNeighbor()
           self.say('.')
-          if (i+1)*(j+1) % 40 == 0:
+          temp.append(eNew)
+          if (i+1)*(j+1) % 40 == 0 and len(temp) != 0:
             #print ''
             self.say(int(math.fabs(eNew-1)*100))
             self.say(' ')
+            print xtile(temp,width=25,show=" %1.5f")
+            temp = []
       #print ''
       return -1, XVarBest
       

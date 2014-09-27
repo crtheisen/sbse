@@ -17,6 +17,7 @@ def display(model, searcher, startTime, scores, r):
   print "Model Name: ", model.__name__
   print "Searcher Name: ", searcher.name
   diff = (datetime.now() - startTime).total_seconds()
+  myOpt.printGlobals()
   searcher.printOptions()
   print "Time to run (s): ", diff
   if r == 0:
@@ -42,7 +43,7 @@ def main(modelList, searcherList):
           scores.append(result)
       display(klass, mySearcher, startTime, scores, len(scores))
 
-modelList = [Fonseca, Schaffer, Kursawe, ZDT1]
-searcherList = [SA, MWS]
+modelList = [ZDT3, Viennet3]
+searcherList = [MWS]
 
 main(modelList, searcherList)

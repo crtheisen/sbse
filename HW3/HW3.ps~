@@ -2,7 +2,7 @@
 %%Title: __init__.py, models, options.py, results.txt, search_main.py, searchers, utils.py, __init__.py, max_walk_sat.py, sim_anneal.py
 %%For: Christopher Theisen
 %%Creator: a2ps version 4.14
-%%CreationDate: Tue Sep 23 02:11:25 2014
+%%CreationDate: Tue Sep 23 02:12:45 2014
 %%BoundingBox: 24 24 588 768
 %%DocumentData: Clean7Bit
 %%Orientation: Landscape
@@ -653,7 +653,7 @@ grestore
 end % of iso1dict
 pagesave restore
 showpage
-%%Page: (1) 2
+%%Page: (1-2) 2
 %%BeginPageSetup
 /pagesave save def
 sh 0 translate 90 rotate
@@ -668,68 +668,98 @@ x0 y0 moveto
 (===============================================================) p n
 (Model Name:  Fonseca) N
 (Searcher Name:  SA) N
-(Time to run \(s\):  3.969176) N
+(SA Options:) N
+(KMAX: 5000 Cooling: 0.6) N
+(Time to run \(s\):  3.91463) N
 (Runs:  10) N
-(Average per run \(s\):  0.3969176) N
-(*           |            , -0.00000,  -0.00000,  0.00000,  0.00000,  0.00000) N
+(Average per run \(s\):  0.391463) N
+(*           |            , 0.00000,  0.00000,  0.00000,  0.00000,  0.00000) N
 (===============================================================) N
 (===============================================================) N
 (Model Name:  Fonseca) N
-(Searcher Name:  MWS) N
-(Time to run \(s\):  0.611429) N
+(Searcher Name:  MaxWalkSat) N
+(MaxWalkSat Options:) N
+(Prob: 0.75) N
+(MaxTries: 500 MaxChanges 500) N
+(Threshold: 1e-06 Slices: 10) N
+(Time to run \(s\):  0.61015) N
 (Runs:  10) N
-(Average per run \(s\):  0.0611429) N
+(Average per run \(s\):  0.061015) N
 (*           |            , 0.00000,  0.00000,  0.00000,  0.00000,  0.00000) N
 (===============================================================) N
 (===============================================================) N
 (Model Name:  Schaffer) N
 (Searcher Name:  SA) N
-(Time to run \(s\):  0.23406) N
+(SA Options:) N
+(KMAX: 5000 Cooling: 0.6) N
+(Time to run \(s\):  0.238726) N
 (Runs:  10) N
-(Average per run \(s\):  0.023406) N
+(Average per run \(s\):  0.0238726) N
 (*           |            , -0.00000,  -0.00000,  0.00000,  0.00000,  0.00000) N
 (===============================================================) N
 (===============================================================) N
 (Model Name:  Schaffer) N
-(Searcher Name:  MWS) N
-(Time to run \(s\):  0.03036) N
+(Searcher Name:  MaxWalkSat) N
+(MaxWalkSat Options:) N
+(Prob: 0.75) N
+(MaxTries: 500 MaxChanges 500) N
+(Threshold: 1e-06 Slices: 10) N
+(Time to run \(s\):  0.033252) N
 (Runs:  9) N
-(Average per run \(s\):  0.00337333333333) N
+(Average per run \(s\):  0.00369466666667) N
 (*           |            , 0.00000,  0.00000,  0.00000,  0.00000,  0.00000) N
 (===============================================================) N
 (===============================================================) N
 (Model Name:  Kursawe) N
 (Searcher Name:  SA) N
-(Time to run \(s\):  3.167994) N
+(SA Options:) N
+(KMAX: 5000 Cooling: 0.6) N
+(Time to run \(s\):  3.298688) N
 (Runs:  10) N
-(Average per run \(s\):  0.3167994) N
+(Average per run \(s\):  0.3298688) N
 (------   *  |    --------, -0.00547,  0.00199,  0.00597,  0.01490,  0.02413) N
 (===============================================================) N
 (===============================================================) N
 (Model Name:  Kursawe) N
-(Searcher Name:  MWS) N
-(Time to run \(s\):  0.877597) N
+(Searcher Name:  MaxWalkSat) N
+(MaxWalkSat Options:) N
+(Prob: 0.75) N
+(MaxTries: 500 MaxChanges 500) N
+(Threshold: 1e-06 Slices: 10) N
+(Time to run \(s\):  0.904818) N
 (Runs:  6) N
-(Average per run \(s\):  0.146266166667) N
+(Average per run \(s\):  0.150803) N
 (*           |            , -0.00092,  -0.00092,  -0.00092,  -0.00092,  -0.00092) N
 (===============================================================) N
 (===============================================================) N
 (Model Name:  ZDT1) N
 (Searcher Name:  SA) N
-(Time to run \(s\):  1.818018) N
+(SA Options:) N
+(KMAX: 5000 Cooling: 0.6) N
+(Time to run \(s\):  1.863032) N
 (Runs:  10) N
-(Average per run \(s\):  0.1818018) N
+(Average per run \(s\):  0.1863032) N
 (            |      *    -, 0.06181,  0.06355,  0.07678,  0.10068,  0.10510) N
 (===============================================================) N
 (===============================================================) N
-(Model Name:  ZDT1) N
-(Searcher Name:  MWS) N
-(Time to run \(s\):  0.306497) N
+(csc710sbse: HW3:Theisen) (Page 1/2) (Sep 23, 14 2:12) title
+border
+/v 1 store
+/x0 x v get 2.803063 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(Model Name:  ZDT1) p n
+(Searcher Name:  MaxWalkSat) N
+(MaxWalkSat Options:) N
+(Prob: 0.75) N
+(MaxTries: 500 MaxChanges 500) N
+(Threshold: 1e-06 Slices: 10) N
+(Time to run \(s\):  0.307368) N
 (Runs:  10) N
-(Average per run \(s\):  0.0306497) N
+(Average per run \(s\):  0.0307368) N
 (*           |            , -0.02102,  -0.02102,  -0.02102,  -0.02102,  -0.02102) N
 (===============================================================) N
-(csc710sbse: HW3:Theisen) (Page 1/1) (Sep 23, 14 1:50) title
+(csc710sbse: HW3:Theisen) (Page 2/2) (Sep 23, 14 2:12) title
 border
 grestore
 (Printed by Christopher Theisen) rhead
