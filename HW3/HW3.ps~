@@ -2,7 +2,7 @@
 %%Title: __init__.py, models, options.py, results.txt, search_main.py, searchers, utils.py, __init__.py, max_walk_sat.py, sim_anneal.py
 %%For: Christopher Theisen
 %%Creator: a2ps version 4.14
-%%CreationDate: Tue Sep 23 02:12:45 2014
+%%CreationDate: Tue Sep 23 02:27:34 2014
 %%BoundingBox: 24 24 588 768
 %%DocumentData: Clean7Bit
 %%Orientation: Landscape
@@ -644,8 +644,17 @@ x0 y0 moveto
 (  ) S
 (#Simulated Annealing options) c n
 (  sa_kmax = 5000) p n
-(  sa_cooling = .6) S
-(csc710sbse: HW3:Theisen) (Page 1/1) (Sep 23, 14 1:47) title
+(  sa_cooling = .6) N
+(  ) N
+(  ) S
+(def) K
+( printGlobals\(self\):) p n
+(    ) S
+(print) K
+( ") p
+(Seed:) str
+(", self.seed) p
+(csc710sbse: HW3:Theisen) (Page 1/1) (Sep 23, 14 2:26) title
 border
 grestore
 (Printed by Christopher Theisen) rhead
@@ -668,98 +677,106 @@ x0 y0 moveto
 (===============================================================) p n
 (Model Name:  Fonseca) N
 (Searcher Name:  SA) N
+(Seed: 1) N
 (SA Options:) N
 (KMAX: 5000 Cooling: 0.6) N
-(Time to run \(s\):  3.91463) N
+(Time to run \(s\):  3.777827) N
 (Runs:  10) N
-(Average per run \(s\):  0.391463) N
-(*           |            , 0.00000,  0.00000,  0.00000,  0.00000,  0.00000) N
+(Average per run \(s\):  0.3777827) N
+(*           |            , -0.00000,  0.00000,  0.00000,  0.00000,  0.00000) N
 (===============================================================) N
 (===============================================================) N
 (Model Name:  Fonseca) N
 (Searcher Name:  MaxWalkSat) N
+(Seed: 1) N
 (MaxWalkSat Options:) N
 (Prob: 0.75) N
 (MaxTries: 500 MaxChanges 500) N
 (Threshold: 1e-06 Slices: 10) N
-(Time to run \(s\):  0.61015) N
+(Time to run \(s\):  0.570184) N
 (Runs:  10) N
-(Average per run \(s\):  0.061015) N
+(Average per run \(s\):  0.0570184) N
 (*           |            , 0.00000,  0.00000,  0.00000,  0.00000,  0.00000) N
 (===============================================================) N
 (===============================================================) N
 (Model Name:  Schaffer) N
 (Searcher Name:  SA) N
+(Seed: 1) N
 (SA Options:) N
 (KMAX: 5000 Cooling: 0.6) N
-(Time to run \(s\):  0.238726) N
+(Time to run \(s\):  0.227492) N
 (Runs:  10) N
-(Average per run \(s\):  0.0238726) N
+(Average per run \(s\):  0.0227492) N
 (*           |            , -0.00000,  -0.00000,  0.00000,  0.00000,  0.00000) N
 (===============================================================) N
 (===============================================================) N
 (Model Name:  Schaffer) N
 (Searcher Name:  MaxWalkSat) N
+(Seed: 1) N
 (MaxWalkSat Options:) N
 (Prob: 0.75) N
 (MaxTries: 500 MaxChanges 500) N
 (Threshold: 1e-06 Slices: 10) N
-(Time to run \(s\):  0.033252) N
+(Time to run \(s\):  0.030728) N
 (Runs:  9) N
-(Average per run \(s\):  0.00369466666667) N
+(Average per run \(s\):  0.00341422222222) N
 (*           |            , 0.00000,  0.00000,  0.00000,  0.00000,  0.00000) N
 (===============================================================) N
 (===============================================================) N
 (Model Name:  Kursawe) N
 (Searcher Name:  SA) N
+(Seed: 1) N
 (SA Options:) N
 (KMAX: 5000 Cooling: 0.6) N
-(Time to run \(s\):  3.298688) N
+(Time to run \(s\):  3.083479) N
 (Runs:  10) N
-(Average per run \(s\):  0.3298688) N
+(Average per run \(s\):  0.3083479) N
 (------   *  |    --------, -0.00547,  0.00199,  0.00597,  0.01490,  0.02413) N
 (===============================================================) N
 (===============================================================) N
 (Model Name:  Kursawe) N
 (Searcher Name:  MaxWalkSat) N
+(Seed: 1) N
 (MaxWalkSat Options:) N
 (Prob: 0.75) N
 (MaxTries: 500 MaxChanges 500) N
 (Threshold: 1e-06 Slices: 10) N
-(Time to run \(s\):  0.904818) N
+(Time to run \(s\):  0.860436) N
 (Runs:  6) N
-(Average per run \(s\):  0.150803) N
+(Average per run \(s\):  0.143406) N
 (*           |            , -0.00092,  -0.00092,  -0.00092,  -0.00092,  -0.00092) N
 (===============================================================) N
 (===============================================================) N
 (Model Name:  ZDT1) N
 (Searcher Name:  SA) N
+(Seed: 1) N
 (SA Options:) N
-(KMAX: 5000 Cooling: 0.6) N
-(Time to run \(s\):  1.863032) N
-(Runs:  10) N
-(Average per run \(s\):  0.1863032) N
-(            |      *    -, 0.06181,  0.06355,  0.07678,  0.10068,  0.10510) N
-(===============================================================) N
-(===============================================================) N
-(csc710sbse: HW3:Theisen) (Page 1/2) (Sep 23, 14 2:12) title
+(csc710sbse: HW3:Theisen) (Page 1/2) (Sep 23, 14 2:26) title
 border
 /v 1 store
 /x0 x v get 2.803063 add sx cw mul add store
 /y0 y v get bfs th add sub store
 x0 y0 moveto
-(Model Name:  ZDT1) p n
+(KMAX: 5000 Cooling: 0.6) p n
+(Time to run \(s\):  1.824436) N
+(Runs:  10) N
+(Average per run \(s\):  0.1824436) N
+(            |      *    -, 0.06181,  0.06355,  0.07678,  0.10068,  0.10510) N
+(===============================================================) N
+(===============================================================) N
+(Model Name:  ZDT1) N
 (Searcher Name:  MaxWalkSat) N
+(Seed: 1) N
 (MaxWalkSat Options:) N
 (Prob: 0.75) N
 (MaxTries: 500 MaxChanges 500) N
 (Threshold: 1e-06 Slices: 10) N
-(Time to run \(s\):  0.307368) N
+(Time to run \(s\):  0.301238) N
 (Runs:  10) N
-(Average per run \(s\):  0.0307368) N
+(Average per run \(s\):  0.0301238) N
 (*           |            , -0.02102,  -0.02102,  -0.02102,  -0.02102,  -0.02102) N
 (===============================================================) N
-(csc710sbse: HW3:Theisen) (Page 2/2) (Sep 23, 14 2:12) title
+(csc710sbse: HW3:Theisen) (Page 2/2) (Sep 23, 14 2:26) title
 border
 grestore
 (Printed by Christopher Theisen) rhead
@@ -828,6 +845,7 @@ x0 y0 moveto
 (Searcher Name: ) str
 (", searcher.name) p n
 (  diff = \(datetime.now\(\) - startTime\).total_seconds\(\)) N
+(  myOpt.printGlobals\(\)) N
 (  searcher.printOptions\(\)) N
 (  ) S
 (print) K
@@ -904,7 +922,7 @@ x0 y0 moveto
 (searcherList = [SA, MWS]) N
 () N
 (main\(modelList, searcherList\)) S
-(csc710sbse: HW3:Theisen) (Page 1/1) (Sep 23, 14 2:09) title
+(csc710sbse: HW3:Theisen) (Page 1/1) (Sep 23, 14 2:25) title
 border
 grestore
 (Printed by Christopher Theisen) rhead

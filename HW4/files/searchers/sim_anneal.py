@@ -8,7 +8,7 @@ from utils import *
 myOpt = Options()
 
 class SA:
-  name = "SA"
+  name = self.__class__.__name__
   
   def say(self, x): 
     if myOpt.debug:

@@ -6,8 +6,6 @@ from options import *
 myOpt = Options()
 
 class SA:
-  name = self.__class__.__name__
-  
   def say(self, x): 
     if myOpt.debug:
       sys.stdout.write(str(x)); sys.stdout.flush()

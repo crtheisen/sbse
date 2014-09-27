@@ -8,7 +8,6 @@ myOpt = Options()
 
 class MWS:
   debug = False
-  name = self.__class__.__name__
   
   def say(self, x): 
     if self.debug:
