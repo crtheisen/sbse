@@ -4,12 +4,12 @@ sys.dont_write_bytecode = True
   
 from options import *
 from utils import *
+from analyzer import *
 
 myOpt = Options()
 
 class MWS:
   debug = False
-  name = self.__class__.__name__
   
   def say(self, x): 
     if self.debug:
@@ -18,21 +18,25 @@ class MWS:
   def specificRun(self, probability, klass):
     fon = klass
     XVarBest = fon.XVar
-    eBest = e = 1       
+    eBest = e = 1
+    eNew = 1  
     k = 1
     temp = []
     self.say(int(math.fabs(eBest-1)*100))
     self.say(' ')
-    for i in xrange(myOpt.mws_maxTries): 
+    
+    analyze = Analyzer()
+    stop = False
+    
+    for i in xrange(myOpt.mws_maxTries):
       fon.Chaos()
       for j in xrange(myOpt.mws_maxChanges):
         eNew = fon.Energy()
-        if(eNew < myOpt.mws_threshold):
+        if(eNew < myOpt.mws_threshold or stop == True):
           #% means found a solution and quit
           self.say('%')
           eBest = eNew
           XVarBest = list(fon.XVar)
-          #print '\nQuitting...'
           return eBest, XVarBest
         else:
           #modify random part of solution
@@ -49,8 +53,8 @@ class MWS:
             self.say(int(math.fabs(eNew-1)*100))
             self.say(' ')
             print xtile(temp,width=25,show=" %1.5f")
+            stop = analyze.EraStop(temp)
             temp = []
-      #print ''
       return -1, XVarBest
       
   def run(self, klass):
@@ -58,7 +62,7 @@ class MWS:
     valid = False
     eBest, XVarBest = self.specificRun(myOpt.mws_prob, klass)
     if eBest == -1:
-      #print 'No Best Found for prob = ', i
+      print 'No Best Found for prob = ', i
       self.say('')
     else:
       theBest = eBest

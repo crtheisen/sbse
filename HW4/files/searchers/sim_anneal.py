@@ -4,11 +4,11 @@ sys.dont_write_bytecode = True
 
 from options import *
 from utils import *
+from analyzer import *
 
 myOpt = Options()
 
 class SA:
-  name = self.__class__.__name__
   
   def say(self, x): 
     if myOpt.debug:
@@ -23,7 +23,10 @@ class SA:
     temp = []
     self.say(int(math.fabs(eBest-1)*100))
     self.say(' ')
-    while k < myOpt.sa_kmax:   
+    analyze = Analyzer()
+    stop = False
+    
+    while k < myOpt.sa_kmax and stop == False:
       sa.Neighbor()
       eNew = sa.Energy()
       if eNew < eBest:               
@@ -44,10 +47,10 @@ class SA:
       k = k + 1
       temp.append(eBest)
       if k % 50 == 0 and k != myOpt.sa_kmax and len(temp) != 0:
-        #print ''
         self.say(int(math.fabs(eBest-1)*100))
         self.say(' ')
         print xtile(temp,width=25,show=" %1.5f")
+        stop = analyze.EraStop(temp)
         temp = []
 
     if myOpt.debug:

@@ -8,6 +8,7 @@ from models import *
 from searchers import *
 from utils import *
 from options import *
+from sk import *
 
 myOpt = Options()
 
@@ -15,7 +16,7 @@ myOpt = Options()
 def display(model, searcher, startTime, scores, r):
   print "==============================================================="
   print "Model Name: ", model.__name__
-  print "Searcher Name: ", searcher.name
+  print "Searcher Name: ", searcher.__class__.__name__
   diff = (datetime.now() - startTime).total_seconds()
   myOpt.printGlobals()
   searcher.printOptions()
@@ -29,21 +30,33 @@ def display(model, searcher, startTime, scores, r):
   print "==============================================================="
 
 def main(modelList, searcherList):
-  r = 10
+  r = 5
   for klass in modelList:
+    classScoreList = []
     for searcher in searcherList:
+      fullScoreList = []
       startTime = datetime.now()
       scores = []
-      myKlass = klass()
       mySearcher = searcher()
       random.seed(myOpt.seed)
       for _ in range(r):
+        myKlass = klass()
         result, valid = mySearcher.run(myKlass)
         if valid == True:
           scores.append(result)
       display(klass, mySearcher, startTime, scores, len(scores))
+      fullScoreList.append(searcher.__name__)
+      for x in scores:
+        fullScoreList.append(x)
+      classScoreList.append(fullScoreList)
+    print "Scott-Knott for", klass.__name__
+    rdivDemo(classScoreList)
+    print "\n"
+      
 
-modelList = [ZDT3, Viennet3]
-searcherList = [MWS]
+#modelList = [Fonseca, Schaffer, Kursawe, ZDT1]
+#searcherList = [SA, MWS]
+modelList = [ZDT1]
+searcherList = [MWS, SA]
 
 main(modelList, searcherList)

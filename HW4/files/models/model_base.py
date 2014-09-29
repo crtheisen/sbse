@@ -10,7 +10,7 @@ rand = random.random
 
 class Model:
   #Default Values overwritten by subclass; should have better defaults, but...
-  n = 1
+  n = 50
   smin = 1
   smax = 1
   XVar = [random.uniform(smin, smax) for i in range (0, n)]
@@ -38,6 +38,9 @@ class Model:
       if x < curMax:
         curMax = x
         maxVal = self.XVar[toChange]
+        
+  def Reset(self):
+    self.XVar = self.XVarMax
     
   def Chaos(self):
     for vars in self.XVar:

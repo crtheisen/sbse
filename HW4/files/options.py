@@ -8,6 +8,8 @@ class Options:
   #Globals
   debug = False
   seed = 1
+  era_lives = 3
+  a12_test = 0.6
   
   #MaxWalkSat options
   mws_prob = 0.75
@@ -21,4 +23,5 @@ class Options:
   sa_cooling = .6
   
   def printGlobals(self):
-    print "Seed:", self.seed
+    print "Seed:", self.seed, "Lives: ", self.era_lives
+    
