@@ -54,9 +54,9 @@ def main(modelList, searcherList):
     print "\n"
       
 
-#modelList = [Fonseca, Schaffer, Kursawe, ZDT1]
-#searcherList = [SA, MWS]
-modelList = [ZDT1]
-searcherList = [MWS, SA]
+#modelList = [Fonseca, Schaffer, Kursawe, ZDT1, ZDT3, Viennet3]
+#searcherList = [SA, MWS, GA]
+modelList = [DTLZ7]
+searcherList = [GA]
 
 main(modelList, searcherList)

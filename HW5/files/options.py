@@ -22,6 +22,12 @@ class Options:
   sa_kmax = 500
   sa_cooling = .6
   
+  #Genetic Algorithm options
+  ga_gen_list = [20]
+  ga_pop_size = 50
+  ga_crossover = .6
+  
   def printGlobals(self):
     print "Seed:", self.seed, "Lives: ", self.era_lives
+    print "A12test:", self.a12_test
     
