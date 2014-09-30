@@ -1,8 +1,8 @@
 %!PS-Adobe-3.0
-%%Title: __init__.py, analyzer.py, hw4_part1.txt, hw4_part2.txt, models, options.py, rdiv_demo.py, results5.txt, results6.txt, search_main.py
+%%Title: __init__.py, analyzer.py, hw4_part1.txt, hw4_part2.txt, hw4_part5.txt, hw4_part6.txt, models, options.py, rdiv_demo.py, search_main.py
 %%For: Christopher Theisen
 %%Creator: a2ps version 4.14
-%%CreationDate: Sun Sep 28 23:44:31 2014
+%%CreationDate: Sun Sep 28 23:45:19 2014
 %%BoundingBox: 24 24 588 768
 %%DocumentData: Clean7Bit
 %%Orientation: Landscape
@@ -1063,124 +1063,7 @@ grestore
 end % of iso1dict
 pagesave restore
 showpage
-%%Page: (1) 4
-%%BeginPageSetup
-/pagesave save def
-sh 0 translate 90 rotate
-%%EndPageSetup
-iso1dict begin
-gsave
-llx lly 12 add translate
-/v 0 store
-/x0 x v get 2.299820 add sx cw mul add store
-/y0 y v get bfs th add sub store
-x0 y0 moveto
-(#From Class Discussion 8/26/2014) c n
-(from) K
-( __future__ ) p
-(import) K
-( division) p n
-(import) K
-( sys,re,random,math) p n
-(import) K
-( numpy as np) p n
-(sys.dont_write_bytecode = True) N
-() N
-(class) K
-( Options:) p n
-(  ) S
-(#Globals) c n
-(  debug = False) p n
-(  seed = 1) N
-(  era_lives = 3) N
-(  a12_test = 0.6) N
-(  ) N
-(  ) S
-(#MaxWalkSat options) c n
-(  mws_prob = 0.75) p n
-(  mws_maxTries = 500) N
-(  mws_maxChanges = 500) N
-(  mws_threshold = .000001) N
-(  mws_slices = 10) N
-(  ) N
-(  ) S
-(#Simulated Annealing options) c n
-(  sa_kmax = 500) p n
-(  sa_cooling = .6) N
-(  ) N
-(  ) S
-(def) K
-( printGlobals\(self\):) p n
-(    ) S
-(print) K
-( ") p
-(Seed:) str
-(", self.seed, ") p
-(Lives: ) str
-(", self.era_lives) p n
-(    ) S
-(csc710sbse: HW4:Theisen) (Page 1/1) (Sep 28, 14 21:14) title
-border
-grestore
-(Printed by Christopher Theisen) rhead
-(./HW4/files/options.py) (4/25) (Sunday September 28, 2014) footer
-end % of iso1dict
-pagesave restore
-showpage
-%%Page: (1) 5
-%%BeginPageSetup
-/pagesave save def
-sh 0 translate 90 rotate
-%%EndPageSetup
-iso1dict begin
-gsave
-llx lly 12 add translate
-/v 0 store
-/x0 x v get 2.299820 add sx cw mul add store
-/y0 y v get bfs th add sub store
-x0 y0 moveto
-(from) K
-( __future__ ) p
-(import) K
-( division) p n
-(import) K
-( sys,re,random,math) p n
-(import) K
-( numpy as np) p n
-(sys.dont_write_bytecode = True) N
-() N
-(from) K
-( sk ) p
-(import) K
-( *) p n
-() N
-(def) K
-( rdiv8\(\):) p n
-(  rdivDemo\([) N
-(      [") S
-(novels) str
-(", 287, 332, 443, 711, 534],) p n
-(      [") S
-(kids) str
-(", 23, 18, 16, 20, 21],) p n
-(      [") S
-(magazine) str
-(", 112, 98, 43, 63, 82],) p n
-(      [") S
-(cookbooks) str
-(", 232, 180, 32, 53, 78],) p n
-(      ]\)) N
-() N
-(rdiv8\(\)) S
-(csc710sbse: HW4:Theisen) (Page 1/1) (Sep 23, 14 13:25) title
-border
-grestore
-(Printed by Christopher Theisen) rhead
-(./HW4/files/rdiv_demo.py) (5/25) (Sunday September 28, 2014) footer
-end % of iso1dict
-pagesave restore
-showpage
-%%Page: (1-2) 6
+%%Page: (1-2) 4
 %%BeginPageSetup
 /pagesave save def
 sh 0 translate 90 rotate
@@ -1392,11 +1275,11 @@ x0 y0 moveto
 border
 grestore
 (Printed by Christopher Theisen) rhead
-(./HW4/files/results5.txt) (6/25) (Sunday September 28, 2014) footer
+(./HW4/files/hw4_part5.txt) (4/25) (Sunday September 28, 2014) footer
 end % of iso1dict
 pagesave restore
 showpage
-%%Page: (3-4) 7
+%%Page: (3-4) 5
 %%BeginPageSetup
 /pagesave save def
 sh 0 translate 90 rotate
@@ -1608,11 +1491,11 @@ x0 y0 moveto
 border
 grestore
 (Printed by Christopher Theisen) rhead
-(./HW4/files/results5.txt) (7/25) (Sunday September 28, 2014) footer
+(./HW4/files/hw4_part5.txt) (5/25) (Sunday September 28, 2014) footer
 end % of iso1dict
 pagesave restore
 showpage
-%%Page: (5-6) 8
+%%Page: (5-6) 6
 %%BeginPageSetup
 /pagesave save def
 sh 0 translate 90 rotate
@@ -1788,11 +1671,11 @@ x0 y0 moveto
 border
 grestore
 (Printed by Christopher Theisen) rhead
-(./HW4/files/results5.txt) (8/25) (Sunday September 28, 2014) footer
+(./HW4/files/hw4_part5.txt) (6/25) (Sunday September 28, 2014) footer
 end % of iso1dict
 pagesave restore
 showpage
-%%Page: (1) 9
+%%Page: (1) 7
 %%BeginPageSetup
 /pagesave save def
 sh 0 translate 90 rotate
@@ -1876,7 +1759,124 @@ x0 y0 moveto
 border
 grestore
 (Printed by Christopher Theisen) rhead
-(./HW4/files/results6.txt) (9/25) (Sunday September 28, 2014) footer
+(./HW4/files/hw4_part6.txt) (7/25) (Sunday September 28, 2014) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (1) 8
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 2.299820 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(#From Class Discussion 8/26/2014) c n
+(from) K
+( __future__ ) p
+(import) K
+( division) p n
+(import) K
+( sys,re,random,math) p n
+(import) K
+( numpy as np) p n
+(sys.dont_write_bytecode = True) N
+() N
+(class) K
+( Options:) p n
+(  ) S
+(#Globals) c n
+(  debug = False) p n
+(  seed = 1) N
+(  era_lives = 3) N
+(  a12_test = 0.6) N
+(  ) N
+(  ) S
+(#MaxWalkSat options) c n
+(  mws_prob = 0.75) p n
+(  mws_maxTries = 500) N
+(  mws_maxChanges = 500) N
+(  mws_threshold = .000001) N
+(  mws_slices = 10) N
+(  ) N
+(  ) S
+(#Simulated Annealing options) c n
+(  sa_kmax = 500) p n
+(  sa_cooling = .6) N
+(  ) N
+(  ) S
+(def) K
+( printGlobals\(self\):) p n
+(    ) S
+(print) K
+( ") p
+(Seed:) str
+(", self.seed, ") p
+(Lives: ) str
+(", self.era_lives) p n
+(    ) S
+(csc710sbse: HW4:Theisen) (Page 1/1) (Sep 28, 14 21:14) title
+border
+grestore
+(Printed by Christopher Theisen) rhead
+(./HW4/files/options.py) (8/25) (Sunday September 28, 2014) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (1) 9
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 2.299820 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(from) K
+( __future__ ) p
+(import) K
+( division) p n
+(import) K
+( sys,re,random,math) p n
+(import) K
+( numpy as np) p n
+(sys.dont_write_bytecode = True) N
+() N
+(from) K
+( sk ) p
+(import) K
+( *) p n
+() N
+(def) K
+( rdiv8\(\):) p n
+(  rdivDemo\([) N
+(      [") S
+(novels) str
+(", 287, 332, 443, 711, 534],) p n
+(      [") S
+(kids) str
+(", 23, 18, 16, 20, 21],) p n
+(      [") S
+(magazine) str
+(", 112, 98, 43, 63, 82],) p n
+(      [") S
+(cookbooks) str
+(", 232, 180, 32, 53, 78],) p n
+(      ]\)) N
+() N
+(rdiv8\(\)) S
+(csc710sbse: HW4:Theisen) (Page 1/1) (Sep 23, 14 13:25) title
+border
+grestore
+(Printed by Christopher Theisen) rhead
+(./HW4/files/rdiv_demo.py) (9/25) (Sunday September 28, 2014) footer
 end % of iso1dict
 pagesave restore
 showpage

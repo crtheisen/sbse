@@ -28,12 +28,12 @@ class GA:
         if x != y:
           temp.append(x, y)
     return temp
-          
+        
   def GetBestSolution(self, pop):
     eMin = 1
     for x in pop:
       temp = x.Energy
-      if temp < 1:
+      if temp < eMin:
         eMin = temp
     return eMin
 
