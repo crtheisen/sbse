@@ -17,14 +17,16 @@ class Fonseca(Model):
   eMin = 0
   
   def Energy(self):
-    f1 = (1-math.exp(-np.sum([self.XVar[i]-(1/np.sqrt(i+1))**2 for i in range (0, 3)])))
-    f2 = (1-math.exp(-np.sum([self.XVar[i]+(1/np.sqrt(i+1))**2 for i in range (0, 3)])))
+    n = self.n
+    f1 = 1-math.exp(-np.sum([self.XVar[i]-(1/np.sqrt(n))**2 for i in range (0, 3)]))
+    f2 = 1-math.exp(-np.sum([self.XVar[i]+(1/np.sqrt(n))**2 for i in range (0, 3)]))
     return ((f1+f2) - self.eMin) / (self.eMax - self.eMin)
     
   def RawEnergy(self):
-    f1 = (1-math.exp(-np.sum([self.XVar[i]-(1/np.sqrt(i+1))**2 for i in range (0, 3)])))
-    f2 = (1-math.exp(-np.sum([self.XVar[i]+(1/np.sqrt(i+1))**2 for i in range (0, 3)])))
-    return (f1+f2)
+    n = self.n
+    f1 = 1-math.exp(-np.sum([self.XVar[i]-(1/np.sqrt(n))**2 for i in range (0, 3)]))
+    f2 = 1-math.exp(-np.sum([self.XVar[i]+(1/np.sqrt(n))**2 for i in range (0, 3)]))
+    return f1+f2
 
   def __init__(self):
     self.Baseline(10000)

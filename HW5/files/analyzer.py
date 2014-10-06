@@ -62,7 +62,7 @@ class Analyzer:
     else:
       self.era_lives -= 1
     if self.era_lives == 0:
-      print "Early Era Termination!"
+      #print "Early Era Termination!"
       return True
     else:
       return False

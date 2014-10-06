@@ -27,6 +27,9 @@ class Model:
   def Neighbor(self):
     self.XVar[random.randint(0, self.n-1)] = random.uniform(self.smin, self.smax)
     
+  def specificMutate(self, x):
+    self.XVar[x] = random.uniform(self.smin, self.smax)
+    
   def BestNeighbor(self):
     toChange = random.randint(0, self.n-1)
     toIncrement = (self.smax - self.smin) / myOpt.mws_slices
@@ -61,7 +64,7 @@ class Model:
         self.eMin = eNew
         #print 'Min: ', self.XVar, eNew
       runs += 1
-    print 'Baseline: ', self.eMin, ', ', self.eMax
+    #print 'Baseline: ', self.eMin, ', ', self.eMax
     
   def __init__(self):
     raise NotImplementedError()

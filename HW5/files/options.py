@@ -23,7 +23,7 @@ class Options:
   sa_cooling = .6
   
   #Genetic Algorithm options
-  ga_gen_list = [20]
+  ga_gen_list = [10]
   ga_pop_size = 50
   ga_crossover = .6
   

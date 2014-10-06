@@ -48,15 +48,17 @@ def main(modelList, searcherList):
       fullScoreList.append(searcher.__name__)
       for x in scores:
         fullScoreList.append(x)
-      classScoreList.append(fullScoreList)
+      if scores:
+        classScoreList.append(fullScoreList)
     print "Scott-Knott for", klass.__name__
+    print classScoreList
     rdivDemo(classScoreList)
     print "\n"
       
 
-#modelList = [Fonseca, Schaffer, Kursawe, ZDT1, ZDT3, Viennet3]
-#searcherList = [SA, MWS, GA]
-modelList = [ZDT3]
-searcherList = [SA, MWS]
+modelList = [Fonseca, Schaffer, Kursawe, ZDT1, ZDT3, Viennet3]
+searcherList = [SA, MWS, GA]
+#modelList = [Fonseca]
+#searcherList = [GA]
 
 main(modelList, searcherList)
