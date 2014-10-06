@@ -56,7 +56,7 @@ def main(modelList, searcherList):
 
 #modelList = [Fonseca, Schaffer, Kursawe, ZDT1, ZDT3, Viennet3]
 #searcherList = [SA, MWS, GA]
-modelList = [DTLZ7]
-searcherList = [GA]
+modelList = [ZDT3]
+searcherList = [SA, MWS]
 
 main(modelList, searcherList)

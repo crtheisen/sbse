@@ -21,14 +21,14 @@ class DTLZ7(Model):
     n = self.n
     f1 = 1 - math.exp(-np.sum([(X[i] - 1/math.sqrt(i+1))**2 for i in range (0, n)]))
     f2 = 1 - math.exp(-np.sum([(X[i] + 1/math.sqrt(i+1))**2 for i in range (0, n)]))
-    return (math.fabs(f1-f2) - self.eMin) / (self.eMax - self.eMin)
+    return ((f1+f2) - self.eMin) / (self.eMax - self.eMin)
     
   def RawEnergy(self):
     X = self.XVar
     n = self.n
     f1 = 1 - math.exp(-np.sum([(X[i] - 1/math.sqrt(i+1))**2 for i in range (0, n)]))
     f2 = 1 - math.exp(-np.sum([(X[i] + 1/math.sqrt(i+1))**2 for i in range (0, n)]))
-    return math.fabs(f1-f2)
+    return (f1+f2)
     
   def __init__(self):
     self.Baseline(10000)

@@ -15,7 +15,7 @@ class Options:
   mws_prob = 0.75
   mws_maxTries = 500
   mws_maxChanges = 500
-  mws_threshold = .000001
+  mws_threshold = .00001
   mws_slices = 10
   
   #Simulated Annealing options

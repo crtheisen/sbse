@@ -20,12 +20,12 @@ class Schaffer(Model):
   def Energy(self):
     f1 = self.XVar[0]*self.XVar[0]
     f2 = (self.XVar[0]-2)*(self.XVar[0]-2)
-    return (math.fabs(f1+f2) - self.eMin) / (self.eMax - self.eMin)
+    return ((f1+f2) - self.eMin) / (self.eMax - self.eMin)
     
   def RawEnergy(self):
     f1 = self.XVar[0]*self.XVar[0]
     f2 = (self.XVar[0]-2)*(self.XVar[0]-2)
-    return math.fabs(f1+f2)
+    return (f1+f2)
     
   def __init__(self):
     self.Baseline(10000)

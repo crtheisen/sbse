@@ -37,10 +37,12 @@ class MWS:
           self.say('%')
           eBest = eNew
           XVarBest = list(fon.XVar)
+          temp.append(eNew)
+          print xtile(temp,lo=0, hi=1, width=25,show=" %1.5f")
           return eBest, XVarBest
         else:
           #modify random part of solution
-          if probability > random.uniform(0,1):
+          if probability < random.uniform(0,1):
             fon.Neighbor()
             self.say('+')
           #maximize for some random
@@ -52,8 +54,8 @@ class MWS:
             #print ''
             self.say(int(math.fabs(eNew-1)*100))
             self.say(' ')
-            print xtile(temp,width=25,show=" %1.5f")
-            stop = analyze.EraStop(temp)
+            print xtile(temp,lo=0, hi=1, width=25,show=" %1.5f")
+            #stop = analyze.EraStop(temp)
             temp = []
       return -1, XVarBest
       
@@ -62,7 +64,7 @@ class MWS:
     valid = False
     eBest, XVarBest = self.specificRun(myOpt.mws_prob, klass)
     if eBest == -1:
-      print 'No Best Found for prob = ', i
+      print 'No Best Found for prob = ', myOpt.mws_prob
       self.say('')
     else:
       theBest = eBest

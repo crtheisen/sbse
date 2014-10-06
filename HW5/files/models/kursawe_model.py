@@ -24,13 +24,13 @@ class Kursawe(Model):
     X = self.XVar
     f1 = np.sum([-10*math.exp(-0.2*(np.sqrt(X[i]**2+X[i]**2))) for i in range (0, 3-1)])
     f2 = np.sum([math.fabs(X[i])**self.a + 5*np.sin(X[i])**self.b for i in range (0, 3)])
-    return (math.fabs(f1-f2) - self.eMin) / (self.eMax - self.eMin)
+    return ((f1+f2) - self.eMin) / (self.eMax - self.eMin)
     
   def RawEnergy(self):
     X = self.XVar
     f1 = np.sum([-10*math.exp(-0.2*(np.sqrt(X[i]**2+X[i]**2))) for i in range (0, 3-1)])
     f2 = np.sum([math.fabs(X[i])**self.a + 5*np.sin(X[i])**self.b for i in range (0, 3)])
-    return math.fabs(f1-f2)
+    return (f1+f2)
     
   def __init__(self):
     self.Baseline(10000)

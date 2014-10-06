@@ -21,14 +21,14 @@ class Viennet3(Model):
     f1 = 0.5*X[0]**2 + X[1]**2 + math.sin(X[0]**2+X[1]**2)
     f2 = (3*X[0]-2*X[1]+4)**2/8 + (X[0]-X[1]+1)**2/27 + 15
     f3 = 1/(X[0]+X[1]+1) - 1.1*math.e**(-X[0]**2-X[1]**2)
-    return (math.fabs(f1-f2-f3) - self.eMin) / (self.eMax - self.eMin)
+    return (math.fabs(f1+f2+f3) - self.eMin) / (self.eMax - self.eMin)
     
   def RawEnergy(self):
     X = self.XVar
     f1 = 0.5*X[0]**2 + X[1]**2 + math.sin(X[0]**2+X[1]**2)
     f2 = (3*X[0]-2*X[1]+4)**2/8 + (X[0]-X[1]+1)**2/27 + 15
     f3 = 1/(X[0]+X[1]+1) - 1.1*math.e**(-X[0]**2-X[1]**2)
-    return math.fabs(f1-f2-f3)
+    return math.fabs(f1+f2+f3)
     
   def __init__(self):
     self.Baseline(10000)

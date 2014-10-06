@@ -19,10 +19,10 @@ class Model:
   eMin = 0
   
   def Energy(self):
-    print "Energy Class Undefined!"
+    raise NotImplementedError()
     
   def RawEnergy(self):
-    print "RawEnergy Class Undefined!"
+    raise NotImplementedError()
 
   def Neighbor(self):
     self.XVar[random.randint(0, self.n-1)] = random.uniform(self.smin, self.smax)
@@ -61,7 +61,7 @@ class Model:
         self.eMin = eNew
         #print 'Min: ', self.XVar, eNew
       runs += 1
-    #print 'Baseline: ', self.eMin, ', ', self.eMax
+    print 'Baseline: ', self.eMin, ', ', self.eMax
     
   def __init__(self):
-    print "Default init Shouldn't be used!"
+    raise NotImplementedError()

@@ -2,7 +2,7 @@
 %%Title: __init__.py, analyzer.py, hw4_part1.txt, hw4_part2.txt, hw4_part5.txt, hw4_part6.txt, models, options.py, rdiv_demo.py, search_main.py
 %%For: Christopher Theisen
 %%Creator: a2ps version 4.14
-%%CreationDate: Sun Sep 28 23:45:19 2014
+%%CreationDate: Tue Sep 30 13:17:40 2014
 %%BoundingBox: 24 24 588 768
 %%DocumentData: Clean7Bit
 %%Orientation: Landscape
@@ -806,7 +806,7 @@ x0 y0 moveto
 border
 grestore
 (Printed by Christopher Theisen) rhead
-(./HW4/files/analyzer.py) (1/25) (Sunday September 28, 2014) footer
+(./HW4/files/analyzer.py) (1/25) (Tuesday September 30, 2014) footer
 end % of iso1dict
 pagesave restore
 showpage
@@ -981,7 +981,7 @@ x0 y0 moveto
 border
 grestore
 (Printed by Christopher Theisen) rhead
-(./HW4/files/hw4_part1.txt) (2/25) (Sunday September 28, 2014) footer
+(./HW4/files/hw4_part1.txt) (2/25) (Tuesday September 30, 2014) footer
 end % of iso1dict
 pagesave restore
 showpage
@@ -1059,7 +1059,7 @@ x0 y0 moveto
 border
 grestore
 (Printed by Christopher Theisen) rhead
-(./HW4/files/hw4_part2.txt) (3/25) (Sunday September 28, 2014) footer
+(./HW4/files/hw4_part2.txt) (3/25) (Tuesday September 30, 2014) footer
 end % of iso1dict
 pagesave restore
 showpage
@@ -1275,7 +1275,7 @@ x0 y0 moveto
 border
 grestore
 (Printed by Christopher Theisen) rhead
-(./HW4/files/hw4_part5.txt) (4/25) (Sunday September 28, 2014) footer
+(./HW4/files/hw4_part5.txt) (4/25) (Tuesday September 30, 2014) footer
 end % of iso1dict
 pagesave restore
 showpage
@@ -1491,7 +1491,7 @@ x0 y0 moveto
 border
 grestore
 (Printed by Christopher Theisen) rhead
-(./HW4/files/hw4_part5.txt) (5/25) (Sunday September 28, 2014) footer
+(./HW4/files/hw4_part5.txt) (5/25) (Tuesday September 30, 2014) footer
 end % of iso1dict
 pagesave restore
 showpage
@@ -1671,7 +1671,7 @@ x0 y0 moveto
 border
 grestore
 (Printed by Christopher Theisen) rhead
-(./HW4/files/hw4_part5.txt) (6/25) (Sunday September 28, 2014) footer
+(./HW4/files/hw4_part5.txt) (6/25) (Tuesday September 30, 2014) footer
 end % of iso1dict
 pagesave restore
 showpage
@@ -1759,7 +1759,7 @@ x0 y0 moveto
 border
 grestore
 (Printed by Christopher Theisen) rhead
-(./HW4/files/hw4_part6.txt) (7/25) (Sunday September 28, 2014) footer
+(./HW4/files/hw4_part6.txt) (7/25) (Tuesday September 30, 2014) footer
 end % of iso1dict
 pagesave restore
 showpage
@@ -1823,7 +1823,7 @@ x0 y0 moveto
 border
 grestore
 (Printed by Christopher Theisen) rhead
-(./HW4/files/options.py) (8/25) (Sunday September 28, 2014) footer
+(./HW4/files/options.py) (8/25) (Tuesday September 30, 2014) footer
 end % of iso1dict
 pagesave restore
 showpage
@@ -1876,7 +1876,7 @@ x0 y0 moveto
 border
 grestore
 (Printed by Christopher Theisen) rhead
-(./HW4/files/rdiv_demo.py) (9/25) (Sunday September 28, 2014) footer
+(./HW4/files/rdiv_demo.py) (9/25) (Tuesday September 30, 2014) footer
 end % of iso1dict
 pagesave restore
 showpage
@@ -2050,7 +2050,7 @@ x0 y0 moveto
 border
 grestore
 (Printed by Christopher Theisen) rhead
-(./HW4/files/search_main.py) (10/25) (Sunday September 28, 2014) footer
+(./HW4/files/search_main.py) (10/25) (Tuesday September 30, 2014) footer
 end % of iso1dict
 pagesave restore
 showpage
@@ -2516,7 +2516,7 @@ x0 y0 moveto
 border
 grestore
 (Printed by Christopher Theisen) rhead
-(./HW4/files/sk.py) (11/25) (Sunday September 28, 2014) footer
+(./HW4/files/sk.py) (11/25) (Tuesday September 30, 2014) footer
 end % of iso1dict
 pagesave restore
 showpage
@@ -2871,7 +2871,7 @@ x0 y0 moveto
 border
 grestore
 (Printed by Christopher Theisen) rhead
-(./HW4/files/sk.py) (12/25) (Sunday September 28, 2014) footer
+(./HW4/files/sk.py) (12/25) (Tuesday September 30, 2014) footer
 end % of iso1dict
 pagesave restore
 showpage
@@ -3141,7 +3141,7 @@ x0 y0 moveto
 border
 grestore
 (Printed by Christopher Theisen) rhead
-(./HW4/files/sk.py) (13/25) (Sunday September 28, 2014) footer
+(./HW4/files/sk.py) (13/25) (Tuesday September 30, 2014) footer
 end % of iso1dict
 pagesave restore
 showpage
@@ -3278,7 +3278,7 @@ x0 y0 moveto
 border
 grestore
 (Printed by Christopher Theisen) rhead
-(./HW4/files/utils.py) (14/25) (Sunday September 28, 2014) footer
+(./HW4/files/utils.py) (14/25) (Tuesday September 30, 2014) footer
 end % of iso1dict
 pagesave restore
 showpage
@@ -3306,7 +3306,7 @@ x0 y0 moveto
 border
 grestore
 (Printed by Christopher Theisen) rhead
-(./HW4/files/searchers/__init__.py) (15/25) (Sunday September 28, 2014) footer
+(./HW4/files/searchers/__init__.py) (15/25) (Tuesday September 30, 2014) footer
 end % of iso1dict
 pagesave restore
 showpage
@@ -3505,7 +3505,7 @@ x0 y0 moveto
 border
 grestore
 (Printed by Christopher Theisen) rhead
-(./HW4/files/searchers/max_walk_sat.py) (16/25) (Sunday September 28, 2014) footer
+(./HW4/files/searchers/max_walk_sat.py) (16/25) (Tuesday September 30, 2014) footer
 end % of iso1dict
 pagesave restore
 showpage
@@ -3678,7 +3678,7 @@ x0 y0 moveto
 border
 grestore
 (Printed by Christopher Theisen) rhead
-(./HW4/files/searchers/sim_anneal.py) (17/25) (Sunday September 28, 2014) footer
+(./HW4/files/searchers/sim_anneal.py) (17/25) (Tuesday September 30, 2014) footer
 end % of iso1dict
 pagesave restore
 showpage
@@ -3767,7 +3767,7 @@ x0 y0 moveto
 border
 grestore
 (Printed by Christopher Theisen) rhead
-(./HW4/files/models/ZDT1_model.py) (18/25) (Sunday September 28, 2014) footer
+(./HW4/files/models/ZDT1_model.py) (18/25) (Tuesday September 30, 2014) footer
 end % of iso1dict
 pagesave restore
 showpage
@@ -3856,7 +3856,7 @@ x0 y0 moveto
 border
 grestore
 (Printed by Christopher Theisen) rhead
-(./HW4/files/models/ZDT3_model.py) (19/25) (Sunday September 28, 2014) footer
+(./HW4/files/models/ZDT3_model.py) (19/25) (Tuesday September 30, 2014) footer
 end % of iso1dict
 pagesave restore
 showpage
@@ -3900,7 +3900,7 @@ x0 y0 moveto
 border
 grestore
 (Printed by Christopher Theisen) rhead
-(./HW4/files/models/__init__.py) (20/25) (Sunday September 28, 2014) footer
+(./HW4/files/models/__init__.py) (20/25) (Tuesday September 30, 2014) footer
 end % of iso1dict
 pagesave restore
 showpage
@@ -3993,7 +3993,7 @@ x0 y0 moveto
 border
 grestore
 (Printed by Christopher Theisen) rhead
-(./HW4/files/models/fonseca_model.py) (21/25) (Sunday September 28, 2014) footer
+(./HW4/files/models/fonseca_model.py) (21/25) (Tuesday September 30, 2014) footer
 end % of iso1dict
 pagesave restore
 showpage
@@ -4092,7 +4092,7 @@ x0 y0 moveto
 border
 grestore
 (Printed by Christopher Theisen) rhead
-(./HW4/files/models/kursawe_model.py) (22/25) (Sunday September 28, 2014) footer
+(./HW4/files/models/kursawe_model.py) (22/25) (Tuesday September 30, 2014) footer
 end % of iso1dict
 pagesave restore
 showpage
@@ -4242,7 +4242,7 @@ x0 y0 moveto
 border
 grestore
 (Printed by Christopher Theisen) rhead
-(./HW4/files/models/model_base.py) (23/25) (Sunday September 28, 2014) footer
+(./HW4/files/models/model_base.py) (23/25) (Tuesday September 30, 2014) footer
 end % of iso1dict
 pagesave restore
 showpage
@@ -4320,7 +4320,7 @@ x0 y0 moveto
 border
 grestore
 (Printed by Christopher Theisen) rhead
-(./HW4/files/models/schaffer_model.py) (24/25) (Sunday September 28, 2014) footer
+(./HW4/files/models/schaffer_model.py) (24/25) (Tuesday September 30, 2014) footer
 end % of iso1dict
 pagesave restore
 showpage
@@ -4401,7 +4401,7 @@ x0 y0 moveto
 border
 grestore
 (Printed by Christopher Theisen) rhead
-(./HW4/files/models/viennet3_model.py) (25/25) (Sunday September 28, 2014) footer
+(./HW4/files/models/viennet3_model.py) (25/25) (Tuesday September 30, 2014) footer
 end % of iso1dict
 pagesave restore
 showpage
