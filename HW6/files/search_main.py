@@ -54,11 +54,10 @@ def main(modelList, searcherList):
     print classScoreList
     rdivDemo(classScoreList)
     print "\n"
-      
 
-modelList = [Fonseca, Schaffer, Kursawe, ZDT1, ZDT3, Viennet3]
-searcherList = [SA, MWS, GA]
-#modelList = [Fonseca]
-#searcherList = [GA]
+#modelList = [Fonseca, Schaffer, Kursawe, ZDT1, ZDT3, Viennet3]
+#searcherList = [SA, MWS, GA]
+modelList = [Fonseca]
+searcherList = [DE]
 
 main(modelList, searcherList)

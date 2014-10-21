@@ -27,6 +27,13 @@ class Options:
   ga_pop_size = 50
   ga_crossover = .6
   
+  #Differential Evolution options
+  de_max     = 100   # number of repeats 
+  de_np      = 100   # number of candidates
+  de_f       = 0.75  # extrapolate amount
+  de_cf      = 0.3   # prob of cross-over 
+  de_epsilon = 0.01
+  
   def printGlobals(self):
     print "Seed:", self.seed, "Lives: ", self.era_lives
     print "A12test:", self.a12_test
