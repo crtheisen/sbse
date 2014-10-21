@@ -31,5 +31,5 @@ class ZDT3(Model):
     return (f1+f2)
     
   def __init__(self):
-    self.Baseline(10000)
+    self.Baseline(1000)
     self.XVar = self.XVarMax

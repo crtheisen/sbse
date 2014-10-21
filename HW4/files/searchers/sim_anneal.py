@@ -49,7 +49,7 @@ class SA:
       if k % 50 == 0 and k != myOpt.sa_kmax and len(temp) != 0:
         self.say(int(math.fabs(eBest-1)*100))
         self.say(' ')
-        print xtile(temp,lo=0, hi=1,width=25,show=" %1.5f")
+        #print xtile(temp,lo=0, hi=1,width=25,show=" %1.5f")
         stop = analyze.EraStop(temp)
         temp = []
 

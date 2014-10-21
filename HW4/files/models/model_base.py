@@ -61,7 +61,7 @@ class Model:
         self.eMin = eNew
         #print 'Min: ', self.XVar, eNew
       runs += 1
-    print 'Baseline: ', self.eMin, ', ', self.eMax
+    #print 'Baseline: ', self.eMin, ', ', self.eMax
     
   def __init__(self):
     raise NotImplementedError()

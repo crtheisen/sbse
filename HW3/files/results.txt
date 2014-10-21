@@ -4,93 +4,220 @@ Searcher Name:  SA
 Seed: 1
 SA Options:
 KMAX: 5000 Cooling: 0.6
-Time to run (s):  3.777827
+Time to run (s):  4.305927
 Runs:  10
-Average per run (s):  0.3777827
-*           |            , -0.00000,  0.00000,  0.00000,  0.00000,  0.00000
+Average per run (s):  0.4305927
+(*           |            ), 0.00000,  0.00000,  0.00000,  0.00000,  0.00000
 ===============================================================
 ===============================================================
 Model Name:  Fonseca
-Searcher Name:  MaxWalkSat
+Searcher Name:  MWS
+Seed: 1
+MaxWalkSat Options:
+Prob: 0.25
+MaxTries: 500 MaxChanges 500
+Threshold: 1e-06 Slices: 10
+Time to run (s):  0.736957
+Runs:  10
+Average per run (s):  0.0736957
+(*           |            ), 0.00000,  0.00000,  0.00000,  0.00000,  0.00000
+===============================================================
+===============================================================
+Model Name:  Fonseca
+Searcher Name:  MWS
+Seed: 1
+MaxWalkSat Options:
+Prob: 0.5
+MaxTries: 500 MaxChanges 500
+Threshold: 1e-06 Slices: 10
+Time to run (s):  0.865797
+Runs:  10
+Average per run (s):  0.0865797
+(*           |            ), 0.00000,  0.00000,  0.00000,  0.00000,  0.00000
+===============================================================
+===============================================================
+Model Name:  Fonseca
+Searcher Name:  MWS
 Seed: 1
 MaxWalkSat Options:
 Prob: 0.75
 MaxTries: 500 MaxChanges 500
 Threshold: 1e-06 Slices: 10
-Time to run (s):  0.570184
+Time to run (s):  0.729986
 Runs:  10
-Average per run (s):  0.0570184
-*           |            , 0.00000,  0.00000,  0.00000,  0.00000,  0.00000
+Average per run (s):  0.0729986
+(*           |            ), 0.00000,  0.00000,  0.00000,  0.00000,  0.00000
 ===============================================================
+Scott-Knott for Fonseca
+
+rank ,     name ,    med   ,  iqr 
+----------------------------------------------------
+   1 ,       SA ,       0  ,     0 (*              |              ), 0.00,  0.00,  0.00,  0.00,  0.00
+   1 ,      MWS ,       0  ,     0 (*              |              ), 0.00,  0.00,  0.00,  0.00,  0.00
+   1 ,      MWS ,       0  ,     0 ( *             |              ), 0.00,  0.00,  0.00,  0.00,  0.00
+   1 ,      MWS ,       0  ,     0 (  *            |              ), 0.00,  0.00,  0.00,  0.00,  0.00
 ===============================================================
 Model Name:  Schaffer
 Searcher Name:  SA
 Seed: 1
 SA Options:
 KMAX: 5000 Cooling: 0.6
-Time to run (s):  0.227492
+Time to run (s):  0.296301
 Runs:  10
-Average per run (s):  0.0227492
-*           |            , -0.00000,  -0.00000,  0.00000,  0.00000,  0.00000
+Average per run (s):  0.0296301
+(*           |            ), -0.00000,  -0.00000,  0.00000,  0.00000,  0.00000
 ===============================================================
 ===============================================================
 Model Name:  Schaffer
-Searcher Name:  MaxWalkSat
+Searcher Name:  MWS
 Seed: 1
 MaxWalkSat Options:
-Prob: 0.75
+Prob: 0.25
 MaxTries: 500 MaxChanges 500
 Threshold: 1e-06 Slices: 10
-Time to run (s):  0.030728
+Time to run (s):  0.063178
+Runs:  7
+Average per run (s):  0.00902542857143
+(*           |            ), 0.00000,  0.00000,  0.00000,  0.00000,  0.00000
+===============================================================
+===============================================================
+Model Name:  Schaffer
+Searcher Name:  MWS
+Seed: 1
+MaxWalkSat Options:
+Prob: 0.5
+MaxTries: 500 MaxChanges 500
+Threshold: 1e-06 Slices: 10
+Time to run (s):  0.04394
 Runs:  9
-Average per run (s):  0.00341422222222
-*           |            , 0.00000,  0.00000,  0.00000,  0.00000,  0.00000
+Average per run (s):  0.00488222222222
+(*           |            ), 0.00000,  0.00000,  0.00000,  0.00000,  0.00000
 ===============================================================
+===============================================================
+Model Name:  Schaffer
+Searcher Name:  MWS
+Seed: 1
+MaxWalkSat Options:
+Prob: 0.75
+MaxTries: 500 MaxChanges 500
+Threshold: 1e-06 Slices: 10
+Time to run (s):  0.04039
+Runs:  9
+Average per run (s):  0.00448777777778
+(*           |            ), 0.00000,  0.00000,  0.00000,  0.00000,  0.00000
+===============================================================
+Scott-Knott for Schaffer
+
+rank ,     name ,    med   ,  iqr 
+----------------------------------------------------
+   1 ,       SA ,       0  ,     0 (*              |              ),-0.00, -0.00,  0.00,  0.00,  0.00
+   1 ,      MWS ,       0  ,     0 (*              |              ), 0.00,  0.00,  0.00,  0.00,  0.00
+   1 ,      MWS ,       0  ,     0 ( *             |              ), 0.00,  0.00,  0.00,  0.00,  0.00
+   1 ,      MWS ,       0  ,     0 (  *            |              ), 0.00,  0.00,  0.00,  0.00,  0.00
 ===============================================================
 Model Name:  Kursawe
 Searcher Name:  SA
 Seed: 1
 SA Options:
 KMAX: 5000 Cooling: 0.6
-Time to run (s):  3.083479
+Time to run (s):  4.011351
 Runs:  10
-Average per run (s):  0.3083479
-------   *  |    --------, -0.00547,  0.00199,  0.00597,  0.01490,  0.02413
+Average per run (s):  0.4011351
+(*           |            ), -0.00547,  0.00199,  0.00597,  0.01490,  0.02413
 ===============================================================
 ===============================================================
 Model Name:  Kursawe
-Searcher Name:  MaxWalkSat
+Searcher Name:  MWS
+Seed: 1
+MaxWalkSat Options:
+Prob: 0.25
+MaxTries: 500 MaxChanges 500
+Threshold: 1e-06 Slices: 10
+Time to run (s):  3.275646
+No valid runs!
+===============================================================
+===============================================================
+Model Name:  Kursawe
+Searcher Name:  MWS
+Seed: 1
+MaxWalkSat Options:
+Prob: 0.5
+MaxTries: 500 MaxChanges 500
+Threshold: 1e-06 Slices: 10
+Time to run (s):  1.601739
+Runs:  5
+Average per run (s):  0.3203478
+(*           |            ), -0.00568,  -0.00568,  -0.00568,  -0.00568,  -0.00568
+===============================================================
+===============================================================
+Model Name:  Kursawe
+Searcher Name:  MWS
 Seed: 1
 MaxWalkSat Options:
 Prob: 0.75
 MaxTries: 500 MaxChanges 500
 Threshold: 1e-06 Slices: 10
-Time to run (s):  0.860436
-Runs:  6
-Average per run (s):  0.143406
-*           |            , -0.00092,  -0.00092,  -0.00092,  -0.00092,  -0.00092
+Time to run (s):  1.734378
+No valid runs!
 ===============================================================
+Scott-Knott for Kursawe
+
+rank ,     name ,    med   ,  iqr 
+----------------------------------------------------
+   1 ,      MWS ,      -1  ,     0 (*              |              ),-0.01, -0.01, -0.01, -0.01, -0.01
+   2 ,       SA ,       0  ,     1 (-------    *   |    --------- ),-0.01,  0.00,  0.01,  0.01,  0.02
 ===============================================================
 Model Name:  ZDT1
 Searcher Name:  SA
 Seed: 1
 SA Options:
 KMAX: 5000 Cooling: 0.6
-Time to run (s):  1.824436
+Time to run (s):  2.323056
 Runs:  10
-Average per run (s):  0.1824436
-            |      *    -, 0.06181,  0.06355,  0.07678,  0.10068,  0.10510
+Average per run (s):  0.2323056
+(*           |            ), 0.07219,  0.07246,  0.08641,  0.10165,  0.11677
 ===============================================================
 ===============================================================
 Model Name:  ZDT1
-Searcher Name:  MaxWalkSat
+Searcher Name:  MWS
+Seed: 1
+MaxWalkSat Options:
+Prob: 0.25
+MaxTries: 500 MaxChanges 500
+Threshold: 1e-06 Slices: 10
+Time to run (s):  0.401077
+Runs:  10
+Average per run (s):  0.0401077
+(*           |            ), -0.09214,  -0.09214,  -0.09214,  -0.09214,  -0.09214
+===============================================================
+===============================================================
+Model Name:  ZDT1
+Searcher Name:  MWS
+Seed: 1
+MaxWalkSat Options:
+Prob: 0.5
+MaxTries: 500 MaxChanges 500
+Threshold: 1e-06 Slices: 10
+Time to run (s):  0.543815
+Runs:  9
+Average per run (s):  0.0604238888889
+(*           |            ), -0.00608,  -0.00608,  -0.00608,  -0.00608,  -0.00608
+===============================================================
+===============================================================
+Model Name:  ZDT1
+Searcher Name:  MWS
 Seed: 1
 MaxWalkSat Options:
 Prob: 0.75
 MaxTries: 500 MaxChanges 500
 Threshold: 1e-06 Slices: 10
-Time to run (s):  0.301238
-Runs:  10
-Average per run (s):  0.0301238
-*           |            , -0.02102,  -0.02102,  -0.02102,  -0.02102,  -0.02102
+Time to run (s):  0.951785
+No valid runs!
 ===============================================================
+Scott-Knott for ZDT1
+
+rank ,     name ,    med   ,  iqr 
+----------------------------------------------------
+   1 ,      MWS ,      -9  ,     0 (*              |              ),-0.09, -0.09, -0.09, -0.09, -0.09
+   2 ,      MWS ,      -1  ,     0 (            *  |              ),-0.01, -0.01, -0.01, -0.01, -0.01
+   3 ,       SA ,       8  ,     2 (               |         * -- ), 0.07,  0.07,  0.09,  0.10,  0.12

@@ -10,7 +10,7 @@ class SA:
     if myOpt.debug:
       sys.stdout.write(str(x)); sys.stdout.flush()
 
-  def run(self, klass):
+  def run(self, klass, prob):
     sa = klass
     XVarBest = sa.XVar
     eBest = e = 1

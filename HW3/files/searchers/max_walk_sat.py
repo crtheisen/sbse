@@ -47,9 +47,10 @@ class MWS:
       #print ''
       return -1, XVarBest
       
-  def run(self, klass):
+  def run(self, klass, prob):
     theBest = -1
     valid = False
+    myOpt.mws_prob = prob
     eBest, XVarBest = self.specificRun(myOpt.mws_prob, klass)
     if eBest == -1:
       #print 'No Best Found for prob = ', i

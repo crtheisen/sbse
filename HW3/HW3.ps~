@@ -1,12 +1,12 @@
 %!PS-Adobe-3.0
-%%Title: __init__.py, models, options.py, results.txt, search_main.py, searchers, utils.py, __init__.py, max_walk_sat.py, sim_anneal.py
+%%Title: __init__.py, models, options.py, result.txt, search_main.py, searchers, sk.py, utils.py, __init__.py, max_walk_sat.py
 %%For: Christopher Theisen
 %%Creator: a2ps version 4.14
-%%CreationDate: Tue Sep 23 02:27:34 2014
+%%CreationDate: Sat Sep 27 18:29:49 2014
 %%BoundingBox: 24 24 588 768
 %%DocumentData: Clean7Bit
 %%Orientation: Landscape
-%%Pages: 13
+%%Pages: 16
 %%PageOrder: Ascend
 %%DocumentMedia: Letter 612 792 0 () ()
 %%DocumentNeededResources: font Courier
@@ -548,8 +548,8 @@ a2psdict begin
 /#copies 1 def
 /th 15.000000 def
 /fnfs 11 def
-/bfs 6.673961 def
-/cw 4.004376 def
+/bfs 5.475763 def
+/cw 3.285458 def
 
 % Dictionary for ISO-8859-1 support
 /iso1dict 8 dict begin
@@ -571,10 +571,10 @@ currentdict end def
 /fSymbol /Symbol findfont def
 /hm fnfs 0.25 mul def
 /pw
-   cw 91.400000 mul
+   cw 111.400000 mul
 def
 /ph
-   518.566745 th add
+   524.030504 th add
 def
 /pmw urx llx sub pw 2 mul sub 1 div def
 /pmh 0 def
@@ -612,7 +612,7 @@ iso1dict begin
 gsave
 llx lly 12 add translate
 /v 0 store
-/x0 x v get 2.803063 add sx cw mul add store
+/x0 x v get 2.299820 add sx cw mul add store
 /y0 y v get bfs th add sub store
 x0 y0 moveto
 (#From Class Discussion 8/26/2014) c n
@@ -658,7 +658,7 @@ x0 y0 moveto
 border
 grestore
 (Printed by Christopher Theisen) rhead
-(./HW3/files/options.py) (1/13) (Tuesday September 23, 2014) footer
+(./HW3/files/options.py) (1/16) (Saturday September 27, 2014) footer
 end % of iso1dict
 pagesave restore
 showpage
@@ -671,7 +671,7 @@ iso1dict begin
 gsave
 llx lly 12 add translate
 /v 0 store
-/x0 x v get 2.803063 add sx cw mul add store
+/x0 x v get 2.299820 add sx cw mul add store
 /y0 y v get bfs th add sub store
 x0 y0 moveto
 (===============================================================) p n
@@ -680,107 +680,131 @@ x0 y0 moveto
 (Seed: 1) N
 (SA Options:) N
 (KMAX: 5000 Cooling: 0.6) N
-(Time to run \(s\):  3.777827) N
+(Time to run \(s\):  3.711736) N
 (Runs:  10) N
-(Average per run \(s\):  0.3777827) N
-(*           |            , -0.00000,  0.00000,  0.00000,  0.00000,  0.00000) N
+(Average per run \(s\):  0.3711736) N
+(\(*           |            \), 0.00000,  0.00000,  0.00000,  0.00000,  0.00000) N
 (===============================================================) N
 (===============================================================) N
 (Model Name:  Fonseca) N
-(Searcher Name:  MaxWalkSat) N
+(Searcher Name:  MWS) N
 (Seed: 1) N
 (MaxWalkSat Options:) N
 (Prob: 0.75) N
 (MaxTries: 500 MaxChanges 500) N
 (Threshold: 1e-06 Slices: 10) N
-(Time to run \(s\):  0.570184) N
+(Time to run \(s\):  0.574561) N
 (Runs:  10) N
-(Average per run \(s\):  0.0570184) N
-(*           |            , 0.00000,  0.00000,  0.00000,  0.00000,  0.00000) N
+(Average per run \(s\):  0.0574561) N
+(\(*           |            \), 0.00000,  0.00000,  0.00000,  0.00000,  0.00000) N
 (===============================================================) N
+(Scott-Knott for Fonseca) N
+() N
+(rank ,     name ,    med   ,  iqr ) N
+(----------------------------------------------------) N
+(   1 ,       SA ,       0  ,     0 \(*              |              \), 0.00,  0.00,  0.00,  0.00,  0.00) N
+(   1 ,      MWS ,       0  ,     0 \(*              |              \), 0.00,  0.00,  0.00,  0.00,  0.00) N
 (===============================================================) N
 (Model Name:  Schaffer) N
 (Searcher Name:  SA) N
 (Seed: 1) N
 (SA Options:) N
 (KMAX: 5000 Cooling: 0.6) N
-(Time to run \(s\):  0.227492) N
+(Time to run \(s\):  0.224707) N
 (Runs:  10) N
-(Average per run \(s\):  0.0227492) N
-(*           |            , -0.00000,  -0.00000,  0.00000,  0.00000,  0.00000) N
+(Average per run \(s\):  0.0224707) N
+(\(*           |            \), -0.00000,  -0.00000,  0.00000,  0.00000,  0.00000) N
 (===============================================================) N
 (===============================================================) N
 (Model Name:  Schaffer) N
-(Searcher Name:  MaxWalkSat) N
+(Searcher Name:  MWS) N
 (Seed: 1) N
 (MaxWalkSat Options:) N
 (Prob: 0.75) N
 (MaxTries: 500 MaxChanges 500) N
 (Threshold: 1e-06 Slices: 10) N
-(Time to run \(s\):  0.030728) N
+(Time to run \(s\):  0.030039) N
 (Runs:  9) N
-(Average per run \(s\):  0.00341422222222) N
-(*           |            , 0.00000,  0.00000,  0.00000,  0.00000,  0.00000) N
+(Average per run \(s\):  0.00333766666667) N
+(\(*           |            \), 0.00000,  0.00000,  0.00000,  0.00000,  0.00000) N
 (===============================================================) N
+(Scott-Knott for Schaffer) N
+() N
+(rank ,     name ,    med   ,  iqr ) N
+(----------------------------------------------------) N
+(   1 ,       SA ,       0  ,     0 \(*              |              \),-0.00, -0.00,  0.00,  0.00,  0.00) N
+(   1 ,      MWS ,       0  ,     0 \(*              |              \), 0.00,  0.00,  0.00,  0.00,  0.00) N
 (===============================================================) N
 (Model Name:  Kursawe) N
 (Searcher Name:  SA) N
 (Seed: 1) N
 (SA Options:) N
 (KMAX: 5000 Cooling: 0.6) N
-(Time to run \(s\):  3.083479) N
+(Time to run \(s\):  3.05102) N
 (Runs:  10) N
-(Average per run \(s\):  0.3083479) N
-(------   *  |    --------, -0.00547,  0.00199,  0.00597,  0.01490,  0.02413) N
+(Average per run \(s\):  0.305102) N
+(\(*           |            \), -0.00547,  0.00199,  0.00597,  0.01490,  0.02413) N
 (===============================================================) N
 (===============================================================) N
 (Model Name:  Kursawe) N
-(Searcher Name:  MaxWalkSat) N
+(Searcher Name:  MWS) N
 (Seed: 1) N
 (MaxWalkSat Options:) N
 (Prob: 0.75) N
 (MaxTries: 500 MaxChanges 500) N
 (Threshold: 1e-06 Slices: 10) N
-(Time to run \(s\):  0.860436) N
+(Time to run \(s\):  0.880758) N
 (Runs:  6) N
-(Average per run \(s\):  0.143406) N
-(*           |            , -0.00092,  -0.00092,  -0.00092,  -0.00092,  -0.00092) N
+(Average per run \(s\):  0.146793) N
+(\(*           |            \), -0.00092,  -0.00092,  -0.00092,  -0.00092,  -0.00092) N
 (===============================================================) N
+(Scott-Knott for Kursawe) N
+() N
+(rank ,     name ,    med   ,  iqr ) N
+(----------------------------------------------------) N
+(   1 ,      MWS ,       0  ,     0 \(    *          |              \),-0.00, -0.00, -0.00, -0.00, -0.00) N
+(   1 ,       SA ,       0  ,     1 \(-------    *   |    --------- \),-0.01,  0.00,  0.01,  0.01,  0.02) N
 (===============================================================) N
 (Model Name:  ZDT1) N
 (Searcher Name:  SA) N
 (Seed: 1) N
 (SA Options:) N
-(csc710sbse: HW3:Theisen) (Page 1/2) (Sep 23, 14 2:26) title
+(csc710sbse: HW3:Theisen) (Page 1/2) (Sep 27, 14 18:28) title
 border
 /v 1 store
-/x0 x v get 2.803063 add sx cw mul add store
+/x0 x v get 2.299820 add sx cw mul add store
 /y0 y v get bfs th add sub store
 x0 y0 moveto
 (KMAX: 5000 Cooling: 0.6) p n
-(Time to run \(s\):  1.824436) N
+(Time to run \(s\):  1.805121) N
 (Runs:  10) N
-(Average per run \(s\):  0.1824436) N
-(            |      *    -, 0.06181,  0.06355,  0.07678,  0.10068,  0.10510) N
+(Average per run \(s\):  0.1805121) N
+(\(*           |            \), 0.06181,  0.06355,  0.07678,  0.10068,  0.10510) N
 (===============================================================) N
 (===============================================================) N
 (Model Name:  ZDT1) N
-(Searcher Name:  MaxWalkSat) N
+(Searcher Name:  MWS) N
 (Seed: 1) N
 (MaxWalkSat Options:) N
 (Prob: 0.75) N
 (MaxTries: 500 MaxChanges 500) N
 (Threshold: 1e-06 Slices: 10) N
-(Time to run \(s\):  0.301238) N
+(Time to run \(s\):  0.305367) N
 (Runs:  10) N
-(Average per run \(s\):  0.0301238) N
-(*           |            , -0.02102,  -0.02102,  -0.02102,  -0.02102,  -0.02102) N
+(Average per run \(s\):  0.0305367) N
+(\(*           |            \), -0.02102,  -0.02102,  -0.02102,  -0.02102,  -0.02102) N
 (===============================================================) N
-(csc710sbse: HW3:Theisen) (Page 2/2) (Sep 23, 14 2:26) title
+(Scott-Knott for ZDT1) N
+() N
+(rank ,     name ,    med   ,  iqr ) N
+(----------------------------------------------------) N
+(   1 ,      MWS ,      -2  ,     0 \(*              |              \),-0.02, -0.02, -0.02, -0.02, -0.02) N
+(   2 ,       SA ,       7  ,     3 \(               |   -   *    - \), 0.06,  0.06,  0.08,  0.10,  0.11) N
+(csc710sbse: HW3:Theisen) (Page 2/2) (Sep 27, 14 18:28) title
 border
 grestore
 (Printed by Christopher Theisen) rhead
-(./HW3/files/results.txt) (2/13) (Tuesday September 23, 2014) footer
+(./HW3/files/result.txt) (2/16) (Saturday September 27, 2014) footer
 end % of iso1dict
 pagesave restore
 showpage
@@ -793,7 +817,7 @@ iso1dict begin
 gsave
 llx lly 12 add translate
 /v 0 store
-/x0 x v get 2.803063 add sx cw mul add store
+/x0 x v get 2.299820 add sx cw mul add store
 /y0 y v get bfs th add sub store
 x0 y0 moveto
 (import) K
@@ -823,6 +847,10 @@ x0 y0 moveto
 ( options ) p
 (import) K
 ( *) p n
+(from) K
+( sk ) p
+(import) K
+( *) p n
 () N
 (myOpt = Options\(\)) N
 () N
@@ -843,7 +871,7 @@ x0 y0 moveto
 (print) K
 ( ") p
 (Searcher Name: ) str
-(", searcher.name) p n
+(", searcher.__class__.__name__) p n
 (  diff = \(datetime.now\(\) - startTime\).total_seconds\(\)) N
 (  myOpt.printGlobals\(\)) N
 (  searcher.printOptions\(\)) N
@@ -894,11 +922,13 @@ x0 y0 moveto
 ( klass ) p
 (in) K
 ( modelList:) p n
+(    classScoreList = []) N
 (    ) S
 (for) K
 ( searcher ) p
 (in) K
 ( searcherList:) p n
+(      fullScoreList = []) N
 (      startTime = datetime.now\(\)) N
 (      scores = []) N
 (      myKlass = klass\(\)) N
@@ -917,20 +947,37 @@ x0 y0 moveto
 ( True:) p n
 (          scores.append\(result\)) N
 (      display\(klass, mySearcher, startTime, scores, len\(scores\)\)) N
+(      fullScoreList.append\(searcher.__name__\)) N
+(      ) S
+(for) K
+( x ) p
+(in) K
+( scores:) p n
+(        fullScoreList.append\(x\)) N
+(      classScoreList.append\(fullScoreList\)) N
+(    ) S
+(print) K
+( ") p
+(Scott-Knott for) str
+(", klass.__name__) p n
+(    rdivDemo\(classScoreList\)) N
+(      ) N
 () N
 (modelList = [Fonseca, Schaffer, Kursawe, ZDT1]) N
 (searcherList = [SA, MWS]) N
-() N
+(#modelList = [ZDT1]) c n
+(#searcherList = [SA, MWS]) N
+() p n
 (main\(modelList, searcherList\)) S
-(csc710sbse: HW3:Theisen) (Page 1/1) (Sep 23, 14 2:25) title
+(csc710sbse: HW3:Theisen) (Page 1/1) (Sep 27, 14 18:28) title
 border
 grestore
 (Printed by Christopher Theisen) rhead
-(./HW3/files/search_main.py) (3/13) (Tuesday September 23, 2014) footer
+(./HW3/files/search_main.py) (3/16) (Saturday September 27, 2014) footer
 end % of iso1dict
 pagesave restore
 showpage
-%%Page: (1) 4
+%%Page: (1-2) 4
 %%BeginPageSetup
 /pagesave save def
 sh 0 translate 90 rotate
@@ -939,7 +986,1098 @@ iso1dict begin
 gsave
 llx lly 12 add translate
 /v 0 store
-/x0 x v get 2.803063 add sx cw mul add store
+/x0 x v get 2.299820 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(""") p n
+() str n
+(## Hyptotheis Testing Stuff) N
+() N
+() N
+(### Standard Stuff) N
+() N
+(#### Standard Headers) N
+() N
+(""") p n
+(from) K
+( __future__ ) p
+(import) K
+( division) p n
+(import) K
+( sys,random,math) p n
+(sys.dont_write_bytecode = True) N
+(""") N
+() str n
+(#### Standard Utils) N
+() N
+(""") p n
+(class) K
+( o\(\):) p n
+(  ") S
+(Anonymous container) str
+(") p n
+(  ) S
+(def) K
+( __init__\(i,**fields\) : ) p n
+(    i.override\(fields\)) N
+(  ) S
+(def) K
+( override\(i,d\): i.__dict__.update\(d\); ) p
+(return) K
+( i) p n
+(  ) S
+(def) K
+( __repr__\(i\):) p n
+(    d = i.__dict__) N
+(    name = i.__class__.__name__) N
+(    ) S
+(return) K
+( name+') p
+({) str
+('+') p
+( ) str
+('.join\([') p
+(:%s %s) str
+(' % \(k,pretty\(d[k]\)\) ) p n
+(                     ) S
+(for) K
+( k ) p
+(in) K
+( i.show\(\)]\)+ ') p
+(}) str
+(') p n
+(  ) S
+(def) K
+( show\(i\):) p n
+(    ) S
+(return) K
+( [k ) p
+(for) K
+( k ) p
+(in) K
+( sorted\(i.__dict__.keys\(\)\) ) p n
+(            ) S
+(if) K
+( ) p
+(\330) sy
+( ") p
+(_) str
+(" ) p
+(in) K
+( k]) p n
+(""") N
+() str n
+(Misc functions:) N
+() N
+(""") p n
+(rand = random.random) N
+(any  = random.choice) N
+(seed = random.seed) N
+(exp  = ) S
+(lambda) K
+( n: math.e**n) p n
+(ln   = ) S
+(lambda) K
+( n: math.log\(n,math.e\)) p n
+(g    = ) S
+(lambda) K
+( n: round\(n,2\)) p n
+() N
+(def) K
+( median\(lst,ordered=False\):) p n
+(  ) S
+(if) K
+( ) p
+(\330) sy
+( ordered: lst= sorted\(lst\)) p n
+(  n = len\(lst\)) N
+(  p = n//2) N
+(  ) S
+(if) K
+( n % 2: ) p
+(return) K
+( lst[p]) p n
+(  q = p - 1) N
+(  q = max\(0,min\(q,n\)\)) N
+(  ) S
+(return) K
+( \(lst[p] + lst[q]\)/2) p n
+() N
+(def) K
+( msecs\(f\):) p n
+(  ) S
+(import) K
+( time) p n
+(  t1 = time.time\(\)) N
+(  f\(\)) N
+(  ) S
+(return) K
+( \(time.time\(\) - t1\) * 1000) p n
+() N
+(def) K
+( pairs\(lst\):) p n
+(  ") S
+(Return all pairs of items i,i+1 from a list.) str
+(") p n
+(  last=lst[0]) N
+(  ) S
+(for) K
+( i ) p
+(in) K
+( lst[1:]:) p n
+(    yield last,i) N
+(    last = i) N
+() N
+(def) K
+( xtile\(lst,lo=0,hi=100,width=50,) p n
+(             chops=[0.1 ,0.3,0.5,0.7,0.9],) N
+(             marks=[") S
+(-) str
+(" ,") p
+( ) str
+(",") p
+( ) str
+(",") p
+(-) str
+(",") p
+( ) str
+("],) p n
+(             bar=") S
+(|) str
+(",star=") p
+(*) str
+(",show=") p
+( %3.0f) str
+("\):) p n
+(  """) S
+(The function _xtile_ takes a list of \(possibly\)) str n
+(  unsorted numbers and presents them as a horizontal) N
+(  xtile chart \(in ascii format\). The default is a ) N
+(  contracted _quintile_ that shows the ) N
+(  10,30,50,70,90 breaks in the data \(but this can be ) N
+(  changed- see the optional flags of the function\).) N
+(  ) S
+(""") p n
+(  ) S
+(def) K
+( pos\(p\)   : ) p
+(return) K
+( ordered[int\(len\(lst\)*p\)]) p n
+(  ) S
+(def) K
+( place\(x\) : ) p n
+(    ) S
+(return) K
+( int\(width*float\(\(x - lo\)\)/\(hi - lo+0.00001\)\)) p n
+(  ) S
+(def) K
+( pretty\(lst\) : ) p n
+(    ) S
+(return) K
+( ') p
+(, ) str
+('.join\([show % x ) p
+(for) K
+( x ) p
+(in) K
+( lst]\)) p n
+(  ordered = sorted\(lst\)) N
+(  lo      = min\(lo,ordered[0]\)) N
+(  hi      = max\(hi,ordered[-1]\)) N
+(  what    = [pos\(p\)   ) S
+(for) K
+( p ) p
+(in) K
+( chops]) p n
+(  where   = [place\(n\) ) S
+(for) K
+( n ) p
+(in) K
+(  what]) p n
+(  out     = [") S
+( ) str
+("] * width) p n
+(  ) S
+(for) K
+( one,two ) p
+(in) K
+( pairs\(where\):) p n
+(    ) S
+(for) K
+( i ) p
+(in) K
+( range\(one,two\): ) p n
+(      out[i] = marks[0]) N
+(    marks = marks[1:]) N
+(  out[int\(width/2\)]    = bar) N
+(  out[place\(pos\(0.5\)\)] = star ) N
+(  ) S
+(return) K
+( ') p
+(\() str
+('+''.join\(out\) +  ") p
+(\),) str
+(" +  pretty\(what\)) p n
+() N
+(csc710sbse: HW3:Theisen) (Page 1/6) (Sep 27, 14 18:12) title
+border
+/v 1 store
+/x0 x v get 2.299820 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(def) K
+( _tileX\(\) :) p n
+(  ) S
+(import) K
+( random) p n
+(  random.seed\(1\)) N
+(  nums = [random.random\(\)**2 ) S
+(for) K
+( _ ) p
+(in) K
+( range\(100\)]) p n
+(  ) S
+(print) K
+( xtile\(nums,lo=0,hi=1.0,width=25,show=") p
+( %5.2f) str
+("\)) p n
+(""") N
+() str n
+(### Standard Accumulator for Numbers) N
+() N
+(Note the _lt_ method: this accumulator can be sorted by median values.) N
+() N
+(Warning: this accumulator keeps _all_ numbers. Might be better to use) N
+(a bounded cache.) N
+() N
+(""") p n
+(class) K
+( Num:) p n
+(  ") S
+(An Accumulator for numbers) str
+(") p n
+(  ) S
+(def) K
+( __init__\(i,name,inits=[]\): ) p n
+(    i.n = i.m2 = i.mu = 0.0) N
+(    i.all=[]) N
+(    i._median=None) N
+(    i.name = name) N
+(    i.rank = 0) N
+(    ) S
+(for) K
+( x ) p
+(in) K
+( inits: i.add\(x\)) p n
+(  ) S
+(def) K
+( s\(i\)       : ) p
+(return) K
+( \(i.m2/\(i.n - 1\)\)**0.5) p n
+(  ) S
+(def) K
+( add\(i,x\):) p n
+(    i._median=None) N
+(    i.n   += 1   ) N
+(    i.all += [x]) N
+(    delta  = x - i.mu) N
+(    i.mu  += delta*1.0/i.n) N
+(    i.m2  += delta*\(x - i.mu\)) N
+(  ) S
+(def) K
+( __add__\(i,j\):) p n
+(    ) S
+(return) K
+( Num\(i.name + j.name,i.all + j.all\)) p n
+(  ) S
+(def) K
+( quartiles\(i\):) p n
+(    ) S
+(def) K
+( p\(x\) : ) p
+(return) K
+( int\(100*g\(xs[x]\)\)) p n
+(    i.median\(\)) N
+(    xs = i.all) N
+(    n  = int\(len\(xs\)*0.25\)) N
+(    ) S
+(return) K
+( p\(n\) , p\(2*n\) , p\(3*n\)) p n
+(  ) S
+(def) K
+( median\(i\):) p n
+(    ) S
+(if) K
+( ) p
+(\330) sy
+( i._median:) p n
+(      i.all = sorted\(i.all\)) N
+(      i._median=median\(i.all\)) N
+(    ) S
+(return) K
+( i._median) p n
+(  ) S
+(def) K
+( __lt__\(i,j\):) p n
+(    ) S
+(return) K
+( i.median\(\) < j.median\(\) ) p n
+(  ) S
+(def) K
+( spread\(i\):) p n
+(    i.all=sorted\(i.all\)) N
+(    n1=i.n*0.25) N
+(    n2=i.n*0.75) N
+(    ) S
+(if) K
+( len\(i.all\) ) p
+(\243) sy
+( 1:) p n
+(      ) S
+(return) K
+( 0) p n
+(    ) S
+(if) K
+( len\(i.all\) ) p
+(\272) sy
+( 2:) p n
+(      ) S
+(return) K
+( i.all[1] - i.all[0]) p n
+(    ) S
+(else) K
+(:) p n
+(      ) S
+(return) K
+( i.all[int\(n2\)] - i.all[int\(n1\)]) p n
+() N
+() N
+(""") N
+() str n
+(### The A12 Effect Size Test ) N
+() N
+(""") p n
+(def) K
+( a12slow\(lst1,lst2\):) p n
+(  ") S
+(how often is x in lst1 more than y in lst2?) str
+(") p n
+(  more = same = 0.0) N
+(  ) S
+(for) K
+( x ) p
+(in) K
+( lst1:) p n
+(    ) S
+(for) K
+( y ) p
+(in) K
+( lst2:) p n
+(      ) S
+(if) K
+(    x ) p
+(\272) sy
+( y : same += 1) p n
+(      ) S
+(elif) K
+(  x >  y : more += 1) p n
+(  x= \(more + 0.5*same\) / \(len\(lst1\)*len\(lst2\)\)) N
+(  ) S
+(return) K
+( x) p n
+() N
+(def) K
+( a12\(lst1,lst2\):) p n
+(  ") S
+(how often is x in lst1 more than y in lst2?) str
+(") p n
+(  ) S
+(def) K
+( loop\(t,t1,t2\): ) p n
+(    ) S
+(while) K
+( t1.j < t1.n ) p
+(\331) sy
+( t2.j < t2.n:) p n
+(      h1 = t1.l[t1.j]) N
+(      h2 = t2.l[t2.j]) N
+(      h3 = t2.l[t2.j+1] ) S
+(if) K
+( t2.j+1 < t2.n ) p
+(else) K
+( None ) p n
+(      ) S
+(if) K
+( h1>  h2:) p n
+(        t1.j  += 1; t1.gt += t2.n - t2.j) N
+(      ) S
+(elif) K
+( h1 ) p
+(\272) sy
+( h2:) p n
+(        ) S
+(if) K
+( h3 ) p
+(\331) sy
+( h1 > h3 :) p n
+(            t1.gt += t2.n - t2.j  - 1) N
+(        t1.j  += 1; t1.eq += 1; t2.eq += 1) N
+(      ) S
+(else) K
+(:) p n
+(        t2,t1  = t1,t2) N
+(    ) S
+(return) K
+( t.gt*1.0, t.eq*1.0) p n
+(  ) S
+(#--------------------------) c n
+(  lst1 = sorted\(lst1, reverse=True\)) p n
+(  lst2 = sorted\(lst2, reverse=True\)) N
+(  n1   = len\(lst1\)) N
+(  n2   = len\(lst2\)) N
+(csc710sbse: HW3:Theisen) (Page 2/6) (Sep 27, 14 18:12) title
+border
+grestore
+(Printed by Christopher Theisen) rhead
+(./HW3/files/sk.py) (4/16) (Saturday September 27, 2014) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (3-4) 5
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 2.299820 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(  t1   = o\(l=lst1,j=0,eq=0,gt=0,n=n1\)) p n
+(  t2   = o\(l=lst2,j=0,eq=0,gt=0,n=n2\)) N
+(  gt,eq= loop\(t1, t1, t2\)) N
+(  ) S
+(return) K
+( gt/\(n1*n2\) + eq/2/\(n1*n2\)) p n
+() N
+(def) K
+( _a12\(\):) p n
+(  ) S
+(def) K
+( f1\(\): ) p
+(return) K
+( a12slow\(l1,l2\)) p n
+(  ) S
+(def) K
+( f2\(\): ) p
+(return) K
+( a12\(l1,l2\)) p n
+(  ) S
+(for) K
+( n ) p
+(in) K
+( [100,200,400,800,1600,3200,6400]:) p n
+(    l1 = [rand\(\) ) S
+(for) K
+( _ ) p
+(in) K
+( xrange\(n\)]) p n
+(    l2 = [rand\(\) ) S
+(for) K
+( _ ) p
+(in) K
+( xrange\(n\)]) p n
+(    t1 = msecs\(f1\)) N
+(    t2 = msecs\(f2\)) N
+(    ) S
+(print) K
+( n, g\(f1\(\)\),g\(f2\(\)\),int\(\(t1/t2\)\)) p n
+() N
+() N
+(""") S
+(Output:) str n
+() N
+(````) N
+(n   a12\(fast\)       a12\(slow\)       tfast / tslow) N
+(--- --------------- -------------- --------------) N
+(100  0.53           0.53               4) N
+(200  0.48           0.48               6) N
+(400  0.49           0.49              28) N
+(800  0.5            0.5               26) N
+(1600 0.51           0.51              72) N
+(3200 0.49           0.49             109) N
+(6400 0.5            0.5              244) N
+(````) N
+() N
+() N
+(## Non-Parametric Hypothesis Testing) N
+() N
+(The following _bootstrap_ method was introduced in) N
+(1979 by Bradley Efron at Stanford University. It) N
+(was inspired by earlier work on the) N
+(jackknife.) N
+(Improved estimates of the variance were [developed later][efron01].  ) N
+() N
+([efron01]: http://goo.gl/14n8Wf ) S
+("Bradley Efron ) p
+(\331) sy
+( R.J. Tibshirani. An Introduction to the Bootstrap \(Chapman & Hall/CRC M) p n
+() str n
+() N
+(To check if two populations _\(y0,z0\)_) N
+(are different, many times sample with replacement) N
+(from both to generate _\(y1,z1\), \(y2,z2\), \(y3,z3\)_.. etc.) N
+() N
+(""") p n
+(def) K
+( sampleWithReplacement\(lst\):) p n
+(  ") S
+(returns a list same size as list) str
+(") p n
+(  ) S
+(def) K
+( any\(n\)  : ) p
+(return) K
+( random.uniform\(0,n\)) p n
+(  ) S
+(def) K
+( one\(lst\): ) p
+(return) K
+( lst[ int\(any\(len\(lst\)\)\) ]) p n
+(  ) S
+(return) K
+( [one\(lst\) ) p
+(for) K
+( _ ) p
+(in) K
+( lst]) p n
+(""") N
+() str n
+() N
+(Then, for all those samples,) N
+( check if some *testStatistic* in the original pair) N
+(hold for all the other pairs. If it does more than \(say\) 99%) N
+(of the time, then we are 99% confident in that the) N
+(populations are the same.) N
+() N
+(In such a _bootstrap_ hypothesis test, the *some property*) N
+(is the difference between the two populations, muted by the) N
+(joint standard deviation of the populations.) N
+() N
+(""") p n
+(def) K
+( testStatistic\(y,z\): ) p n
+(    """) S
+(Checks if two means are different, tempered) str n
+(     by the sample size of 'y' and 'z') S
+(""") p n
+(    tmp1 = tmp2 = 0) N
+(    ) S
+(for) K
+( y1 ) p
+(in) K
+( y.all: tmp1 += \(y1 - y.mu\)**2 ) p n
+(    ) S
+(for) K
+( z1 ) p
+(in) K
+( z.all: tmp2 += \(z1 - z.mu\)**2) p n
+(    s1    = \(float\(tmp1\)/\(y.n - 1\)\)**0.5) N
+(    s2    = \(float\(tmp2\)/\(z.n - 1\)\)**0.5) N
+(    delta = z.mu - y.mu) N
+(    ) S
+(if) K
+( s1+s2:) p n
+(      delta =  delta/\(\(s1/y.n + s2/z.n\)**0.5\)) N
+(    ) S
+(return) K
+( delta) p n
+(""") N
+() str n
+(The rest is just details:) N
+() N
+(+ Efron advises) N
+(  to make the mean of the populations the same \(see) N
+(  the _yhat,zhat_ stuff shown below\).) N
+(+ The class _total_ is a just a quick and dirty accumulation class.) N
+(+ For more details see [the Efron text][efron01].  ) N
+() N
+(""") p n
+(def) K
+( bootstrap\(y0,z0,conf=0.01,b=1000\):) p n
+(  """) S
+(The bootstrap hypothesis test from) str n
+(     p220 to 223 of Efron's book 'An) N
+(    introduction to the boostrap.) S
+(""") p n
+(  ) S
+(class) K
+( total\(\):) p n
+(    ") S
+(quick and dirty data collector) str
+(") p n
+(csc710sbse: HW3:Theisen) (Page 3/6) (Sep 27, 14 18:12) title
+border
+/v 1 store
+/x0 x v get 2.299820 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(    ) p
+(def) K
+( __init__\(i,some=[]\):) p n
+(      i.sum = i.n = i.mu = 0 ; i.all=[]) N
+(      ) S
+(for) K
+( one ) p
+(in) K
+( some: i.put\(one\)) p n
+(    ) S
+(def) K
+( put\(i,x\):) p n
+(      i.all.append\(x\);) N
+(      i.sum +=x; i.n += 1; i.mu = float\(i.sum\)/i.n) N
+(    ) S
+(def) K
+( __add__\(i1,i2\): ) p
+(return) K
+( total\(i1.all + i2.all\)) p n
+(  y, z   = total\(y0\), total\(z0\)) N
+(  x      = y + z) N
+(  tobs   = testStatistic\(y,z\)) N
+(  yhat   = [y1 - y.mu + x.mu ) S
+(for) K
+( y1 ) p
+(in) K
+( y.all]) p n
+(  zhat   = [z1 - z.mu + x.mu ) S
+(for) K
+( z1 ) p
+(in) K
+( z.all]) p n
+(  bigger = 0.0) N
+(  ) S
+(for) K
+( i ) p
+(in) K
+( range\(b\):) p n
+(    ) S
+(if) K
+( testStatistic\(total\(sampleWithReplacement\(yhat\)\),) p n
+(                     total\(sampleWithReplacement\(zhat\)\)\) > tobs:) N
+(      bigger += 1) N
+(  ) S
+(return) K
+( bigger / b < conf) p n
+(""") N
+() str n
+(#### Examples) N
+() N
+(""") p n
+(def) K
+( _bootstraped\(\): ) p n
+(  ) S
+(def) K
+( worker\(n=1000,) p n
+(             mu1=10,  sigma1=1,) N
+(             mu2=10.2, sigma2=1\):) N
+(    ) S
+(def) K
+( g\(mu,sigma\) : ) p
+(return) K
+( random.gauss\(mu,sigma\)) p n
+(    x = [g\(mu1,sigma1\) ) S
+(for) K
+( i ) p
+(in) K
+( range\(n\)]) p n
+(    y = [g\(mu2,sigma2\) ) S
+(for) K
+( i ) p
+(in) K
+( range\(n\)]) p n
+(    ) S
+(return) K
+( n,mu1,sigma1,mu2,sigma2,\\) p n
+(        ') S
+(different) str
+(' ) p
+(if) K
+( bootstrap\(x,y\) ) p
+(else) K
+( ') p
+(same) str
+(') p n
+(  ) S
+(# very different means, same std) c n
+(  ) p
+(print) K
+( worker\(mu1=10, sigma1=10, ) p n
+(               mu2=100, sigma2=10\)) N
+(  ) S
+(# similar means and std) c n
+(  ) p
+(print) K
+( worker\(mu1= 10.1, sigma1=1, ) p n
+(               mu2= 10.2, sigma2=1\)) N
+(  ) S
+(# slightly different means, same std) c n
+(  ) p
+(print) K
+( worker\(mu1= 10.1, sigma1= 1, ) p n
+(               mu2= 10.8, sigma2= 1\)) N
+(  ) S
+(# different in mu eater by large std) c n
+(  ) p
+(print) K
+( worker\(mu1= 10.1, sigma1= 10, ) p n
+(               mu2= 10.8, sigma2= 1\)) N
+(""") N
+() str n
+(Output:) N
+() N
+(````) N
+(_bootstraped\(\)) N
+() N
+(\(1000, 10, 10, 100, 10, 'different'\)) N
+(\(1000, 10.1, 1, 10.2, 1, 'same'\)) N
+(\(1000, 10.1, 1, 10.8, 1, 'different'\)) N
+(\(1000, 10.1, 10, 10.8, 1, 'same'\)) N
+(````) N
+() N
+(Warning- the above took 8 seconds to generate since we used 1000 bootstraps.) N
+(As to how many bootstraps are enough, that depends on the data. There are) N
+(results saying 200 to 400 are enough but, since I am  suspicious man, I run it for 1000.) N
+() N
+(Which means the runtimes associated with bootstrapping is a significant issue.) N
+(To reduce that runtime, I avoid things like an all-pairs comparison of all treatments) N
+(\(see below: Scott-knott\).  Also, BEFORE I do the boostrap, I first run) N
+(the effect size test \(and only go to bootstrapping in effect size passes:) N
+() N
+(""") p n
+(def) K
+( different\(l1,l2\):) p n
+(  ) S
+(#return bootstrap\(l1,l2\) and a12\(l2,l1\)) c n
+(  ) p
+(return) K
+( a12\(l2,l1\) ) p
+(\331) sy
+( bootstrap\(l1,l2\)) p n
+() N
+(""") N
+() str n
+(## Saner Hypothesis Testing) N
+() N
+(The following code, which you should use verbatim does the following:) N
+() N
+() N
+(+ All treatments are clustered into _ranks_. In practice, dozens) N
+(  of treatments end up generating just a handful of ranks.) N
+(+ The numbers of calls to the hypothesis tests are minimized:) N
+(    + Treatments are sorted by their median value.) N
+(    + Treatments are divided into two groups such that the) N
+(      expected value of the mean values _after_ the split is minimized;) N
+(    + Hypothesis tests are called to test if the two groups are truly difference.) N
+(          + All hypothesis tests are non-parametric and include \(1\) effect size tests) N
+(            and \(2\) tests for statistically significant numbers;) N
+(          + Slow bootstraps are executed  if the faster _A12_ tests are passed;) N
+() N
+(In practice, this means that the hypothesis tests \(with confidence of say, 95%\)) N
+(are called on only a logarithmic number of times. So...) N
+() N
+(+ With this method, 16 treatments can be studied using less than _&sum;<sub>1,2,4,8,16</sub>log<sub>2</sub>i =15_ hypothesis tests  and confidence _0.99<sup) N
+(+ But if did this with the 120 all-pairs comparisons of the 16 treatments, we would have total confidence _0.99<sup>120</sup>=0.30.) N
+() N
+(csc710sbse: HW3:Theisen) (Page 4/6) (Sep 27, 14 18:12) title
+border
+grestore
+(Printed by Christopher Theisen) rhead
+(./HW3/files/sk.py) (5/16) (Saturday September 27, 2014) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (5-6) 6
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 2.299820 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(For examples on using this code, see _rdivDemo_ \(below\).) str n
+() N
+(""") p n
+(def) K
+( scottknott\(data,cohen=0.3,small=3, useA12=False,epsilon=0.01\):) p n
+(  """) S
+(Recursively split data, maximizing delta of) str n
+(  the expected value of the mean before and ) N
+(  after the splits. ) N
+(  Reject splits with under 3 items) S
+(""") p n
+(  all  = reduce\() S
+(lambda) K
+( x,y:x+y,data\)) p n
+(  same = ) S
+(lambda) K
+( l,r: abs\(l.median\(\) - r.median\(\)\) ) p
+(\243) sy
+( all.s\(\)*cohen) p n
+(  ) S
+(if) K
+( useA12: ) p n
+(    same = ) S
+(lambda) K
+( l, r:   ) p
+(\330) sy
+( different\(l.all,r.all\) ) p n
+(  big  = ) S
+(lambda) K
+(    n: n > small    ) p n
+(  ) S
+(return) K
+( rdiv\(data,all,minMu,big,same,epsilon\)) p n
+() N
+(def) K
+( rdiv\(data,  ) p
+(# a list of class Nums) c n
+(         all,   ) p
+(# all the data combined into one num) c n
+(         div,   ) p
+(# function: find the best split) c n
+(         big,   ) p
+(# function: rejects small splits) c n
+(         same, ) p
+(# function: rejects similar splits) c n
+(         epsilon\): ) p
+(# small enough to split two parts) c n
+(  """) p
+(Looks for ways to split sorted data, ) str n
+(  Recurses into each split. Assigns a 'rank' number) N
+(  to all the leaf splits found in this way. ) N
+(  ) S
+(""") p n
+(  ) S
+(def) K
+( recurse\(parts,all,rank=0\):) p n
+(    ") S
+(Split, then recurse on each part.) str
+(") p n
+(    cut,left,right = maybeIgnore\(div\(parts,all,big,epsilon\),) N
+(                                 same,parts\)) N
+(    ) S
+(if) K
+( cut: ) p n
+(      ) S
+(# if cut, rank "right" higher than "left") c n
+(      rank = recurse\(parts[:cut],left,rank\) + 1) p n
+(      rank = recurse\(parts[cut:],right,rank\)) N
+(    ) S
+(else) K
+(: ) p n
+(      ) S
+(# if no cut, then all get same rank) c n
+(      ) p
+(for) K
+( part ) p
+(in) K
+( parts: ) p n
+(        part.rank = rank) N
+(    ) S
+(return) K
+( rank) p n
+(  recurse\(sorted\(data\),all\)) N
+(  ) S
+(return) K
+( data) p n
+() N
+(def) K
+( maybeIgnore\(\(cut,left,right\), same,parts\):) p n
+(  ) S
+(if) K
+( cut:) p n
+(    ) S
+(if) K
+( same\(sum\(parts[:cut],Num\(') p
+(upto) str
+('\)\),) p n
+(            sum\(parts[cut:],Num\(') S
+(above) str
+('\)\)\):    ) p n
+(      cut = left = right = None) N
+(  ) S
+(return) K
+( cut,left,right) p n
+() N
+(def) K
+( minMu\(parts,all,big,epsilon\):) p n
+(  """) S
+(Find a cut in the parts that maximizes) str n
+(  the expected value of the difference in) N
+(  the mean before and after the cut.) N
+(  Reject splits that are insignificantly) N
+(  different or that generate very small subsets.) N
+(  ) S
+(""") p n
+(  cut,left,right = None,None,None) N
+(  before, mu     =  0, all.mu) N
+(  ) S
+(for) K
+( i,l,r ) p
+(in) K
+( leftRight\(parts,epsilon\):) p n
+(    ) S
+(if) K
+( big\(l.n\) ) p
+(\331) sy
+( big\(r.n\):) p n
+(      n   = all.n * 1.0) N
+(      now = l.n/n*\(mu- l.mu\)**2 + r.n/n*\(mu- r.mu\)**2  ) N
+(      ) S
+(if) K
+( now > before:) p n
+(        before,cut,left,right = now,i,l,r) N
+(  ) S
+(return) K
+( cut,left,right) p n
+() N
+(def) K
+( leftRight\(parts,epsilon=0.01\):) p n
+(  """) S
+(Iterator. For all items in 'parts',) str n
+(  return everything to the left and everything) N
+(  from here to the end. For reasons of) N
+(  efficiency, take a first pass over the data) N
+(  to pre-compute and cache right-hand-sides) N
+(  ) S
+(""") p n
+(  rights = {}) N
+(  n = j = len\(parts\) - 1) N
+(  ) S
+(while) K
+( j > 0:) p n
+(    rights[j] = parts[j]) N
+(    ) S
+(if) K
+( j < n: rights[j] += rights[j+1]) p n
+(    j -=1) N
+(  left = parts[0]) N
+(  ) S
+(for) K
+( i,one ) p
+(in) K
+( enumerate\(parts\):) p n
+(    ) S
+(if) K
+( i> 0: ) p n
+(      ) S
+(if) K
+( parts[i]._median - parts[i-1]._median > epsilon:) p n
+(        yield i,left,rights[i]) N
+(      left += one) N
+(""") N
+() str n
+(## Putting it All Together) N
+() N
+(Driver for the demos:) N
+() N
+(""") p n
+(def) K
+( rdivDemo\(data\):) p n
+(  ) S
+(def) K
+( z\(x\):) p n
+(    ) S
+(return) K
+( int\(100 * \(x - lo\) / \(hi - lo + 0.00001\)\)) p n
+(  data = map\() S
+(lambda) K
+( lst:Num\(lst[0],lst[1:]\),) p n
+(csc710sbse: HW3:Theisen) (Page 5/6) (Sep 27, 14 18:12) title
+border
+/v 1 store
+/x0 x v get 2.299820 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(             data\)) p n
+(  ) S
+(print) K
+( "") p n
+(  ranks=[]) N
+(  ) S
+(for) K
+( x ) p
+(in) K
+( scottknott\(data,useA12=True\):) p n
+(    ranks += [\(x.rank,x.median\(\),x\)]) N
+(  all=[]) N
+(  ) S
+(for) K
+( _,__,x ) p
+(in) K
+( sorted\(ranks\): all += x.all) p n
+(  all = sorted\(all\)) N
+(  lo, hi = all[0], all[-1]) N
+(  line = ") S
+(----------------------------------------------------) str
+(") p n
+(  last = None) N
+(  ) S
+(print) K
+(  \(') p
+(%4s , %8s ,    %s   , %4s ) str
+(' % \\) p n
+(               \(') S
+(rank) str
+(', ') p
+(name) str
+(', ') p
+(med) str
+(', ') p
+(iqr) str
+('\)\)+ ") p
+(\\n) str
+("+ line) p n
+(  ) S
+(for) K
+( _,__,x ) p
+(in) K
+( sorted\(ranks\):) p n
+(    q1,q2,q3 = x.quartiles\(\)) N
+(    ) S
+(print) K
+(  \(') p
+(%4s , %8s ,    %4s  ,  %4s ) str
+(' % \\) p n
+(                 \(x.rank+1, x.name, q2, q3 - q1\)\)  + \\) N
+(              xtile\(x.all,lo=lo,hi=hi,width=30,show=") S
+(%5.2f) str
+("\)) p n
+(    last = x.rank ) S
+(csc710sbse: HW3:Theisen) (Page 6/6) (Sep 27, 14 18:12) title
+border
+grestore
+(Printed by Christopher Theisen) rhead
+(./HW3/files/sk.py) (6/16) (Saturday September 27, 2014) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (1) 7
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 2.299820 add sx cw mul add store
 /y0 y v get bfs th add sub store
 x0 y0 moveto
 (#From Class Discussion 8/26/2014) c n
@@ -1063,11 +2201,11 @@ x0 y0 moveto
 border
 grestore
 (Printed by Christopher Theisen) rhead
-(./HW3/files/utils.py) (4/13) (Tuesday September 23, 2014) footer
+(./HW3/files/utils.py) (7/16) (Saturday September 27, 2014) footer
 end % of iso1dict
 pagesave restore
 showpage
-%%Page: (1) 5
+%%Page: (1) 8
 %%BeginPageSetup
 /pagesave save def
 sh 0 translate 90 rotate
@@ -1076,7 +2214,7 @@ iso1dict begin
 gsave
 llx lly 12 add translate
 /v 0 store
-/x0 x v get 2.803063 add sx cw mul add store
+/x0 x v get 2.299820 add sx cw mul add store
 /y0 y v get bfs th add sub store
 x0 y0 moveto
 (from) K
@@ -1091,11 +2229,11 @@ x0 y0 moveto
 border
 grestore
 (Printed by Christopher Theisen) rhead
-(./HW3/files/searchers/__init__.py) (5/13) (Tuesday September 23, 2014) footer
+(./HW3/files/searchers/__init__.py) (8/16) (Saturday September 27, 2014) footer
 end % of iso1dict
 pagesave restore
 showpage
-%%Page: (1) 6
+%%Page: (1) 9
 %%BeginPageSetup
 /pagesave save def
 sh 0 translate 90 rotate
@@ -1104,7 +2242,7 @@ iso1dict begin
 gsave
 llx lly 12 add translate
 /v 0 store
-/x0 x v get 2.803063 add sx cw mul add store
+/x0 x v get 2.299820 add sx cw mul add store
 /y0 y v get bfs th add sub store
 x0 y0 moveto
 (#Structure from SA Lecture) c n
@@ -1122,9 +2260,6 @@ x0 y0 moveto
 (class) K
 ( MWS:) p n
 (  debug = False) N
-(  name = ") S
-(MaxWalkSat) str
-(") p n
 (  ) N
 (  ) S
 (def) K
@@ -1260,15 +2395,15 @@ x0 y0 moveto
 (", myOpt.mws_threshold, ") p
 (Slices:) str
 (", myOpt.mws_slices ) p
-(csc710sbse: HW3:Theisen) (Page 1/1) (Sep 23, 14 2:10) title
+(csc710sbse: HW3:Theisen) (Page 1/1) (Sep 27, 14 17:50) title
 border
 grestore
 (Printed by Christopher Theisen) rhead
-(./HW3/files/searchers/max_walk_sat.py) (6/13) (Tuesday September 23, 2014) footer
+(./HW3/files/searchers/max_walk_sat.py) (9/16) (Saturday September 27, 2014) footer
 end % of iso1dict
 pagesave restore
 showpage
-%%Page: (1) 7
+%%Page: (1) 10
 %%BeginPageSetup
 /pagesave save def
 sh 0 translate 90 rotate
@@ -1277,7 +2412,7 @@ iso1dict begin
 gsave
 llx lly 12 add translate
 /v 0 store
-/x0 x v get 2.803063 add sx cw mul add store
+/x0 x v get 2.299820 add sx cw mul add store
 /y0 y v get bfs th add sub store
 x0 y0 moveto
 (#Structure from SA Lecture) c n
@@ -1293,10 +2428,6 @@ x0 y0 moveto
 () N
 (class) K
 ( SA:) p n
-(  name = ") S
-(SA) str
-(") p n
-(  ) N
 (  ) S
 (def) K
 ( say\(self, x\): ) p n
@@ -1409,15 +2540,15 @@ x0 y0 moveto
 (", myOpt.sa_kmax, ") p
 (Cooling:) str
 (", myOpt.sa_cooling) p
-(csc710sbse: HW3:Theisen) (Page 1/1) (Sep 23, 14 2:10) title
+(csc710sbse: HW3:Theisen) (Page 1/1) (Sep 27, 14 17:50) title
 border
 grestore
 (Printed by Christopher Theisen) rhead
-(./HW3/files/searchers/sim_anneal.py) (7/13) (Tuesday September 23, 2014) footer
+(./HW3/files/searchers/sim_anneal.py) (10/16) (Saturday September 27, 2014) footer
 end % of iso1dict
 pagesave restore
 showpage
-%%Page: (1) 8
+%%Page: (1) 11
 %%BeginPageSetup
 /pagesave save def
 sh 0 translate 90 rotate
@@ -1426,7 +2557,7 @@ iso1dict begin
 gsave
 llx lly 12 add translate
 /v 0 store
-/x0 x v get 2.803063 add sx cw mul add store
+/x0 x v get 2.299820 add sx cw mul add store
 /y0 y v get bfs th add sub store
 x0 y0 moveto
 (#From Class Discussion 8/26/2014) c n
@@ -1502,11 +2633,11 @@ x0 y0 moveto
 border
 grestore
 (Printed by Christopher Theisen) rhead
-(./HW3/files/models/ZDT1_model.py) (8/13) (Tuesday September 23, 2014) footer
+(./HW3/files/models/ZDT1_model.py) (11/16) (Saturday September 27, 2014) footer
 end % of iso1dict
 pagesave restore
 showpage
-%%Page: (1) 9
+%%Page: (1) 12
 %%BeginPageSetup
 /pagesave save def
 sh 0 translate 90 rotate
@@ -1515,7 +2646,7 @@ iso1dict begin
 gsave
 llx lly 12 add translate
 /v 0 store
-/x0 x v get 2.803063 add sx cw mul add store
+/x0 x v get 2.299820 add sx cw mul add store
 /y0 y v get bfs th add sub store
 x0 y0 moveto
 (from) K
@@ -1538,11 +2669,11 @@ x0 y0 moveto
 border
 grestore
 (Printed by Christopher Theisen) rhead
-(./HW3/files/models/__init__.py) (9/13) (Tuesday September 23, 2014) footer
+(./HW3/files/models/__init__.py) (12/16) (Saturday September 27, 2014) footer
 end % of iso1dict
 pagesave restore
 showpage
-%%Page: (1) 10
+%%Page: (1) 13
 %%BeginPageSetup
 /pagesave save def
 sh 0 translate 90 rotate
@@ -1551,7 +2682,7 @@ iso1dict begin
 gsave
 llx lly 12 add translate
 /v 0 store
-/x0 x v get 2.803063 add sx cw mul add store
+/x0 x v get 2.299820 add sx cw mul add store
 /y0 y v get bfs th add sub store
 x0 y0 moveto
 (#From Class Discussion 8/26/2014) c n
@@ -1631,11 +2762,11 @@ x0 y0 moveto
 border
 grestore
 (Printed by Christopher Theisen) rhead
-(./HW3/files/models/fonseca_model.py) (10/13) (Tuesday September 23, 2014) footer
+(./HW3/files/models/fonseca_model.py) (13/16) (Saturday September 27, 2014) footer
 end % of iso1dict
 pagesave restore
 showpage
-%%Page: (1) 11
+%%Page: (1) 14
 %%BeginPageSetup
 /pagesave save def
 sh 0 translate 90 rotate
@@ -1644,7 +2775,7 @@ iso1dict begin
 gsave
 llx lly 12 add translate
 /v 0 store
-/x0 x v get 2.803063 add sx cw mul add store
+/x0 x v get 2.299820 add sx cw mul add store
 /y0 y v get bfs th add sub store
 x0 y0 moveto
 (#From Class Discussion 8/26/2014) c n
@@ -1730,11 +2861,11 @@ x0 y0 moveto
 border
 grestore
 (Printed by Christopher Theisen) rhead
-(./HW3/files/models/kursawe_model.py) (11/13) (Tuesday September 23, 2014) footer
+(./HW3/files/models/kursawe_model.py) (14/16) (Saturday September 27, 2014) footer
 end % of iso1dict
 pagesave restore
 showpage
-%%Page: (1) 12
+%%Page: (1) 15
 %%BeginPageSetup
 /pagesave save def
 sh 0 translate 90 rotate
@@ -1743,7 +2874,7 @@ iso1dict begin
 gsave
 llx lly 12 add translate
 /v 0 store
-/x0 x v get 2.803063 add sx cw mul add store
+/x0 x v get 2.299820 add sx cw mul add store
 /y0 y v get bfs th add sub store
 x0 y0 moveto
 (#From Class Discussion 8/26/2014) c n
@@ -1875,11 +3006,11 @@ x0 y0 moveto
 border
 grestore
 (Printed by Christopher Theisen) rhead
-(./HW3/files/models/model_base.py) (12/13) (Tuesday September 23, 2014) footer
+(./HW3/files/models/model_base.py) (15/16) (Saturday September 27, 2014) footer
 end % of iso1dict
 pagesave restore
 showpage
-%%Page: (1) 13
+%%Page: (1) 16
 %%BeginPageSetup
 /pagesave save def
 sh 0 translate 90 rotate
@@ -1888,7 +3019,7 @@ iso1dict begin
 gsave
 llx lly 12 add translate
 /v 0 store
-/x0 x v get 2.803063 add sx cw mul add store
+/x0 x v get 2.299820 add sx cw mul add store
 /y0 y v get bfs th add sub store
 x0 y0 moveto
 (#From Class Discussion 8/26/2014) c n
@@ -1953,7 +3084,7 @@ x0 y0 moveto
 border
 grestore
 (Printed by Christopher Theisen) rhead
-(./HW3/files/models/schaffer_model.py) (13/13) (Tuesday September 23, 2014) footer
+(./HW3/files/models/schaffer_model.py) (16/16) (Saturday September 27, 2014) footer
 end % of iso1dict
 pagesave restore
 showpage

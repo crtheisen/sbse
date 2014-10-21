@@ -38,7 +38,7 @@ class MWS:
           eBest = eNew
           XVarBest = list(fon.XVar)
           temp.append(eNew)
-          print xtile(temp,lo=0, hi=1, width=25,show=" %1.5f")
+          #print xtile(temp,lo=0, hi=1, width=25,show=" %1.5f")
           return eBest, XVarBest
         else:
           #modify random part of solution
@@ -54,8 +54,8 @@ class MWS:
             #print ''
             self.say(int(math.fabs(eNew-1)*100))
             self.say(' ')
-            print xtile(temp,lo=0, hi=1, width=25,show=" %1.5f")
-            #stop = analyze.EraStop(temp)
+            #print xtile(temp,lo=0, hi=1, width=25,show=" %1.5f")
+            stop = analyze.EraStop(temp)
             temp = []
       return -1, XVarBest
       

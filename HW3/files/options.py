@@ -10,7 +10,7 @@ class Options:
   seed = 1
   
   #MaxWalkSat options
-  mws_prob = 0.75
+  mws_prob = 0.5
   mws_maxTries = 500
   mws_maxChanges = 500
   mws_threshold = .000001

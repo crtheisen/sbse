@@ -13,7 +13,7 @@ from sk import *
 myOpt = Options()
 
 #Inspired by vivekaxl's display function
-def display(model, searcher, startTime, scores, r):
+def display(model, searcher, startTime, scores, r, prob):
   print "==============================================================="
   print "Model Name: ", model.__name__
   print "Searcher Name: ", searcher.__class__.__name__
@@ -34,21 +34,25 @@ def main(modelList, searcherList):
   for klass in modelList:
     classScoreList = []
     for searcher in searcherList:
-      fullScoreList = []
-      startTime = datetime.now()
-      scores = []
-      myKlass = klass()
-      mySearcher = searcher()
-      random.seed(myOpt.seed)
-      for _ in range(r):
-        result, valid = mySearcher.run(myKlass)
-        if valid == True:
-          scores.append(result)
-      display(klass, mySearcher, startTime, scores, len(scores))
-      fullScoreList.append(searcher.__name__)
-      for x in scores:
-        fullScoreList.append(x)
-      classScoreList.append(fullScoreList)
+      for loopTemp in [.25, .5, .75]:
+        fullScoreList = []
+        startTime = datetime.now()
+        scores = []
+        myKlass = klass()
+        mySearcher = searcher()
+        random.seed(myOpt.seed)
+        for _ in range(r):
+          result, valid = mySearcher.run(myKlass, loopTemp)
+          if valid == True:
+            scores.append(result)
+        display(klass, mySearcher, startTime, scores, len(scores), loopTemp)
+        fullScoreList.append(searcher.__name__)
+        for x in scores:
+          fullScoreList.append(x)
+        if scores:
+          classScoreList.append(fullScoreList)
+        if mySearcher.__class__.__name__ == "SA":
+          break
     print "Scott-Knott for", klass.__name__
     rdivDemo(classScoreList)
       
