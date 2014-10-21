@@ -10,11 +10,6 @@ Runs:  5
 Average per run (s):  0.5832562
 (*           |            ), 0.83001,  0.87830,  0.93800,  0.96973,  0.97983
 ===============================================================
-No Best Found for prob =  0.75
-No Best Found for prob =  0.75
-No Best Found for prob =  0.75
-No Best Found for prob =  0.75
-No Best Found for prob =  0.75
 ===============================================================
 Model Name:  Fonseca
 Searcher Name:  MWS
@@ -60,10 +55,6 @@ Runs:  5
 Average per run (s):  0.0277248
 (*           |            ), 0.00000,  0.00000,  0.00000,  0.00000,  0.00003
 ===============================================================
-No Best Found for prob =  0.75
-No Best Found for prob =  0.75
-No Best Found for prob =  0.75
-No Best Found for prob =  0.75
 ===============================================================
 Model Name:  Schaffer
 Searcher Name:  MWS
@@ -258,11 +249,6 @@ Runs:  5
 Average per run (s):  0.044327
 (*           |            ), 0.00093,  0.00102,  0.00218,  0.00222,  0.00516
 ===============================================================
-No Best Found for prob =  0.75
-No Best Found for prob =  0.75
-No Best Found for prob =  0.75
-No Best Found for prob =  0.75
-No Best Found for prob =  0.75
 ===============================================================
 Model Name:  Viennet3
 Searcher Name:  MWS

@@ -43,24 +43,27 @@ class DE:
       if(random.random() < myOpt.de_cf):
         solution.append(self.trim(x + myOpt.de_f*(y-z), one))
       else:
-        solution.append(one.XVar) 
+        solution.append(one.XVar[d]) 
+    
+    temp = copy.deepcopy(one)
+    temp.XVar = solution
 
-    return solution
+    return temp
 
   def update(self,frontier):
     #print "update %d"%len(frontier)
     newF = []
     total,n=0,0
+    e = 2
     for x in frontier:
       #print "update: %d"%n
       e = x.Energy()
-      print x.XVar
+      #print x.XVar
       new = self.extrapolate(frontier,x)
-      x.XVar = new
-      print new
-      eNew = x.Energy()
+      eNew = new.Energy()
       if(eNew < e):
         newF.append(new)
+        print "Update: ", eNew, e
       else:
         newF.append(x)
       total+=min(eNew, e)
@@ -77,16 +80,15 @@ class DE:
     #print frontier
     for i in xrange(myOpt.de_max):
       total,n,frontier = self.update(frontier)
-      self.model.evalBetter()
     for x in frontier:
-      energy = self.model.evaluate(x)
-      if(minR>energy):
-        minR = energy
-        solution=x  
-    return energy, True
+      energy = x.Energy()
+      eBest = 1000
+      if(eBest>energy):
+        eBest = energy  
+    return eBest, True
 
   def printOptions(self):
     print "DE Options:"
     print "Repeats:", myOpt.de_max, "Candidates:", myOpt.de_np
-    print "Extrapolate:", myOpt.de_f, "Crossover:", de_cf
+    print "Extrapolate:", myOpt.de_f, "Crossover:", myOpt.de_cf
     print "Epsilon:", myOpt.de_epsilon

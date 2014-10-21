@@ -45,6 +45,4 @@ def xtile(lst,lo=0,hi=0.001,width=50,
   return ''.join(out) +  "," +  pretty(what)
   
 def normalize(x):
-    e = (x - i.min)/(i.max - i.min)
-    # return max(0, min(e,1)) #avoid values <0 or >1
-    return e
+    return (x - i.min)/(i.max - i.min)
