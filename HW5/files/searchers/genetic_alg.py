@@ -78,7 +78,7 @@ class GA:
         parents = self.SelectParents(population) #all possible pairings of parents
         children = []
         for parent1, parent2 in parents:
-          child = self.Crossover(parent1, parent2, 2)
+          child = self.Crossover(parent1, parent2, myOpt.ga_crossover)
           children.append(self.Mutate(child, pMutate))
         eBest, population = self.GetBestSolutions(children)
         k += 1
