@@ -21,6 +21,8 @@ class ZDT3(Model):
     f1 = X[0]
     g = 1+9*(np.sum([X[i] for i in range (1, self.n)])/(self.n-1))
     f2 = g*(1-np.sqrt(X[0]/g)-(X[0]/g)*math.sin(10*math.pi*X[0]))
+    if f1+f2 < self.eMin:
+      self.eMin = f1+f2
     return ((f1+f2) - self.eMin) / (self.eMax - self.eMin)
     
   def RawEnergy(self):

@@ -20,7 +20,6 @@ class DE:
       for i in xrange(len(frontier)):
         while True:
           k = random.randint(0,len(frontier)-1)
-          #print "%d"%k
           if frontier[k] not in seen:
             seen.append(frontier[k])
             break
@@ -31,7 +30,11 @@ class DE:
     return this,that,then
   
   def trim(self,x,one)  : # trim to legal range
-    return max(one.eMax, min(x, one.eMax))      
+    if x < one.smin:
+      return one.smin
+    elif x > one.smax:
+      return one.smax
+    return x  
 
   def extrapolate(self,frontier,one):
     #print "Extrapolate"
@@ -40,13 +43,14 @@ class DE:
     solution=[]
     for d in xrange(one.n):
       x,y,z=two.XVar[d],three.XVar[d],four.XVar[d]
-      if(random.random() < myOpt.de_cf):
+      if(random.random() > myOpt.de_cf):
         solution.append(self.trim(x + myOpt.de_f*(y-z), one))
       else:
         solution.append(one.XVar[d]) 
     
     temp = copy.deepcopy(one)
     temp.XVar = solution
+    #print temp.XVar
 
     return temp
 
@@ -58,12 +62,12 @@ class DE:
     for x in frontier:
       #print "update: %d"%n
       e = x.Energy()
-      #print x.XVar
       new = self.extrapolate(frontier,x)
       eNew = new.Energy()
+      #print eNew, " < ", e
       if(eNew < e):
         newF.append(new)
-        print "Update: ", eNew, e
+        #print "Update: ", eNew
       else:
         newF.append(x)
       total+=min(eNew, e)
@@ -72,12 +76,11 @@ class DE:
       
   def run(self, klass):
     #print "evaluate"
-    de = klass
     frontier = []
     for i in range(myOpt.de_np):
+      de = copy.deepcopy(klass)
       de.Chaos()
-      frontier.append(copy.deepcopy(de)) #add a randomly generated model to list
-    #print frontier
+      frontier.append(de) #add a randomly generated model to list
     for i in xrange(myOpt.de_max):
       total,n,frontier = self.update(frontier)
     for x in frontier:

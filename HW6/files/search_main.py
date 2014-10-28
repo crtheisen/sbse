@@ -30,7 +30,7 @@ def display(model, searcher, startTime, scores, r):
   print "==============================================================="
 
 def main(modelList, searcherList):
-  r = 5
+  r = 30
   for klass in modelList:
     classScoreList = []
     for searcher in searcherList:
@@ -51,13 +51,12 @@ def main(modelList, searcherList):
       if scores:
         classScoreList.append(fullScoreList)
     print "Scott-Knott for", klass.__name__
-    print classScoreList
     rdivDemo(classScoreList)
     print "\n"
 
-#modelList = [Fonseca, Schaffer, Kursawe, ZDT1, ZDT3, Viennet3]
-#searcherList = [SA, MWS, GA]
-modelList = [Fonseca]
-searcherList = [DE]
+#modelList = [Schaffer, Kursawe, ZDT1, ZDT3, Viennet3]
+searcherList = [DE, SA, MWS, GA]
+modelList = [Schwefel]
+#searcherList = [SA]
 
 main(modelList, searcherList)

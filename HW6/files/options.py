@@ -15,7 +15,7 @@ class Options:
   mws_prob = 0.75
   mws_maxTries = 500
   mws_maxChanges = 500
-  mws_threshold = .000001
+  mws_threshold = .001
   mws_slices = 10
   
   #Simulated Annealing options
@@ -30,7 +30,7 @@ class Options:
   #Differential Evolution options
   de_max     = 100   # number of repeats 
   de_np      = 100   # number of candidates
-  de_f       = 0.75  # extrapolate amount
+  de_f       = 0.2  # extrapolate amount
   de_cf      = 0.3   # prob of cross-over 
   de_epsilon = 0.01
   

@@ -46,8 +46,8 @@ class Model:
     self.XVar = self.XVarMax
     
   def Chaos(self):
-    for vars in self.XVar:
-      vars = random.uniform(self.smin, self.smax)
+    for i in range(self.n):
+      self.XVar[i] = random.uniform(self.smin, self.smax)
     
   def Baseline(self, numRuns):
     self.Chaos()

@@ -20,6 +20,8 @@ class Fonseca(Model):
     n = self.n
     f1 = 1-math.exp(-np.sum([self.XVar[i]-(1/np.sqrt(n))**2 for i in range (0, 3)]))
     f2 = 1-math.exp(-np.sum([self.XVar[i]+(1/np.sqrt(n))**2 for i in range (0, 3)]))
+    if f1+f2 < self.eMin:
+      self.eMin = f1+f2
     return ((f1+f2) - self.eMin) / (self.eMax - self.eMin)
     
   def RawEnergy(self):

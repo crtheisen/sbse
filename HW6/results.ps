@@ -1,0 +1,1033 @@
+%!PS-Adobe-3.0
+%%Title: results.txt
+%%For: Christopher Theisen
+%%Creator: a2ps version 4.14
+%%CreationDate: Tue Oct 28 13:44:05 2014
+%%BoundingBox: 24 24 588 768
+%%DocumentData: Clean7Bit
+%%Orientation: Landscape
+%%Pages: 2
+%%PageOrder: Ascend
+%%DocumentMedia: Letter 612 792 0 () ()
+%%DocumentNeededResources: font Courier
+%%+ font Courier-Bold
+%%+ font Courier-BoldOblique
+%%+ font Courier-Oblique
+%%+ font Helvetica
+%%+ font Helvetica-Bold
+%%+ font Symbol
+%%+ font Times-Bold
+%%+ font Times-Roman
+%%DocumentProcessColors: Black 
+%%DocumentSuppliedResources: procset a2ps-a2ps-hdr
+%%+ procset a2ps-black+white-Prolog
+%%+ encoding ISO-8859-1Encoding
+%%EndComments
+/a2psdict 200 dict def
+a2psdict begin
+%%BeginProlog
+%%Copyright: (c) 1988, 89, 90, 91, 92, 93 Miguel Santana
+%%Copyright: (c) 1995, 96, 97, 98 Akim Demaille, Miguel Santana
+% Check PostScript language level.
+/languagelevel where {
+  pop /gs_languagelevel languagelevel def
+} {
+  /gs_languagelevel 1 def
+} ifelse
+
+% EPSF import as in the Red Book
+/BeginInclude {
+  /b4_Inc_state save def    		% Save state for cleanup
+  /dict_count countdictstack def	% Count objects on dict stack
+  /op_count count 1 sub def		% Count objects on operand stack 
+  userdict begin
+    0 setgray 0 setlinecap
+    1 setlinewidth 0 setlinejoin
+    10 setmiterlimit [ ] 0 setdash newpath
+    gs_languagelevel 1 ne {
+      false setstrokeadjust false setoverprint 
+    } if
+} bind def
+
+/EndInclude {
+  count op_count sub { pos } repeat	% Clean up stacks
+  countdictstack dict_count sub { end } repeat
+  b4_Inc_state restore
+} bind def
+
+/BeginEPSF {
+  BeginInclude
+  /showpage { } def
+} bind def
+
+/EndEPSF {
+  EndInclude
+} bind def
+
+% Page prefeed
+/page_prefeed {         % bool -> -
+  statusdict /prefeed known {
+    statusdict exch /prefeed exch put
+  } {
+    pop
+  } ifelse
+} bind def
+
+/deffont {
+  findfont exch scalefont def
+} bind def
+
+/reencode_font {
+  findfont reencode 2 copy definefont pop def
+} bind def
+
+% Function c-show (str => -)
+% centers text only according to x axis.
+/c-show { 
+  dup stringwidth pop
+  2 div neg 0 rmoveto
+  show
+} bind def
+
+% Function l-show (str => -)
+% prints texts so that it ends at currentpoint
+/l-show {
+  dup stringwidth pop neg 
+  0 
+  rmoveto show
+} bind def
+
+% center-fit show (str w => -)
+% show centered, and scale currentfont so that the width is less than w
+/cfshow {
+  exch dup stringwidth pop
+  % If the title is too big, try to make it smaller
+  3 2 roll 2 copy
+  gt
+  { % if, i.e. too big
+    exch div
+    currentfont exch scalefont setfont
+  } { % ifelse
+    pop pop 
+  }
+  ifelse
+  c-show			% center title
+} bind def
+
+% Return the y size of the current font
+% - => fontsize
+/currentfontsize {
+  currentfont /FontMatrix get 3 get 1000 mul
+} bind def
+
+% reencode the font
+% <encoding-vector> <fontdict> -> <newfontdict>
+/reencode { %def
+  dup length 5 add dict begin
+    { %forall
+      % <vector> <key> <val>
+      1 index /FID ne 
+      { def }{ pop pop } ifelse
+    } forall
+    /Encoding exch def % -
+
+    % Use the font's bounding box to determine the ascent, descent,
+    % and overall height; don't forget that these values have to be
+    % transformed using the font's matrix.
+    % We use `load' because sometimes BBox is executable, sometimes not.
+    % Since we need 4 numbers an not an array avoid BBox from being executed
+    /FontBBox load aload pop
+    FontMatrix transform /Ascent exch def pop
+    FontMatrix transform /Descent exch def pop
+    /FontHeight Ascent Descent sub def
+
+    % Get the underline position and thickness if they're defined.
+    % Use 1 if they are not defined.
+    currentdict /FontInfo 2 copy known
+    { get
+      /UnderlinePosition 2 copy % <FontInfo> /UP <FontInfo> /UP
+      2 copy known
+      { get }{ pop pop 1 } ifelse
+      0 exch FontMatrix transform exch pop
+      def % <FontInfo>
+
+      /UnderlineThickness 2 copy % <FontInfo> /UT <FontInfo> /UT
+      2 copy known
+      { get }{ pop pop 1 } ifelse
+      0 exch FontMatrix transform exch pop
+      def % <FontInfo>
+      pop % -
+    }{ pop pop
+    } ifelse
+
+    currentdict
+  end 
+} bind def
+
+% Function print line number (<string> # -)
+/# {
+  gsave
+    sx cw mul neg 2 div 0 rmoveto
+    f# setfont
+    c-show
+  grestore
+} bind def
+
+% -------- Some routines to enlight plain b/w printings ---------
+
+% Underline
+% width --
+/dounderline {
+  currentpoint
+  gsave
+    moveto
+    0 currentfont /Descent get currentfontsize mul rmoveto
+    0 rlineto
+    stroke
+  grestore
+} bind def
+
+% Underline a string
+% string --
+/dounderlinestring {
+  stringwidth pop
+  dounderline
+} bind def
+
+/UL {
+  /ul exch store
+} bind def
+
+% Draw a box of WIDTH wrt current font
+% width --
+/dobox {
+  currentpoint
+  gsave
+    newpath
+    moveto
+    0 currentfont /Descent get currentfontsize mul rmoveto
+    dup 0 rlineto
+    0 currentfont /FontHeight get currentfontsize mul rlineto
+    neg 0 rlineto
+    closepath
+    stroke
+  grestore
+} bind def
+
+/BX {
+  /bx exch store
+} bind def
+
+% Box a string
+% string --
+/doboxstring {
+  stringwidth pop
+  dobox
+} bind def
+
+%
+% ------------- Color routines ---------------
+%
+/FG /setrgbcolor load def
+
+% Draw the background
+% width --
+/dobackground {
+  currentpoint
+  gsave
+    newpath
+    moveto
+    0 currentfont /Descent get currentfontsize mul rmoveto
+    dup 0 rlineto
+    0 currentfont /FontHeight get currentfontsize mul rlineto
+    neg 0 rlineto
+    closepath
+    bgcolor aload pop setrgbcolor
+    fill
+  grestore
+} bind def
+
+% Draw bg for a string
+% string --
+/dobackgroundstring {
+  stringwidth pop
+  dobackground
+} bind def
+
+
+/BG {
+  dup /bg exch store
+  { mark 4 1 roll ] /bgcolor exch store } if
+} bind def
+
+
+/Show {
+  bg { dup dobackgroundstring } if
+  ul { dup dounderlinestring } if
+  bx { dup doboxstring } if
+  show
+} bind def
+
+% Function T(ab), jumps to the n-th tabulation in the current line
+/T {
+  cw mul x0 add
+  bg { dup currentpoint pop sub dobackground } if
+  ul { dup currentpoint pop sub dounderline } if
+  bx { dup currentpoint pop sub dobox } if
+  y0 moveto
+} bind def
+
+% Function n: move to the next line
+/n {
+  /y0 y0 bfs sub store
+  x0 y0 moveto
+} bind def
+
+% Function N: show and move to the next line
+/N {
+  Show
+  /y0 y0 bfs sub store
+  x0 y0 moveto
+} bind def
+
+/S {
+  Show
+} bind def
+
+%%BeginResource: procset a2ps-a2ps-hdr 2.0 2
+%%Copyright: (c) 1988, 89, 90, 91, 92, 93 Miguel Santana
+%%Copyright: (c) 1995, 96, 97, 98 Akim Demaille, Miguel Santana
+% Function title: prints page header.
+% <ct> <rt> <lt> are passed as argument
+/title { 
+  % 1. Draw the background
+  x v get y v get moveto
+  gsave
+    0 th 2 div neg rmoveto 
+    th setlinewidth
+    0.95 setgray
+    pw 0 rlineto stroke
+  grestore
+  % 2. Border it
+  gsave
+    0.7 setlinewidth
+    pw 0 rlineto
+    0 th neg rlineto
+    pw neg 0 rlineto
+    closepath stroke
+  grestore
+  % stk: ct rt lt
+  x v get y v get th sub 1 add moveto
+%%IncludeResource: font Helvetica
+  fHelvetica fnfs 0.8 mul scalefont setfont
+  % 3. The left title
+  gsave
+    dup stringwidth pop fnfs 0.8 mul add exch % leave space took on stack
+    fnfs 0.8 mul hm rmoveto
+    show			% left title
+  grestore
+  exch
+  % stk: ct ltw rt
+  % 4. the right title
+  gsave
+    dup stringwidth pop fnfs 0.8 mul add exch % leave space took on stack
+    dup
+    pw exch stringwidth pop fnfs 0.8 mul add sub
+    hm
+    rmoveto
+    show			% right title
+  grestore
+  % stk: ct ltw rtw
+  % 5. the center title
+  gsave
+    pw 3 1 roll
+    % stk: ct pw ltw rtw
+    3 copy 
+    % Move to the center of the left room
+    sub add 2 div hm rmoveto
+    % What is the available space in here?
+    add sub fnfs 0.8 mul sub fnfs 0.8 mul sub
+    % stk: ct space_left
+%%IncludeResource: font Helvetica-Bold
+  fHelvetica-Bold fnfs scalefont setfont
+    cfshow
+  grestore
+} bind def
+
+% Function border: prints virtual page border
+/border { %def
+  gsave				% print four sides
+    0 setgray
+    x v get y v get moveto
+    0.7 setlinewidth		% of the square
+    pw 0 rlineto
+    0 ph neg rlineto
+    pw neg 0 rlineto
+    closepath stroke
+  grestore
+} bind def
+
+% Function water: prints a water mark in background
+/water { %def
+  gsave
+    scx scy moveto rotate
+%%IncludeResource: font Times-Bold
+  fTimes-Bold 100 scalefont setfont
+    .97 setgray
+    dup stringwidth pop 2 div neg -50 rmoveto
+    show
+  grestore
+} bind def
+
+% Function rhead: prints the right header
+/rhead {  %def
+  lx ly moveto
+  fHelvetica fnfs 0.8 mul scalefont setfont
+  l-show
+} bind def
+
+% Function footer (cf rf lf -> -)
+/footer {
+  fHelvetica fnfs 0.8 mul scalefont setfont
+  dx dy moveto
+  show
+
+  snx sny moveto
+  l-show
+  
+  fnx fny moveto
+  c-show
+} bind def
+%%EndResource
+%%BeginResource: procset a2ps-black+white-Prolog 2.0 1
+
+% Function T(ab), jumps to the n-th tabulation in the current line
+/T { 
+  cw mul x0 add y0 moveto
+} bind def
+
+% Function n: move to the next line
+/n { %def
+  /y0 y0 bfs sub store
+  x0 y0 moveto
+} bind def
+
+% Function N: show and move to the next line
+/N {
+  Show
+  /y0 y0 bfs sub store
+  x0 y0 moveto
+}  bind def
+
+/S {
+  Show
+} bind def
+
+/p {
+  false UL
+  false BX
+  fCourier bfs scalefont setfont
+  Show
+} bind def
+
+/sy {
+  false UL
+  false BX
+  fSymbol bfs scalefont setfont
+  Show
+} bind def
+
+/k {
+  false UL
+  false BX
+  fCourier-Oblique bfs scalefont setfont
+  Show
+} bind def
+
+/K {
+  false UL
+  false BX
+  fCourier-Bold bfs scalefont setfont
+  Show
+} bind def
+
+/c {
+  false UL
+  false BX
+  fCourier-Oblique bfs scalefont setfont
+  Show
+} bind def
+
+/C {
+  false UL
+  false BX
+  fCourier-BoldOblique bfs scalefont setfont
+  Show 
+} bind def
+
+/l {
+  false UL
+  false BX
+  fHelvetica bfs scalefont setfont
+  Show
+} bind def
+
+/L {
+  false UL
+  false BX
+  fHelvetica-Bold bfs scalefont setfont
+  Show 
+} bind def
+
+/str{
+  false UL
+  false BX
+  fTimes-Roman bfs scalefont setfont
+  Show
+} bind def
+
+/e{
+  false UL
+  true BX
+  fHelvetica-Bold bfs scalefont setfont
+  Show
+} bind def
+
+%%EndResource
+%%EndProlog
+%%BeginSetup
+%%IncludeResource: font Courier
+%%IncludeResource: font Courier-Oblique
+%%IncludeResource: font Courier-Bold
+%%IncludeResource: font Times-Roman
+%%IncludeResource: font Symbol
+%%IncludeResource: font Courier-BoldOblique
+%%BeginResource: encoding ISO-8859-1Encoding
+/ISO-8859-1Encoding [
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/space /exclam /quotedbl /numbersign /dollar /percent /ampersand /quoteright 
+/parenleft /parenright /asterisk /plus /comma /minus /period /slash 
+/zero /one /two /three /four /five /six /seven 
+/eight /nine /colon /semicolon /less /equal /greater /question 
+/at /A /B /C /D /E /F /G 
+/H /I /J /K /L /M /N /O 
+/P /Q /R /S /T /U /V /W 
+/X /Y /Z /bracketleft /backslash /bracketright /asciicircum /underscore 
+/quoteleft /a /b /c /d /e /f /g 
+/h /i /j /k /l /m /n /o 
+/p /q /r /s /t /u /v /w 
+/x /y /z /braceleft /bar /braceright /asciitilde /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/space /exclamdown /cent /sterling /currency /yen /brokenbar /section 
+/dieresis /copyright /ordfeminine /guillemotleft /logicalnot /hyphen /registered /macron 
+/degree /plusminus /twosuperior /threesuperior /acute /mu /paragraph /bullet 
+/cedilla /onesuperior /ordmasculine /guillemotright /onequarter /onehalf /threequarters /questiondown 
+/Agrave /Aacute /Acircumflex /Atilde /Adieresis /Aring /AE /Ccedilla 
+/Egrave /Eacute /Ecircumflex /Edieresis /Igrave /Iacute /Icircumflex /Idieresis 
+/Eth /Ntilde /Ograve /Oacute /Ocircumflex /Otilde /Odieresis /multiply 
+/Oslash /Ugrave /Uacute /Ucircumflex /Udieresis /Yacute /Thorn /germandbls 
+/agrave /aacute /acircumflex /atilde /adieresis /aring /ae /ccedilla 
+/egrave /eacute /ecircumflex /edieresis /igrave /iacute /icircumflex /idieresis 
+/eth /ntilde /ograve /oacute /ocircumflex /otilde /odieresis /divide 
+/oslash /ugrave /uacute /ucircumflex /udieresis /yacute /thorn /ydieresis 
+] def
+%%EndResource
+% Initialize page description variables.
+/sh 612 def
+/sw 792 def
+/llx 24 def
+/urx 768 def
+/ury 588 def
+/lly 24 def
+/#copies 1 def
+/th 15.000000 def
+/fnfs 11 def
+/bfs 5.475763 def
+/cw 3.285458 def
+
+% Dictionary for ISO-8859-1 support
+/iso1dict 8 dict begin
+  /fCourier ISO-8859-1Encoding /Courier reencode_font
+  /fCourier-Bold ISO-8859-1Encoding /Courier-Bold reencode_font
+  /fCourier-BoldOblique ISO-8859-1Encoding /Courier-BoldOblique reencode_font
+  /fCourier-Oblique ISO-8859-1Encoding /Courier-Oblique reencode_font
+  /fHelvetica ISO-8859-1Encoding /Helvetica reencode_font
+  /fHelvetica-Bold ISO-8859-1Encoding /Helvetica-Bold reencode_font
+  /fTimes-Bold ISO-8859-1Encoding /Times-Bold reencode_font
+  /fTimes-Roman ISO-8859-1Encoding /Times-Roman reencode_font
+currentdict end def
+/bgcolor [ 0 0 0 ] def
+/bg false def
+/ul false def
+/bx false def
+% The font for line numbering
+/f# /Helvetica findfont bfs .6 mul scalefont def
+/fSymbol /Symbol findfont def
+/hm fnfs 0.25 mul def
+/pw
+   cw 111.400000 mul
+def
+/ph
+   524.030504 th add
+def
+/pmw urx llx sub pw 2 mul sub 1 div def
+/pmh 0 def
+/v 0 def
+/x [
+  0
+  dup pmw add pw add
+] def
+/y [
+  pmh ph add 0 mul ph add
+  dup
+] def
+/scx sw 2 div def
+/scy sh 2 div def
+/snx urx def
+/sny lly 2 add def
+/dx llx def
+/dy sny def
+/fnx scx def
+/fny dy def
+/lx snx def
+/ly ury fnfs 0.8 mul sub def
+/sx 0 def
+/tab 8 def
+/x0 0 def
+/y0 0 def
+%%EndSetup
+
+%%Page: (1-2) 1
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 2.299820 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(===============================================================) p n
+(Model Name:  Schwefel) N
+(Searcher Name:  DE) N
+(Seed: 1 Lives:  3) N
+(A12test: 0.6) N
+(DE Options:) N
+(Repeats: 100 Candidates: 100) N
+(Extrapolate: 0.2 Crossover: 0.3) N
+(Epsilon: 0.01) N
+(Time to run \(s\):  431.512211) N
+(Runs:  30) N
+(Average per run \(s\):  14.3837403667) N
+(\(*           |            \), -0.04345,  -0.03568,  -0.02721,  -0.02518,  -0.01789) N
+(===============================================================) N
+(===============================================================) N
+(Model Name:  Schwefel) N
+(Searcher Name:  SA) N
+(Seed: 1 Lives:  3) N
+(A12test: 0.6) N
+(SA Options:) N
+(KMAX: 500 Cooling: 0.6) N
+(Time to run \(s\):  110.681106) N
+(Runs:  30) N
+(Average per run \(s\):  3.6893702) N
+(\(*           |            \), 0.00840,  0.02765,  0.03605,  0.05711,  0.07963) N
+(===============================================================) N
+(===============================================================) N
+(Model Name:  Schwefel) N
+(Searcher Name:  MWS) N
+(Seed: 1 Lives:  3) N
+(A12test: 0.6) N
+(MaxWalkSat Options:) N
+(Prob: 0.75) N
+(MaxTries: 500 MaxChanges 500) N
+(Threshold: 0.001 Slices: 10) N
+(Time to run \(s\):  171.184775) N
+(No valid runs!) N
+(===============================================================) N
+(===============================================================) N
+(Model Name:  Schwefel) N
+(Searcher Name:  GA) N
+(Seed: 1 Lives:  3) N
+(A12test: 0.6) N
+(GA Options:) N
+(popSize: 50 Crossover: 0.6) N
+(Gens: [10]) N
+(Time to run \(s\):  398.553813) N
+(Runs:  30) N
+(Average per run \(s\):  13.2851271) N
+(\(*           |            \), 0.02095,  0.03705,  0.04739,  0.07176,  0.10129) N
+(===============================================================) N
+(Scott-Knott for Schwefel) N
+() N
+(rank ,     name ,    med   ,  iqr ) N
+(----------------------------------------------------) N
+(   1 ,       DE ,      -3  ,     1 \(  - *-         |              \),-0.04, -0.04, -0.03, -0.03, -0.02) N
+(   2 ,       SA ,       4  ,     3 \(          --- *| ---          \), 0.01,  0.03,  0.04,  0.06,  0.08) N
+(   2 ,       GA ,       4  ,     4 \(            -- *   ----       \), 0.02,  0.04,  0.05,  0.07,  0.10) N
+(   ) N
+(  ) N
+(===============================================================) N
+(Model Name:  Schaffer) N
+(Searcher Name:  DE) N
+(Seed: 1 Lives:  3) N
+(A12test: 0.6) N
+(DE Options:) N
+(Repeats: 100 Candidates: 100) N
+(Extrapolate: 0.2 Crossover: 0.3) N
+(Epsilon: 0.01) N
+(Time to run \(s\):  14.584251) N
+(Runs:  30) N
+(Average per run \(s\):  0.4861417) N
+(\(*           |            \), -0.00000,  -0.00000,  -0.00000,  -0.00000,  -0.00000) N
+(===============================================================) N
+(===============================================================) N
+(Model Name:  Schaffer) N
+(Searcher Name:  SA) N
+(Seed: 1 Lives:  3) N
+(A12test: 0.6) N
+(SA Options:) N
+(KMAX: 500 Cooling: 0.6) N
+(Time to run \(s\):  0.825005) N
+(Runs:  30) N
+(Average per run \(s\):  0.0275001666667) N
+(\(*           |            \), 0.00000,  0.00000,  0.00003,  0.00004,  0.00013) N
+(===============================================================) N
+(===============================================================) N
+(Model Name:  Schaffer) N
+(Searcher Name:  MWS) N
+(Seed: 1 Lives:  3) N
+(A12test: 0.6) N
+(MaxWalkSat Options:) N
+(Prob: 0.75) N
+(MaxTries: 500 MaxChanges 500) N
+(Threshold: 0.001 Slices: 10) N
+(csc710sbse: HW6:Theisen) (Page 1/4) (Oct 28, 14 13:43) title
+border
+/v 1 store
+/x0 x v get 2.299820 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(Time to run \(s\):  0.842276) p n
+(Runs:  30) N
+(Average per run \(s\):  0.0280758666667) N
+(\(*           |            \), 0.00004,  0.00013,  0.00022,  0.00043,  0.00089) N
+(===============================================================) N
+(===============================================================) N
+(Model Name:  Schaffer) N
+(Searcher Name:  GA) N
+(Seed: 1 Lives:  3) N
+(A12test: 0.6) N
+(GA Options:) N
+(popSize: 50 Crossover: 0.6) N
+(Gens: [10]) N
+(Time to run \(s\):  6.284045) N
+(Runs:  30) N
+(Average per run \(s\):  0.209468166667) N
+(\(*           |            \), 0.00000,  0.00000,  0.00000,  0.00001,  0.00006) N
+(===============================================================) N
+(Scott-Knott for Schaffer) N
+() N
+(rank ,     name ,    med   ,  iqr ) N
+(----------------------------------------------------) N
+(   1 ,       DE ,       0  ,     0 \(*              |              \),-0.00, -0.00, -0.00, -0.00, -0.00) N
+(   1 ,       GA ,       0  ,     0 \(*              |              \), 0.00,  0.00,  0.00,  0.00,  0.00) N
+(   1 ,       SA ,       0  ,     0 \(*---           |              \), 0.00,  0.00,  0.00,  0.00,  0.00) N
+(   1 ,      MWS ,       0  ,     0 \( ---  *     ---|-----------   \), 0.00,  0.00,  0.00,  0.00,  0.00) N
+() N
+() N
+(===============================================================) N
+(Model Name:  Kursawe) N
+(Searcher Name:  DE) N
+(Seed: 1 Lives:  3) N
+(A12test: 0.6) N
+(DE Options:) N
+(Repeats: 100 Candidates: 100) N
+(Extrapolate: 0.2 Crossover: 0.3) N
+(Epsilon: 0.01) N
+(Time to run \(s\):  68.642456) N
+(Runs:  30) N
+(Average per run \(s\):  2.28808186667) N
+(\(*           |            \), -0.01530,  -0.01165,  -0.00883,  -0.00692,  -0.00210) N
+(===============================================================) N
+(===============================================================) N
+(Model Name:  Kursawe) N
+(Searcher Name:  SA) N
+(Seed: 1 Lives:  3) N
+(A12test: 0.6) N
+(SA Options:) N
+(KMAX: 500 Cooling: 0.6) N
+(Time to run \(s\):  16.879116) N
+(Runs:  30) N
+(Average per run \(s\):  0.5626372) N
+(\(*           |            \), 0.01768,  0.03519,  0.05005,  0.07085,  0.10534) N
+(===============================================================) N
+(===============================================================) N
+(Model Name:  Kursawe) N
+(Searcher Name:  MWS) N
+(Seed: 1 Lives:  3) N
+(A12test: 0.6) N
+(MaxWalkSat Options:) N
+(Prob: 0.75) N
+(MaxTries: 500 MaxChanges 500) N
+(Threshold: 0.001 Slices: 10) N
+(Time to run \(s\):  23.646248) N
+(No valid runs!) N
+(===============================================================) N
+(===============================================================) N
+(Model Name:  Kursawe) N
+(Searcher Name:  GA) N
+(Seed: 1 Lives:  3) N
+(A12test: 0.6) N
+(GA Options:) N
+(popSize: 50 Crossover: 0.6) N
+(Gens: [10]) N
+(Time to run \(s\):  59.130969) N
+(Runs:  30) N
+(Average per run \(s\):  1.9710323) N
+(\(*           |            \), 0.01657,  0.04304,  0.06291,  0.07494,  0.08974) N
+(===============================================================) N
+(Scott-Knott for Kursawe) N
+() N
+(rank ,     name ,    med   ,  iqr ) N
+(----------------------------------------------------) N
+(   1 ,       DE ,      -1  ,     0 \(-*-            |              \),-0.02, -0.01, -0.01, -0.01, -0.00) N
+(   2 ,       SA ,       5  ,     4 \(      ---  *  -|----          \), 0.02,  0.04,  0.05,  0.07,  0.11) N
+(   2 ,       GA ,       5  ,     4 \(      ----   * |-             \), 0.02,  0.04,  0.06,  0.07,  0.09) N
+() N
+() N
+(===============================================================) N
+(Model Name:  ZDT1) N
+(Searcher Name:  DE) N
+(Seed: 1 Lives:  3) N
+(A12test: 0.6) N
+(DE Options:) N
+(Repeats: 100 Candidates: 100) N
+(csc710sbse: HW6:Theisen) (Page 2/4) (Oct 28, 14 13:43) title
+border
+grestore
+(Printed by Christopher Theisen) rhead
+(./HW6/files/results/results.txt) (1/2) (Tuesday October 28, 2014) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (3-4) 2
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 2.299820 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(Extrapolate: 0.2 Crossover: 0.3) p n
+(Epsilon: 0.01) N
+(Time to run \(s\):  72.310425) N
+(Runs:  30) N
+(Average per run \(s\):  2.4103475) N
+(\(*           |            \), 0.00000,  0.00000,  0.00000,  0.00000,  0.00000) N
+(===============================================================) N
+(===============================================================) N
+(Model Name:  ZDT1) N
+(Searcher Name:  SA) N
+(Seed: 1 Lives:  3) N
+(A12test: 0.6) N
+(SA Options:) N
+(KMAX: 500 Cooling: 0.6) N
+(Time to run \(s\):  9.33202) N
+(Runs:  30) N
+(Average per run \(s\):  0.311067333333) N
+(\(*           |            \), 0.02970,  0.08570,  0.10055,  0.14840,  0.18991) N
+(===============================================================) N
+(===============================================================) N
+(Model Name:  ZDT1) N
+(Searcher Name:  MWS) N
+(Seed: 1 Lives:  3) N
+(A12test: 0.6) N
+(MaxWalkSat Options:) N
+(Prob: 0.75) N
+(MaxTries: 500 MaxChanges 500) N
+(Threshold: 0.001 Slices: 10) N
+(Time to run \(s\):  9.462394) N
+(Runs:  30) N
+(Average per run \(s\):  0.315413133333) N
+(\(*           |            \), 0.00000,  0.00000,  0.00000,  0.00000,  0.00000) N
+(===============================================================) N
+(===============================================================) N
+(Model Name:  ZDT1) N
+(Searcher Name:  GA) N
+(Seed: 1 Lives:  3) N
+(A12test: 0.6) N
+(GA Options:) N
+(popSize: 50 Crossover: 0.6) N
+(Gens: [10]) N
+(Time to run \(s\):  36.806894) N
+(Runs:  30) N
+(Average per run \(s\):  1.22689646667) N
+(\(*           |            \), 0.08353,  0.15156,  0.15998,  0.19528,  0.25170) N
+(===============================================================) N
+(Scott-Knott for ZDT1) N
+() N
+(rank ,     name ,    med   ,  iqr ) N
+(----------------------------------------------------) N
+(   1 ,       DE ,       0  ,     0 \(*              |              \), 0.00,  0.00,  0.00,  0.00,  0.00) N
+(   1 ,      MWS ,       0  ,     0 \(*              |              \), 0.00,  0.00,  0.00,  0.00,  0.00) N
+(   2 ,       SA ,      10  ,     7 \(  ------ *    -|--            \), 0.03,  0.09,  0.10,  0.15,  0.19) N
+(   3 ,       GA ,      16  ,     7 \(        ------ *   -----      \), 0.08,  0.15,  0.16,  0.20,  0.25) N
+() N
+() N
+(===============================================================) N
+(Model Name:  ZDT3) N
+(Searcher Name:  DE) N
+(Seed: 1 Lives:  3) N
+(A12test: 0.6) N
+(DE Options:) N
+(Repeats: 100 Candidates: 100) N
+(Extrapolate: 0.2 Crossover: 0.3) N
+(Epsilon: 0.01) N
+(Time to run \(s\):  75.607872) N
+(Runs:  30) N
+(Average per run \(s\):  2.5202624) N
+(\(*           |            \), 0.00000,  0.00000,  0.00000,  0.00000,  0.00000) N
+(===============================================================) N
+(===============================================================) N
+(Model Name:  ZDT3) N
+(Searcher Name:  SA) N
+(Seed: 1 Lives:  3) N
+(A12test: 0.6) N
+(SA Options:) N
+(KMAX: 500 Cooling: 0.6) N
+(Time to run \(s\):  10.238166) N
+(Runs:  30) N
+(Average per run \(s\):  0.3412722) N
+(\(*           |            \), 0.00000,  0.07778,  0.14157,  0.21477,  0.28382) N
+(===============================================================) N
+(===============================================================) N
+(Model Name:  ZDT3) N
+(Searcher Name:  MWS) N
+(Seed: 1 Lives:  3) N
+(A12test: 0.6) N
+(MaxWalkSat Options:) N
+(Prob: 0.75) N
+(MaxTries: 500 MaxChanges 500) N
+(Threshold: 0.001 Slices: 10) N
+(Time to run \(s\):  10.463706) N
+(Runs:  30) N
+(Average per run \(s\):  0.3487902) N
+(\(*           |            \), 0.00000,  0.00000,  0.00000,  0.00000,  0.00083) N
+(csc710sbse: HW6:Theisen) (Page 3/4) (Oct 28, 14 13:43) title
+border
+/v 1 store
+/x0 x v get 2.299820 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(===============================================================) p n
+(===============================================================) N
+(Model Name:  ZDT3) N
+(Searcher Name:  GA) N
+(Seed: 1 Lives:  3) N
+(A12test: 0.6) N
+(GA Options:) N
+(popSize: 50 Crossover: 0.6) N
+(Gens: [10]) N
+(Time to run \(s\):  39.620969) N
+(Runs:  30) N
+(Average per run \(s\):  1.32069896667) N
+(\(*           |            \), 0.04320,  0.12381,  0.15514,  0.20596,  0.24168) N
+(===============================================================) N
+(Scott-Knott for ZDT3) N
+() N
+(rank ,     name ,    med   ,  iqr ) N
+(----------------------------------------------------) N
+(   1 ,       DE ,       0  ,     0 \(*              |              \), 0.00,  0.00,  0.00,  0.00,  0.00) N
+(   1 ,      MWS ,       0  ,     0 \(*              |              \), 0.00,  0.00,  0.00,  0.00,  0.00) N
+(   2 ,       SA ,      14  ,    14 \(-------     *  |   -------    \), 0.00,  0.08,  0.14,  0.21,  0.28) N
+(   2 ,       GA ,      15  ,    10 \(   --------   *|  ----        \), 0.04,  0.12,  0.16,  0.21,  0.24) N
+() N
+() N
+(===============================================================) N
+(Model Name:  Viennet3) N
+(Searcher Name:  DE) N
+(Seed: 1 Lives:  3) N
+(A12test: 0.6) N
+(DE Options:) N
+(Repeats: 100 Candidates: 100) N
+(Extrapolate: 0.2 Crossover: 0.3) N
+(Epsilon: 0.01) N
+(Time to run \(s\):  17.706365) N
+(Runs:  30) N
+(Average per run \(s\):  0.590212166667) N
+(\(*           |            \), -0.00015,  -0.00006,  -0.00002,  -0.00001,  -0.00000) N
+(===============================================================) N
+(===============================================================) N
+(Model Name:  Viennet3) N
+(Searcher Name:  SA) N
+(Seed: 1 Lives:  3) N
+(A12test: 0.6) N
+(SA Options:) N
+(KMAX: 500 Cooling: 0.6) N
+(Time to run \(s\):  1.430747) N
+(Runs:  30) N
+(Average per run \(s\):  0.0476915666667) N
+(\(*           |            \), 0.00034,  0.00081,  0.00179,  0.00265,  0.00500) N
+(===============================================================) N
+(===============================================================) N
+(Model Name:  Viennet3) N
+(Searcher Name:  MWS) N
+(Seed: 1 Lives:  3) N
+(A12test: 0.6) N
+(MaxWalkSat Options:) N
+(Prob: 0.75) N
+(MaxTries: 500 MaxChanges 500) N
+(Threshold: 0.001 Slices: 10) N
+(Time to run \(s\):  1.646863) N
+(Runs:  12) N
+(Average per run \(s\):  0.137238583333) N
+(\(*           |            \), 0.00027,  0.00081,  0.00088,  0.00093,  0.00097) N
+(===============================================================) N
+(===============================================================) N
+(Model Name:  Viennet3) N
+(Searcher Name:  GA) N
+(Seed: 1 Lives:  3) N
+(A12test: 0.6) N
+(GA Options:) N
+(popSize: 50 Crossover: 0.6) N
+(Gens: [10]) N
+(Time to run \(s\):  8.330384) N
+(Runs:  30) N
+(Average per run \(s\):  0.277679466667) N
+(\(*           |            \), 0.00000,  0.00019,  0.00055,  0.00075,  0.00149) N
+(===============================================================) N
+(Scott-Knott for Viennet3) N
+() N
+(rank ,     name ,    med   ,  iqr ) N
+(----------------------------------------------------) N
+(   1 ,       DE ,       0  ,     0 \(-*             |              \),-0.00, -0.00, -0.00, -0.00, -0.00) N
+(   1 ,       GA ,       0  ,     0 \( - *--         |              \), 0.00,  0.00,  0.00,  0.00,  0.00) N
+(   1 ,      MWS ,       0  ,     0 \(  --*          |              \), 0.00,  0.00,  0.00,  0.00,  0.00) N
+(   1 ,       SA ,       0  ,     0 \(  --   *  -----|--            \), 0.00,  0.00,  0.00,  0.00,  0.01) N
+() N
+() N
+(csc710sbse: HW6:Theisen) (Page 4/4) (Oct 28, 14 13:43) title
+border
+grestore
+(Printed by Christopher Theisen) rhead
+(./HW6/files/results/results.txt) (2/2) (Tuesday October 28, 2014) footer
+end % of iso1dict
+pagesave restore
+showpage
+
+%%Trailer
+end
+%%EOF

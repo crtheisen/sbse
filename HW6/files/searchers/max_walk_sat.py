@@ -64,7 +64,7 @@ class MWS:
     valid = False
     eBest, XVarBest = self.specificRun(myOpt.mws_prob, klass)
     if eBest == -1:
-      print 'No Best Found for prob = ', myOpt.mws_prob
+      #print 'No Best Found for prob = ', myOpt.mws_prob
       self.say('')
     else:
       theBest = eBest
